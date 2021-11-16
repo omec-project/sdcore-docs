@@ -1,0 +1,32 @@
+SD-Core 1.0 Release
+===================
+
+Highlights
+----------
+
+New Features and Improvements
+-----------------------------
+
+Testing
+-------
+
+Documentation
+-------------
+
+Aether documentation is available at `docs.sd-core.opennetworking.org
+<https://docs.sd-core.opennetworking.org>`_
+
+
+Known Issues and Limitations
+----------------------------
+
+Component Versions in the 1.0 Release
+-------------------------------------
+
+Helm Chart Versions and their component charts and containers:
+
+* sdcore-helm-chart: ``0.1.0``
+
+    * omec-control-plane: ``0.1.0``
+
+        * hssdb: ``c3po-hssdb:0.1.0``

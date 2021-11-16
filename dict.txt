@@ -1,0 +1,15 @@
+Aether
+Dockerfile
+ONF
+SD-Core
+dev
+hssdb
+omec
+patchset
+patchsets
+reStructuredText
+repo
+repos
+sdcore
+unsuffixed
+virtualenv

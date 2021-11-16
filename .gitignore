@@ -1,0 +1,5 @@
+venv-docs
+_build
+.vscode
+.env
+.DS_Store
