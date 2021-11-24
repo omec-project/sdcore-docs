@@ -110,7 +110,7 @@ If a fix is needed to the components/containers that are included by the helm ch
    created - this is known as "lazy branching".
 
 
-3. Manually cherry-pick to the **sdcore-1.0** branch of the component, incrementing
+3. Manually cherry-pick to the **sdcore-1.0** branch of the component, increment
    the patch version, and test with the **sdcore-1.0** version of
    sdcore-system-tests and helm charts.
 

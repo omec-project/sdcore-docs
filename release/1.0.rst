@@ -26,7 +26,22 @@ Component Versions in the 1.0 Release
 Helm Chart Versions and their component charts and containers:
 
 * sdcore-helm-chart: ``0.1.0``
-
     * omec-control-plane: ``0.1.0``
-
         * hssdb: ``c3po-hssdb:0.1.0``
+        * hss  : ``TODO``
+        * pcrf  : ``TODO``
+        * pcrfdb  : ``TODO``
+        * config4g  : ``TODO``
+        * spgw  : ``TODO``
+        * mme  : ``TODO``
+    * omec-sub-provision: ``TODO``
+        * simapp: ``TODO``
+    * 5g-control-plane: ``TODO``
+        * amf: ``TODO``
+        * smf: ``TODO``
+        * nrf: ``TODO``
+        * nssf: ``TODO``
+        * pcf: ``TODO``
+        * udm: ``TODO``
+        * udr: ``TODO``
+        * ausf: ``TODO``
