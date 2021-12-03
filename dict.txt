@@ -60,3 +60,17 @@ microservice
 QoS
 eNBs
 gNBs
+Testpod
+behaviour
+miniKube
+smfcfg
+yaml
+uerouting
+pfcpiface
+conf
+upf
+json
+smftest
+De
+testpod
+Minikube
