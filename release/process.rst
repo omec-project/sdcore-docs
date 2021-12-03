@@ -65,7 +65,7 @@ minor version increased. (ex: 1.2.n to 1.3.0-dev, so future 1.3.n+1 component
 release can easily be created).
 
 The same should be done on Helm charts in the chart repos post release, but the
-versions there shouldn't include a ``-dev`` suffix because chart publishing
+versions there should not include a ``-dev`` suffix because chart publishing
 requires that every new chart version be unique and unsuffixed SemVer is a
 more consistent release numbering pattern.
 
@@ -105,7 +105,7 @@ If a fix is needed to the components/containers that are included by the helm ch
 1. Develop a fix to the issue on the master branch, get it approved after
    passing master tests.
 
-2. If it doesn't exist, create an **sdcore-1.0** branch on the component repo,
+2. If it does not exist, create an **sdcore-1.0** branch on the component repo,
    starting at the commit where the **VERSION** of the component used in 1.0 was
    created - this is known as "lazy branching".
 

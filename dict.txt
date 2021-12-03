@@ -51,3 +51,12 @@ configPod
 gpp
 pcrfdb
 Deregistration
+Analytics
+gNodeB
+eNodeB
+iUPF
+tunnelling
+microservice
+QoS
+eNBs
+gNBs

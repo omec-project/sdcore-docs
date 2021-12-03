@@ -38,7 +38,7 @@ can be found on the `ONF Wiki
    overview/3gpp-compliance-5g.rst
    overview/3gpp-compliance-4g.rst
    overview/faq.rst
-   glossary
+   glossary.rst
 
 .. toctree::
    :maxdepth: 2
