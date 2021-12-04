@@ -12,20 +12,21 @@ SMF Compliance
     * Event Exposure : No
     * NIDD : No
 
-* Resources/Methods
+* Producer Service Operations
     * SM contexts collection
-        * create(POST) : Yes
+        * Create SM Context : Yes
     * Individual SM context
-        * retrieve(POST) : No
-        * modify(POST) : Yes
-        * release(POST) : Yes
-        * send-mo-data(POST) : No
+        * Retrieve SM Context : No
+        * Update SM Context : Yes
+        * Release SM Context : Yes
+        * Notify SM Context Status : Yes
+        * Send MO Data : No
     * PDU sessions collection
         No
     * Individual PDU session
         No
 
-* NF Functions
+* Consumer Service Operations
     * PCF
         * SM Policy Association Create : Yes
         * SM Policy Association Update : No
@@ -45,19 +46,18 @@ SMF Compliance
 
 AMF Compliance
 --------------
-* Interface support
+* Interfaces
     * SBI : Yes
     * UNKNOWN: No
-* Service Supported
+* Services
     * PDU Session Management
-* Functions supported
-* Service/Functions not supported
-    * PCF Notify
+* Producer Service Operations
+* Consumer Service Operations
 
 
 NRF Compliance
 --------------
-* Interface support
+* Interfaces
     * SBI : Yes
     * UNKNOWN: No
 * Service Supported
@@ -69,52 +69,68 @@ NRF Compliance
 
 AUSF Compliance
 ---------------
-* Interface support
+* Interfaces
     * SBI : Yes
     * UNKNOWN: No
-* Service Supported
-* Functions supported
-* Service/Functions not supported
+* Services
+* Producer Service Operations
+* Consumer Service Operations
 
 
 UDR Compliance
 --------------
-* Interface support
+* Interfaces
     * SBI : Yes
     * UNKNOWN: No
-* Service Supported
-* Functions supported
-* Service/Functions not supported
+* Services
+* Producer Service Operations
+* Consumer Service Operations
 
 
 UDM Compliance
 --------------
-* Interface support
+* Interfaces
     * SBI : Yes
     * UNKNOWN: No
-* Service Supported
-* Functions supported
-* Service/Functions not supported
+* Services
+* Producer Service Operations
+* Consumer Service Operations
 
 
 NSSF Compliance
 ---------------
-* Interface support
+* Interfaces
     * SBI : Yes
     * UNKNOWN: No
-* Service Supported
-* Functions supported
-* Service/Functions not supported
+* Services
+* Producer Service Operations
+* Consumer Service Operations
 
 
 PCF Compliance
 --------------
-* Interface support
+* Interfaces
     * SBI : Yes
     * UNKNOWN: No
-* Service Supported
-* Functions supported
-* Service/Functions not supported
+
+* Services
+    * AM Policy Control : Yes
+    * SM Policy Control : Yes
+
+* Producer Service Operations
+    * SM Policy
+        * SM Policy Control Create : Yes
+        * SM Policy Control Update : No
+        * SM Policy Control Update Notify : No
+        * SM Policy Control Delete : Yes
+    * AM Policy
+        *  AM Policy Control Create : Yes
+        *  AM Policy Control Update : No
+        *  AM Policy Control Update Notify : No
+        *  AM Policy Control Delete : Yes
+
+* Consumer Service Operations
+    * TODO- UDR
 
 
 SD Core High Level Features supported
