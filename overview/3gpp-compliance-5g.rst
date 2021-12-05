@@ -60,12 +60,31 @@ NRF Compliance
 * Interfaces
     * SBI : Yes
     * UNKNOWN: No
-* Service Supported
-    * Network Function Registration/Deregistration
-* Functions supported
-* Service/Functions not supported
-    * Keepalive
 
+* Services
+    * NF Management
+    * NF Discovery
+    * Access Token
+    * Bootstrapping
+
+* Producer Service Operations
+    * NF Management
+        * NF Register : Yes
+        * NF Update
+        * NF Deregister : Yes
+        * NF Status Subscribe
+        * NF Status Notify
+        * NF Status Unsubscribe
+        * NF List Retrieval
+        * NF Profile Retrieval
+    * NF Discovery
+        * NF Discover : Yes
+    * Access Token
+        * Access Token Request : No
+    * Bootstrapping
+        * Bootstrapping Get : No
+
+* Consumer Service Operations
 
 AUSF Compliance
 ---------------
