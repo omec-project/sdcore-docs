@@ -92,8 +92,55 @@ UDM Compliance
 * Interfaces
     * SBI : Yes
     * UNKNOWN: No
+
 * Services
+    * Subscriber Data Management
+    * UE Context Management
+    * UE Authentication
+    * Event Exposure
+    * Parameter Provision
+    * NIDD Authorization
+    * MT
+
 * Producer Service Operations
+    * Subscriber Data Management
+        * Get
+        * Subscribe
+        * ModifySubscription
+        * Unsubscribe
+        * Notification
+        * Info
+    * UE Context Management
+        * Registration
+        * DeregistrationNotification
+        * Deregistration
+        * Get
+        * Update
+        * P-CSCF Restoration Notification
+        * P-CSCF Restoration Trigger
+        * AMF Deregistration
+        * PEI Update
+    * UE Authentication
+        * Get
+        * GetHssAv
+        * Result Confirmation
+    * Event Exposure
+        * Subscribe
+        * Unsubscribe
+        * Notify
+        * Modify Subscription
+    * Parameter Provision
+        * Update
+        * Create
+        * Delete
+        * Get
+    * NIDD Authorization
+        * Get
+        * Notification
+    * MT
+        * Provide Ue Info
+        * Provide Location Info
+
 * Consumer Service Operations
 
 
