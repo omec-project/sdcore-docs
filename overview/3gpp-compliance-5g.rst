@@ -8,23 +8,36 @@ SMF Compliance
     * PFCP: Yes
 
 * Services
-    * PDU Session Management : Yes
-    * Event Exposure : No
-    * NIDD : No
+    * PDU Session Management
+    * Event Exposure
+    * NIDD
 
 * Producer Service Operations
-    * SM contexts collection
-        * Create SM Context : Yes
-    * Individual SM context
-        * Retrieve SM Context : No
-        * Update SM Context : Yes
-        * Release SM Context : Yes
-        * Notify SM Context Status : Yes
-        * Send MO Data : No
-    * PDU sessions collection
-        No
-    * Individual PDU session
-        No
+    * PDU Session Management
+        * SM contexts collection
+            * Create SM Context : Yes
+        * Individual SM context
+            * Retrieve SM Context : No
+            * Update SM Context : Yes
+            * Release SM Context : Yes
+            * Notify SM Context Status : Yes
+            * Send MO Data : No
+        * PDU sessions collection
+            * Create : No
+        * Individual PDU session
+            * Update : No
+            * Release : No
+            * Notify Status : No
+            * Retrieve : No
+            * Send MO Data: No
+            * Transfer MO Data : No
+            * Transfer MT Data : No
+    * Event Exposure
+        * No
+    * NIDD
+        * No
+
+
 
 * Consumer Service Operations
     * PCF
@@ -49,9 +62,48 @@ AMF Compliance
 * Interfaces
     * SBI : Yes
     * UNKNOWN: No
+
 * Services
-    * PDU Session Management
+    * Communication
+    * Event Exposure
+    * Mobile Terminated
+    * Location
+
 * Producer Service Operations
+    * Communication
+        * UE Context Transfer
+        * Registration Status Update
+        * N1N2 Message Transfer (UE Specific)
+        * N1N2 Transfer Failure Notification (UE Specific)
+        * N1N2 Message Subscribe (UE Specific)
+        * N1N2 Message Unsubscribe (UE Specific)
+        * N1 Message Notify (UE Specific)
+        * N2 Info Notify (UE Specific)
+        * Non Ue N2 Message Transfer
+        * Non Ue N2 Info Subscribe
+        * Non Ue N2 Info Unsubscribe
+        * N2 Info Notify
+        * EBI Assignment
+        * Create UE Context
+        * Release UE Context
+        * Relocate UE Context
+        * Cancel Relocate UE Context
+        * AMF Status Change Subscribe
+        * AMF Status Change Unsubscribe
+        * AMF Status Change Notify
+    * Event Exposure
+        * Subscribe
+        * Unsubscribe
+        * Notify
+    * Mobile Terminated
+        * Enable UE Reachability
+        * Provide Domain Selection Info
+    * Location
+        * Provide Positioning Info
+        * Event Notify
+        * Provide Location Info
+        * Cancel Location
+
 * Consumer Service Operations
 
 
