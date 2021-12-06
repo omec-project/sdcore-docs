@@ -143,8 +143,21 @@ AUSF Compliance
 * Interfaces
     * SBI : Yes
     * UNKNOWN: No
+
 * Services
+    * UE Authentication
+    * SoR Protection
+    * UPU Protection
+
 * Producer Service Operations
+    * UE Authentication
+        * Authenticate
+        * Deregister
+    * SoR Protection
+        * Protect
+    * UPU Protection
+        * Protect
+
 * Consumer Service Operations
 
 
@@ -154,7 +167,21 @@ UDR Compliance
     * SBI : Yes
     * UNKNOWN: No
 * Services
+    * Data Repository
+    * Group IDmap
+
 * Producer Service Operations
+    * Data Repository
+        * Query
+        * Create
+        * Delete
+        * Update
+        * Subscribe
+        * Unsubscribe
+        * Notify
+    * Group IDmap
+        * Query
+
 * Consumer Service Operations
 
 
@@ -220,8 +247,22 @@ NSSF Compliance
 * Interfaces
     * SBI : Yes
     * UNKNOWN: No
+
 * Services
+    * NS Selection
+    * NSSAI Availability
+
 * Producer Service Operations
+    * NS Selection
+        * Get
+    * NSSAI Availability
+        * Update
+        * Subscribe
+        * Unsubscribe
+        * Notify
+        * Delete
+        * Options
+
 * Consumer Service Operations
 
 

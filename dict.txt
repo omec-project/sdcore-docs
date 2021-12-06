@@ -78,3 +78,5 @@ Deregister
 ransim
 Ue
 Reachability
+SoR
+IDmap
