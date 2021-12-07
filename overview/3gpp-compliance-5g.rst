@@ -1,6 +1,38 @@
 5G - 3GPP Release Compliance
 ============================
 
+High Level Summary
+------------------
+
+* Service based Interfaces supported
+    * Nnssf, Nnrf, Npcf, Nudm, Nausf, Namf, Nsmf
+
+
+.. image:: ../_static/images/5G_Interfaces.png
+  :width: 700px
+
+
+* Reference model based Interfaces supported
+    * N1, N2, N3, N4, N6, N7, N8, N9, N10, N11, N12, N13, N15, N22
+
+.. image:: ../_static/images/5G_Arch_ reference_model.png
+  :width: 700px
+
+
+* NF supported
+    * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF
+
+
+* SD Core High Level Features supported
+    * UE Registration
+    * UE De-Registration
+    * PDU Session Establishment/Release
+
+* High Level Features Not supported
+    * URLLC
+    * Location Based Services
+
+
 SMF Compliance
 --------------
 * Interfaces
@@ -12,7 +44,7 @@ SMF Compliance
     * Event Exposure
     * NIDD
 
-* Producer Service Operations
+* Service Operations
     * PDU Session Management
         * SM contexts collection
             * Create SM Context : Yes
@@ -38,25 +70,6 @@ SMF Compliance
         * No
 
 
-
-* Consumer Service Operations
-    * PCF
-        * SM Policy Association Create : Yes
-        * SM Policy Association Update : No
-        * SM Policy Association Termination : Yes
-        * SM Policy Association Update Notification : No
-        * SM Policy Association Termination Notification : No
-    * AMF
-        * SM Context Status Notification : Yes
-    * UDM
-        * Session Management Subscription Data Retrieval : Yes
-        * SMF UE Registration/Deregistration : No
-    * NRF
-        *  NF Registration : Yes
-        *  NF De-Registration : Yes
-
-
-
 AMF Compliance
 --------------
 * Interfaces
@@ -69,7 +82,7 @@ AMF Compliance
     * Mobile Terminated
     * Location
 
-* Producer Service Operations
+* Service Operations
     * Communication
         * UE Context Transfer : Yes
         * Registration Status Update : Yes
@@ -144,7 +157,7 @@ NRF Compliance
     * Access Token
     * Bootstrapping
 
-* Producer Service Operations
+* Service Operations
     * NF Management
         * NF Register : Yes
         * NF Update
@@ -161,7 +174,6 @@ NRF Compliance
     * Bootstrapping
         * Bootstrapping Get : No
 
-* Consumer Service Operations
 
 AUSF Compliance
 ---------------
@@ -174,7 +186,7 @@ AUSF Compliance
     * SoR Protection
     * UPU Protection
 
-* Producer Service Operations
+* Service Operations
     * UE Authentication
         * Authenticate
         * Deregister
@@ -183,7 +195,6 @@ AUSF Compliance
     * UPU Protection
         * Protect
 
-* Consumer Service Operations
 
 
 UDR Compliance
@@ -195,7 +206,7 @@ UDR Compliance
     * Data Repository
     * Group IDmap
 
-* Producer Service Operations
+* Service Operations
     * Data Repository
         * Query
         * Create
@@ -206,8 +217,6 @@ UDR Compliance
         * Notify
     * Group IDmap
         * Query
-
-* Consumer Service Operations
 
 
 UDM Compliance
@@ -225,7 +234,7 @@ UDM Compliance
     * NIDD Authorization
     * MT
 
-* Producer Service Operations
+* Service Operations
     * Subscriber Data Management
         * Get
         * Subscribe
@@ -264,7 +273,6 @@ UDM Compliance
         * Provide Ue Info
         * Provide Location Info
 
-* Consumer Service Operations
 
 
 NSSF Compliance
@@ -277,7 +285,7 @@ NSSF Compliance
     * NS Selection
     * NSSAI Availability
 
-* Producer Service Operations
+* Service Operations
     * NS Selection
         * Get
     * NSSAI Availability
@@ -287,8 +295,6 @@ NSSF Compliance
         * Notify
         * Delete
         * Options
-
-* Consumer Service Operations
 
 
 PCF Compliance
@@ -301,7 +307,7 @@ PCF Compliance
     * AM Policy Control : Yes
     * SM Policy Control : Yes
 
-* Producer Service Operations
+* Service Operations
     * SM Policy
         * SM Policy Control Create : Yes
         * SM Policy Control Update : No
@@ -312,15 +318,3 @@ PCF Compliance
         *  AM Policy Control Update : No
         *  AM Policy Control Update Notify : No
         *  AM Policy Control Delete : Yes
-
-* Consumer Service Operations
-    * TODO- UDR
-
-
-SD Core High Level Features supported
--------------------------------------
-
-High Level Features Not supported
----------------------------------
-* URLLC
-* Location Based Services
