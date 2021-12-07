@@ -1,8 +1,62 @@
 SD-Core 1.0 Release
 ===================
 
+SD-Core support 4G & 5G network functions. SD-Core gives configuration APIs, metrics APIs.
+Access network can connected to AMF or MME depending on type of access used.
+
 Highlights
 ----------
+
+    - REST configuration interface support
+
+        - Network Slices can be added, deleted, modified using REST interface
+        - ``Refer Configuration Guide for more details``
+
+    - SIMapp support for subscriber management
+
+        - created to add subscriber contents in webui/config4g pod
+        - Simapp also supports addition of network slice, device group in the SD-Core (5G/4G)
+        - Simapp can update the configuration during runtime (add, delete, modify config)
+        - Support of API to send the Network Slice & Device Group slice when configPod asks for it
+
+    - 5G Specific Features
+
+        - 3gpp Supported & Validated Procedures are,
+
+            - UE Registration/De-registration
+            - UE PDU Establishment/modification/Deletion
+            - ``More details about Compliance can be found in compliance section``
+
+        - Multiple PLMN support. Sending multiple PLMNs in NRF registration
+        - Error handling on all interfaces. This includes message retransmission,
+            rejected response handling, no response handling
+
+    - 4G specific features
+        - APN based Selection of User Plane Network function.
+        - CUPS compliant control plane
+
+    - Metrics
+
+        - Subscriber metrics
+        - eNB/gNB metrics
+
+    - Scale Support
+
+        - 4G - 16K calls at the rate of 100 calls have been tried
+        - Handover rate of 50 handovers per second is supported by SD-Core
+        - 5G - 5000 Calls at the rate of 10 calls per second
+
+    - Operations Feature
+
+        - UE/IMSI can be added while SD-Core is running
+        - Network slice can be created in runtime
+        - UE/IMSI can be removed from the slice at any time
+
+    - Application Filtering
+
+        - When multiple slices are created then devices in the slice can
+          have access to only specified networks. More details of the application
+          filtering can be found at - ``TODO``
 
 New Features and Improvements
 -----------------------------
@@ -10,15 +64,21 @@ New Features and Improvements
 Testing
 -------
 
+    - CI Run for all SD-Core repository
+    - Common Repository like simapp, config pod changes trigger CI for 4G/5G
+
 Documentation
 -------------
 
-Aether documentation is available at `docs.sd-core.opennetworking.org
+SD-Core documentation is available at `docs.sd-core.opennetworking.org
 <https://docs.sd-core.opennetworking.org>`_
 
 
 Known Issues and Limitations
 ----------------------------
+
+    - Dedicated bearers are not supported in SD-Core
+    - Same IMSI can not part of multiple slices
 
 Component Versions in the 1.0 Release
 -------------------------------------

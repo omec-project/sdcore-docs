@@ -113,3 +113,10 @@ Nnrf
 Nudm
 Nausf
 Namf
+Gi
+Kubernetes
+myvalues
+namespace
+webui
+runtime
+retransmission

@@ -1,5 +1,5 @@
-Overview
-========
+Configuration Overview
+======================
 
 Reference helm chart
 --------------------

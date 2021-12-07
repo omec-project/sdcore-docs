@@ -42,11 +42,12 @@ can be found on the `ONF Wiki
 
 .. toctree::
    :maxdepth: 2
-   :caption: Configuration
+   :caption: Configuration & Deployment
    :hidden:
    :glob:
 
    configuration/config.rst
+   deployment/deployment.rst
 
 .. toctree::
    :maxdepth: 2
@@ -63,6 +64,7 @@ can be found on the `ONF Wiki
    :glob:
 
    developer/guide.rst
+   developer/aiab.rst
    developer/gnbsim.rst
    developer/testpod.rst
 
