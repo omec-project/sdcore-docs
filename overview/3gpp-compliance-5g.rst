@@ -60,8 +60,8 @@ SMF Compliance
 AMF Compliance
 --------------
 * Interfaces
-    * SBI : Yes
-    * UNKNOWN: No
+    * N11, N15, N8, N12, N22, N2, N1 : Yes
+    * N14, N58 : No
 
 * Services
     * Communication
@@ -71,40 +71,65 @@ AMF Compliance
 
 * Producer Service Operations
     * Communication
-        * UE Context Transfer
-        * Registration Status Update
-        * N1N2 Message Transfer (UE Specific)
-        * N1N2 Transfer Failure Notification (UE Specific)
-        * N1N2 Message Subscribe (UE Specific)
-        * N1N2 Message Unsubscribe (UE Specific)
-        * N1 Message Notify (UE Specific)
-        * N2 Info Notify (UE Specific)
-        * Non Ue N2 Message Transfer
-        * Non Ue N2 Info Subscribe
-        * Non Ue N2 Info Unsubscribe
-        * N2 Info Notify
-        * EBI Assignment
-        * Create UE Context
-        * Release UE Context
-        * Relocate UE Context
-        * Cancel Relocate UE Context
-        * AMF Status Change Subscribe
-        * AMF Status Change Unsubscribe
-        * AMF Status Change Notify
+        * UE Context Transfer : Yes
+        * Registration Status Update : Yes
+        * N1N2 Message Transfer (UE Specific) : Yes
+        * N1N2 Transfer Failure Notification (UE Specific) : Yes
+        * N1N2 Message Subscribe (UE Specific) : Yes
+        * N1N2 Message Unsubscribe (UE Specific) : Yes
+        * N1 Message Notify (UE Specific) : Yes
+        * N2 Info Notify (UE Specific) : Yes
+        * Non Ue N2 Message Transfer : No
+        * Non Ue N2 Info Subscribe : No
+        * Non Ue N2 Info Unsubscribe : No
+        * N2 Info Notify : No
+        * EBI Assignment : Yes
+        * Create UE Context : Yes
+        * Release UE Context : Yes
+        * Relocate UE Context : No
+        * Cancel Relocate UE Context : No
+        * AMF Status Change Subscribe : Yes
+        * AMF Status Change Unsubscribe : Yes
+        * AMF Status Change Notify : Yes
     * Event Exposure
-        * Subscribe
-        * Unsubscribe
-        * Notify
+        * Subscribe : Yes
+        * Unsubscribe : Yes
+        * Notify : Yes
     * Mobile Terminated
-        * Enable UE Reachability
-        * Provide Domain Selection Info
+        * Enable UE Reachability : No
+        * Provide Domain Selection Info : Yes
     * Location
-        * Provide Positioning Info
-        * Event Notify
-        * Provide Location Info
-        * Cancel Location
+        * Provide Positioning Info : No
+        * Event Notify : No
+        * Provide Location Info : Yes
+        * Cancel Location : No
 
 * Consumer Service Operations
+    * PCF
+        * AM Policy Control Create : Yes
+        * AM Policy Control Delete : Yes
+        * AM Policy Control Update : Yes
+    * NRF
+        *  NF Registration : Yes
+        *  NF De-Registration : Yes
+        *  NF Selection : Yes
+    * SMF
+        * Create SM Context : Yes
+        * Update SM Context : Yes
+        * Release SM Context : Yes
+    * AUSF
+        * UE Authentication Auth Request : Yes
+        * 5G AKA Confirm Request : Yes
+        * EAP Auth Confirm Request : Yes
+    * UDM
+        * UE CM Registration : Yes
+        * SDM Subscribe : Yes
+        * Get UE Context In SMF Data : Yes
+        * Get SMF Selection Data : Yes
+        * Get AM Data : Yes
+        * Get SliceSelection Data : Yes
+    * NSSF
+        * Selection Data For Registration : Yes
 
 
 NRF Compliance
