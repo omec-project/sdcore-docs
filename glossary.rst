@@ -42,3 +42,4 @@ Network Functions
 Misc
 ----
 SA: Standalone Architecture
+URLLC : Ultra Reliable Low Latency Communication

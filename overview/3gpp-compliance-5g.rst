@@ -23,10 +23,13 @@ High Level Summary
     * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF
 
 
-* SD Core High Level Features supported
+* High Level Features supported
     * UE Registration
     * UE De-Registration
-    * PDU Session Establishment/Release
+    * PDU Session Establishment/Modification/Release
+    * AN Release
+    * Network triggered Service Request
+    * Xn based inter NG-RAN handover
 
 * High Level Features Not supported
     * URLLC
@@ -37,7 +40,7 @@ SMF Compliance
 --------------
 * Interfaces
     * SBI : Yes
-    * PFCP: Yes
+    * N4(UPF), N7(PCF), N10(UDM), N11(AMF) : Yes
 
 * Services
     * PDU Session Management
@@ -73,8 +76,9 @@ SMF Compliance
 AMF Compliance
 --------------
 * Interfaces
-    * N11, N15, N8, N12, N22, N2, N1 : Yes
-    * N14, N58 : No
+    * SBI : Yes
+    * N11(SMF), N15(PCF), N8(UDM), N12(AUSF), N22(NSSF), N2(AN), N1(UE) : Yes
+    * N14(AMF), N58(NSSAAF) : No
 
 * Services
     * Communication
