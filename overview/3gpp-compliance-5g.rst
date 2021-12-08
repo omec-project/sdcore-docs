@@ -20,6 +20,11 @@ High Level Summary
 .. image:: ../_static/images/5G_Arch_ reference_model.png
   :width: 700px
 
+* Unified Data Repository (UDR) Interfaces supported
+    * N8, N10, N13, N21, N35, N36, N37
+
+.. image:: ../_static/images/udr_Arch_reference_model.png
+  :width: 700px
 
 * NF supported
     * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF
@@ -185,7 +190,7 @@ AUSF Compliance
 ---------------
 * Interfaces
     * SBI : Yes
-    * UNKNOWN: No
+    * N12(AMF), N13(UDM) : Yes
 
 * Services
     * UE Authentication
@@ -194,12 +199,12 @@ AUSF Compliance
 
 * Service Operations
     * UE Authentication
-        * Authenticate
-        * Deregister
+        * Authenticate : Yes
+        * Deregister : No
     * SoR Protection
-        * Protect
+        * Protect : No
     * UPU Protection
-        * Protect
+        * Protect : No
 
 
 
@@ -207,22 +212,47 @@ UDR Compliance
 --------------
 * Interfaces
     * SBI : Yes
-    * UNKNOWN: No
+    * N35(UDM), N36(PCF) : Yes
+    * N37(NEF) : No
 * Services
     * Data Repository
     * Group IDmap
 
 * Service Operations
-    * Data Repository
-        * Query
-        * Create
-        * Delete
-        * Update
-        * Subscribe
-        * Unsubscribe
-        * Notify
+    * Subscription Data Repository
+        * Query : Yes
+        * Create : Yes
+        * Delete : Yes
+        * Update : Yes
+        * Subscribe : Yes
+        * Unsubscribe : Yes
+        * Notify : Yes
+    * Policy Data Repository
+        * Query : Yes
+        * Create : Yes
+        * Delete : Yes
+        * Update : Yes
+        * Subscribe : Yes
+        * Unsubscribe : Yes
+        * Notify : Yes
+    * Exposure Data Repository
+        * Query : No
+        * Create : No
+        * Delete : No
+        * Update : No
+        * Subscribe : No
+        * Unsubscribe : No
+        * Notify : No
+    * Application Data Repository
+        * Query : Yes
+        * Create : Yes
+        * Delete : Yes
+        * Update : Yes
+        * Subscribe : Yes
+        * Unsubscribe : Yes
+        * Notify : Yes
     * Group IDmap
-        * Query
+        * Query : No
 
 
 UDM Compliance
