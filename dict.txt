@@ -133,3 +133,11 @@ cd
 minikube
 Homebrew
 Xn
+AiaB
+Haswell
+Gerrit
+gerrit
+aether
+opencord
+configs
+gnbsim
