@@ -1,3 +1,5 @@
+.. _5g-compliance:
+
 5G - 3GPP Release Compliance
 ============================
 

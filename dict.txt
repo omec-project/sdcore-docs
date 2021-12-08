@@ -1,3 +1,7 @@
+ap
+Gx
+Sxab
+Resynchronization
 Aether
 Dockerfile
 ONF
@@ -15,7 +19,9 @@ unsuffixed
 virtualenv
 MME
 SPGW
+spgwc
 HSS
+hss
 PCRF
 AMF
 SMF
@@ -34,7 +40,6 @@ testPod
 Downlink
 Keepalive
 grpc
-hss
 mme
 spgw
 pcrf

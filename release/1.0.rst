@@ -25,7 +25,8 @@ Highlights
 
             - UE Registration/De-registration
             - UE PDU Establishment/modification/Deletion
-            - ``More details about Compliance can be found in compliance section``
+            - More details about 3gpp compliance can be found at (see :ref:`4g-compliance`)
+              and (see :ref:`5g-compliance`)
 
         - Multiple PLMN support. Sending multiple PLMNs in NRF registration
         - Error handling on all interfaces. This includes message retransmission,
@@ -56,7 +57,7 @@ Highlights
 
         - When multiple slices are created then devices in the slice can
           have access to only specified networks. More details of the application
-          filtering can be found at - ``TODO``
+          filtering can be found at - `TODO </overview/3gpp-compliance-4g>`
 
 New Features and Improvements
 -----------------------------
@@ -77,31 +78,32 @@ SD-Core documentation is available at `docs.sd-core.opennetworking.org
 Known Issues and Limitations
 ----------------------------
 
-    - Dedicated bearers are not supported in SD-Core
+    - For any 3gpp release compliance refer - (see :ref:`4g-compliance`) and (see :ref:`5g-compliance`)
     - Same IMSI can not part of multiple slices
+    - Only 5 application filtering rules can be added per Slice
 
 Component Versions in the 1.0 Release
 -------------------------------------
 
 Helm Chart Versions and their component charts and containers:
 
-* sdcore-helm-chart: ``0.1.0``
-    * omec-control-plane: ``0.1.0``
-        * hssdb: ``c3po-hssdb:0.1.0``
-        * hss  : ``TODO``
-        * pcrf  : ``TODO``
-        * pcrfdb  : ``TODO``
-        * config4g  : ``TODO``
-        * spgw  : ``TODO``
-        * mme  : ``TODO``
-    * omec-sub-provision: ``TODO``
-        * simapp: ``TODO``
-    * 5g-control-plane: ``TODO``
-        * amf: ``TODO``
-        * smf: ``TODO``
-        * nrf: ``TODO``
-        * nssf: ``TODO``
-        * pcf: ``TODO``
-        * udm: ``TODO``
-        * udr: ``TODO``
-        * ausf: ``TODO``
+* sdcore-helm-chart: ``0.9.14``
+    * omec-control-plane: ``0.9.13``
+        * hssdb: ``registry.aetherproject.org/proxy/omecproject/c3po-hssdb:master-771c0c3``
+        * hss  : ``registry.aetherproject.org/proxy/omecproject/c3po-hss:master-771c0c3``
+        * pcrf  : ``registry.aetherproject.org/proxy/omecproject/c3po-pcrf:pcrf-a6bdc3d``
+        * pcrfdb  : ``registry.aetherproject.org/proxy/omecproject/c3po-pcrf:pcrf-a6bdc3d``
+        * config4g  : ``registry.aetherproject.org/omecproject/5gc-webui:onf-release3.0.5-03d4139``
+        * spgwc  : ``registry.aetherproject.org/omecproject/spgw:master-282dc78``
+        * mme  : ``registry.aetherproject.org/proxy/omecproject/nucleus:master-1225da6``
+    * omec-sub-provision: ``0.3.2``
+        * simapp: ``registry.aetherproject.org/omecproject/simapp:main-329c82d``
+    * 5g-control-plane: ``0.5.5``
+        * amf: ``registry.aetherproject.org/omecproject/5gc-amf:onf-release3.0.5-9683d5c``
+        * smf: ``registry.aetherproject.org/omecproject/5gc-smf:onf-release3.0.5-46dfe2d``
+        * nrf: ``registry.aetherproject.org/omecproject/5gc-nrf:onf-release3.0.5-13304e8``
+        * nssf: ``registry.aetherproject.org/omecproject/5gc-nssf:onf-release3.0.5-aa3a60b``
+        * pcf: ``registry.aetherproject.org/omecproject/5gc-pcf:onf-release3.0.5-9f7734b``
+        * udm: ``registry.aetherproject.org/omecproject/5gc-udm:onf-release3.0.5-c28433a``
+        * udr: ``registry.aetherproject.org/omecproject/5gc-udr:onf-release3.0.5-deef506``
+        * ausf: ``registry.aetherproject.org/omecproject/5gc-ausf:onf-release3.0.5-be7d4ac``

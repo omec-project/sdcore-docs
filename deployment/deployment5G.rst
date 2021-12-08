@@ -2,10 +2,10 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-.. _deployment_guide:
+.. _deployment_5G_guide:
 
-Deployment Guide
-================
+5G Deployment Guide
+===================
 
 Deployment Overview
 -------------------
@@ -17,15 +17,17 @@ You need to obtain access token and supply that as part of the Helm value.
 Hardware resource requirement
 -----------------------------
 
-SD-Core 4G has following K8s pods
+SD-Core 5G has following K8s pods
 
-  - MME: 2 CPU Cores, 4Gi RAM
-  - SPGW: 2 CPU Cores, 4Gi RAM
-  - PCRF: 2 CPU Cores, 1Gi RAM
-  - HSS : 2 CPU Cores, 1Gi RAM
-  - ConfigPod: 1 CPU Core, 1Gi RAM
-  - SimApp: 1 CPU Core, 1Gi RAM
-  - Cassandra: 2 CPU Core, 4Gi RAM
+  - AMF: 2 CPU Cores, 4Gi RAM
+  - SMF: 2 CPU Cores, 4Gi RAM
+  - NRF: 2 CPU Cores, 1Gi RAM
+  - NSSF : 2 CPU Cores, 1Gi RAM
+  - AUSF: 1 CPU Core, 1Gi RAM
+  - PCF: 1 CPU Core, 1Gi RAM
+  - UDR
+  - UDM
+  - MongoDB: 2 CPU Core, 4Gi RAM
 
 Prepare access credential for SD-Core images
 --------------------------------------------
@@ -51,50 +53,6 @@ Development Environments
 """"""""""""""""""""""""
 
 TODO - AIAB document link
-
-Production Environments - 4G
-""""""""""""""""""""""""""""
-
-To install SD-Core into your Kubernetes cluster, follow instructions
-
-Step1 - Clone SD-Core 4G Helm chart
-'''''''''''''''''''''''''''''''''''
-.. code-block::
-
-  git clone ssh://gerrit.opencord.org:29418/sdcore-helm-charts
-  cd sdcore-helm-charts/sdcore-helm-charts/
-  helm dep update #Update Helm dependencies
-
-Step2 - Prepare your Helm values for 4G
-'''''''''''''''''''''''''''''''''''''''
-
-You can modify existing values.yaml directly, but we recommend composing another value
-file myvalues.yaml using values.yaml as an example. We are highlighting a few things we
-need to modify here. More explanation of the supported Helm values can be found in the
-Configuration section below.
-
-Step3 - Install 4G using SD-Core umbrella helm chart
-''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-The following command will deploy the SD-Core helm chart with release name sdcore-4g in the sdcore-4g namespace.
-
-.. code-block::
-
-    helm install -n sdcore-4g --create-namespace -f myvaules.yaml sdcore-4g .
-
-To verify the installation:
-
-.. code-block::
-
-    helm -n sdcore-4g ls
-
-To uninstall:
-
-.. code-block::
-
-    helm -n sdcore-4g uninstall sdcore-4g
-    kubectl delete namespace sdcore-4g # also remove the sdcore-4g if needed
-
 
 Production Environments - 5G
 """"""""""""""""""""""""""""

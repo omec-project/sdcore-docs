@@ -1,9 +1,8 @@
 SD-Core Documentation
 =====================
 
-SD-Core is an ONF's 5G/LTE Core.  More information about SD-Core can be found at
-the `ONF website <https://opennetworking.org/sd-core/>`_.
-
+SD-Core is an ONF's 4G/5G Core. SD-Core is cloud native implementation of 4G/5G core network functions.
+Aether uses SD-Core to provided connectivity as a service.
 
 Getting Started with SD-Core
 ----------------------------
@@ -24,7 +23,7 @@ Community
 ---------
 
 Information about participating in the SD Core community and development process
-can be found on the `ONF Wiki
+can be found on the `SD-Core Wiki
 <https://wiki.opennetworking.org/display/COM/SD-Core>`_.
 
 .. toctree::
@@ -47,7 +46,8 @@ can be found on the `ONF Wiki
    :glob:
 
    configuration/config.rst
-   deployment/deployment.rst
+   deployment/deployment4G.rst
+   deployment/deployment5G.rst
 
 .. toctree::
    :maxdepth: 2
