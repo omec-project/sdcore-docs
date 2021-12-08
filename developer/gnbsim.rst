@@ -1,3 +1,6 @@
+..
+   SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
+   SPDX-License-Identifier: Apache-2.0
 .. _gNB-Simulator:
 
 gNB Simulator

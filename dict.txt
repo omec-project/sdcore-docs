@@ -1,4 +1,10 @@
+scalable
+disaggregated
+pre
+dataplane
+prometheus
 ap
+apis
 Gx
 Sxab
 Resynchronization

@@ -1,4 +1,9 @@
-.. image:: images/sdcore-logo.svg
+..
+   SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
+   SPDX-License-Identifier: Apache-2.0
+
+
+.. image:: _static/sdcore-logo.svg
    :width: 400px
    :align: center
 

@@ -1,3 +1,8 @@
+..
+   SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
+   SPDX-License-Identifier: Apache-2.0
+
+
 Glossary
 ========
 
@@ -5,11 +10,11 @@ Protocols
 ---------
 - NGAP: NG Application Protocol used over N2 interface
 - S1AP: S1 Application Protocol used over S1-AP interface
-- Diameter: S6a
+- Diameter: S6a, Gx interface
 - NAS: Non-Access-Stratum used between UE & MME/AMF.
 - PFCP: Packet Forwarding Control Protocol
-- GTPv1
-- GTPv2
+- GTPU: GTP user plane protocol. Used on s1-U, s5-U, N3, N9 interfaces
+- GTPv2: GTP control plane protocol used on s11 interface between MME & SGW
 
 Network Functions
 -----------------
