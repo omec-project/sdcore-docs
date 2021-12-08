@@ -1,3 +1,9 @@
+.. image:: images/sdcore-logo.svg
+   :width: 400px
+   :align: center
+
+
+=====================
 SD-Core Documentation
 =====================
 
@@ -46,6 +52,9 @@ can be found on the `SD-Core Wiki
    :glob:
 
    configuration/config.rst
+   configuration/config_rest.rst
+   configuration/config_simapp.rst
+   configuration/application_filtering.rst
    deployment/deployment4G.rst
    deployment/deployment5G.rst
 
@@ -63,7 +72,6 @@ can be found on the `SD-Core Wiki
    :hidden:
    :glob:
 
-   developer/guide.rst
    developer/aiab.rst
    developer/gnbsim.rst
    developer/testpod.rst

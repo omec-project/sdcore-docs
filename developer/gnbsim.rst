@@ -1,3 +1,5 @@
+.. _gNB-Simulator:
+
 gNB Simulator
 =============
 
