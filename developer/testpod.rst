@@ -5,6 +5,9 @@
 TestPod
 ========
 
+.. image:: ../_static/images/TestPod.png
+  :width: 700px
+
 Description
 -----------
 Testpod is developer tool to simulate 5G NFs and control NF behaviour as
