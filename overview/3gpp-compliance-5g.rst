@@ -45,6 +45,7 @@ High Level Summary
 * High Level Features Not supported
     * URLLC
     * Location Based Services
+    * Inter NG-RAN node N2 based handover
 
 
 SMF Compliance
@@ -327,14 +328,14 @@ NSSF Compliance
 
 * Service Operations
     * NS Selection
-        * Get
+        * Get : Yes
     * NSSAI Availability
-        * Update
-        * Subscribe
-        * Unsubscribe
-        * Notify
-        * Delete
-        * Options
+        * Update : Yes
+        * Subscribe : Yes
+        * Unsubscribe : Yes
+        * Notify : No
+        * Delete : Yes
+        * Options : No
 
 
 PCF Compliance
