@@ -1,3 +1,16 @@
+disaggregation
+natively
+onpremises
+instantiation
+hyperscale
+hyperscaler
+Nonstandalone
+latencies
+jitter
+verifiably
+GC
+configurability
+performant
 scalable
 disaggregated
 pre
@@ -130,6 +143,7 @@ myvalues
 namespace
 webui
 runtime
+retransmissions
 retransmission
 onf
 pfcp

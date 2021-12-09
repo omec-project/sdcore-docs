@@ -8,12 +8,18 @@
    :align: center
 
 
-=====================
-SD-Core Documentation
-=====================
+The SD-Core™ project is a 4G/5G disaggregated mobile core optimized for public
+cloud deployment in concert with distributed edge clouds and is ideally suited
+for carrier and private enterprise 5G networks. It exposes standard 3GPP interfaces
+enabling use of SD-Core as a conventional mobile core.
 
-SD-Core is an ONF's 4G/5G Core. SD-Core is cloud native implementation of 4G/5G core network functions.
-Aether uses SD-Core to provided connectivity as a service.
+SD-Core is an integral component of Aether, ONF’s 5G Connected Edge platform for
+private mobile connectivity and edge cloud services. It can be rapidly deployed
+pre-integrated with Aether, as a standalone 5G/4G mobile core, or as control and
+dataplane (UPF) components integrated into custom designed solutions. This range
+of versatility makes the open source SD-Core platform ideally suited for the
+broadest range of use cases and deployment scenarios.
+
 
 Getting Started with SD-Core
 ----------------------------

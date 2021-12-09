@@ -5,6 +5,13 @@
 Configuration Overview
 ======================
 
+SD-Core has been developed with a cloud-based deployment and consumption model as
+its foundation. It has a rich and extensible set of APIs to allow for runtime configurability of
+subscriber management, access management, session management, and network slice
+management. This configuration may be conducted via ONF’s Runtime Operational Control
+(ROC) platform directly for consumption as a cloud-managed service, or the APIs can be
+used by third-party automation and management platforms.
+
 Reference helm chart
 --------------------
 
