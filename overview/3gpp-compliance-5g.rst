@@ -277,42 +277,42 @@ UDM Compliance
 
 * Service Operations
     * Subscriber Data Management
-        * Get
-        * Subscribe
-        * ModifySubscription
-        * Unsubscribe
-        * Notification
-        * Info
+        * Get : Yes
+        * Subscribe : Yes
+        * ModifySubscription : Yes
+        * Unsubscribe : Yes
+        * Notification : Yes
+        * Info : Yes
     * UE Context Management
-        * Registration
-        * DeregistrationNotification
-        * Deregistration
-        * Get
-        * Update
-        * P-CSCF Restoration Notification
-        * P-CSCF Restoration Trigger
-        * AMF Deregistration
-        * PEI Update
+        * Registration : Yes
+        * DeregistrationNotification : Yes
+        * Deregistration : Yes
+        * Get : Yes
+        * Update : Yes
+        * P-CSCF Restoration Notification : No
+        * P-CSCF Restoration Trigger : No
+        * AMF Deregistration : Yes
+        * PEI Update : No
     * UE Authentication
-        * Get
-        * GetHssAv
-        * Result Confirmation
+        * Get : Yes
+        * GetHssAv : No
+        * Result Confirmation : Yes
     * Event Exposure
-        * Subscribe
-        * Unsubscribe
-        * Notify
-        * Modify Subscription
+        * Subscribe : Yes
+        * Unsubscribe : Yes
+        * Notify : Yes
+        * Modify Subscription : Yes
     * Parameter Provision
-        * Update
-        * Create
-        * Delete
-        * Get
+        * Update : Yes
+        * Create : No
+        * Delete : No
+        * Get : No
     * NIDD Authorization
-        * Get
-        * Notification
+        * Get : No
+        * Notification : No
     * MT
-        * Provide Ue Info
-        * Provide Location Info
+        * Provide Ue Info : No
+        * Provide Location Info : No
 
 
 
