@@ -70,6 +70,17 @@ can be found on the `SD-Core Wiki
    deployment/deployment5G.rst
 
 .. toctree::
+   :maxdepth: 3
+   :caption: SD-Core Test Automation
+   :hidden:
+   :glob:
+
+   testing/about_system_tests
+   testing/sdcore_testing
+   testing/acceptance_specification
+
+
+.. toctree::
    :maxdepth: 2
    :caption: Troubleshooting Guide
    :hidden:
