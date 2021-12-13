@@ -33,6 +33,8 @@ High Level Summary
 * NF supported
     * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF
 
+* NF not supported
+    * NEF, NWDAF, CHF, N3IWF, UDSF, AF
 
 * High Level Features supported
     * UE Registration
@@ -53,6 +55,7 @@ SMF Compliance
 * Interfaces
     * SBI : Yes
     * N4(UPF), N7(PCF), N10(UDM), N11(AMF) : Yes
+    * N16(SMF) : No
 
 * Services
     * PDU Session Management
@@ -165,7 +168,7 @@ NRF Compliance
 --------------
 * Interfaces
     * SBI : Yes
-    * UNKNOWN: No
+    * N27(NRF) : No
 
 * Services
     * NF Management
@@ -176,17 +179,17 @@ NRF Compliance
 * Service Operations
     * NF Management
         * NF Register : Yes
-        * NF Update
+        * NF Update : Yes
         * NF Deregister : Yes
-        * NF Status Subscribe
-        * NF Status Notify
-        * NF Status Unsubscribe
-        * NF List Retrieval
-        * NF Profile Retrieval
+        * NF Status Subscribe : Yes
+        * NF Status Notify : No
+        * NF Status Unsubscribe : Yes
+        * NF List Retrieval : Yes
+        * NF Profile Retrieval : Yes
     * NF Discovery
         * NF Discover : Yes
     * Access Token
-        * Access Token Request : No
+        * Access Token Request : Yes
     * Bootstrapping
         * Bootstrapping Get : No
 
@@ -219,6 +222,7 @@ UDR Compliance
     * SBI : Yes
     * N35(UDM), N36(PCF) : Yes
     * N37(NEF) : No
+
 * Services
     * Data Repository
     * Group IDmap
@@ -264,7 +268,8 @@ UDM Compliance
 --------------
 * Interfaces
     * SBI : Yes
-    * UNKNOWN: No
+    * N8(AMF), N10(SMF), N13(AUSF), N60(PCF): Yes
+    * N59(NSSAAF) : No
 
 * Services
     * Subscriber Data Management
@@ -320,7 +325,7 @@ NSSF Compliance
 ---------------
 * Interfaces
     * SBI : Yes
-    * UNKNOWN: No
+    * N22(AMF) : Yes
 
 * Services
     * NS Selection
@@ -342,7 +347,8 @@ PCF Compliance
 --------------
 * Interfaces
     * SBI : Yes
-    * UNKNOWN: No
+    * N7(SMF), N15(AMF), N60(UDM) : Yes
+    * N5(AF) : No
 
 * Services
     * AM Policy Control : Yes
