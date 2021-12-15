@@ -62,11 +62,14 @@ useful when operator has the capability to apply access control. Operator can de
 applications at the edge or internet and can restrict the users from accessing it based on the
 slice user belongs to. This adds extra layer of security in the edge app deployment.
 
-
-**Policy framework to support QoS at multiple levels** SD-Core makes use of policy network
+**Policy framework to support QoS at multiple levels:** SD-Core makes use of policy network
 function (PCF/PCRF) to enforce qos decisions on the subscriber session. Policies are configured
 per network slice using configuration interface.  PCF/PCRF binds those policies to the subscribers.
 APIs gives the flexibility to Operator to assign UE level QoS, per application QoS and also slice level QoS.
+
+**5G gNB simulator:** gNB simulator simulates 5G UE & 5G gNodeB. gNBSim is capable of supporting
+multiple UEs and multiple gNodeBs. Tool also capable of doing data tests. This assists quick
+development of the features. This tool can be used to run automated tests for the 5G core network.
 
 Testing
 -------
@@ -119,3 +122,5 @@ Helm Chart Versions and their component charts and containers:
     * User Plane ``0.5.3``
         * bess: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-bess:master-152a5eb"``
         * pfcpiface: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-pfcpiface:master-152a5eb"``
+    * 5g-ran-sim ``0.3.2``
+        * gnbsim: ``registry.aetherproject.org/omecproject/5gc-gnbsim:dev-new-gnbsim-025ae2b``
