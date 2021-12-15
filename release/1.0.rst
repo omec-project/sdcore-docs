@@ -48,12 +48,14 @@ uses prometheus to export metrics. These metrics are useful to get the status of
 gNodeB/eNodeB connected to Core Network. Also SD-Core gives the metrics to share current user
 connectivity status.
 
-**SD-Core support 5000 calls at the rate of 10 calls per second per instance:** SD-Core 5G
-solution is build on top of free5gc open source code. Numerous enhancements done on the base
-code to get the production quality stability. One of the important goal we achieved was getting
-5000 subscribers with 10 subscribers attach per second. We will be pushing for higher limits in
-upcoming changes. To achieve this limit, AMF & SMF has seen numerous architecture level
-changes.
+**SD-Core Scale support:** SD-Core 5G solution is build on top of free5gc open source code.
+Numerous enhancements done on the base code to get the production quality stability. One of
+the important goal we achieved was getting 5000 subscribers with 10 subscribers attach per
+second with single instance. We will be pushing for higher limits in upcoming changes.
+To achieve this limit, AMF & SMF has seen numerous architecture level changes. SD-Core 4G is
+built on top of OMEC project. 4G is tested for 16000 calls at the rate of 100 calls per second.
+All these results are achieved with distributed user plane. Vertical scaling can be done easily
+to achieve higher call setup rates.
 
 **Application Filtering Support:** Network slice really becomes
 useful when operator has the capability to apply access control. Operator can deploy multiple
