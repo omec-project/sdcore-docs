@@ -21,12 +21,13 @@ and make APIs more intuitive for the operator. These APIs work well for both 4G 
 We have provided two interfaces to configure subscribers in SD-Core. One of the way to configure subscribers
 is through REST api calls to SD-Core. The other way is to add/delete/modify subscription through helm charts.
 APIs are extensible and can be easily integrated with 3rd party sim provision solution. Also while operator
-is updating the subscriptions, there is not need to restart any of the SD-Core components. This interface
+is updating the subscriptions, there is no need to restart any of the SD-Core components. This interface
 to SD-Core is access agnostic and same interface works for 4G as well as 5G access.
 
 **3gpp defined procedures validation and hardening for error scenarios:** SD-Core has been deployed in Aether
-Network for more than 2 year now and in the year 2021 we added 5G support in the SD-Core. SD-Core is used in couple of
-trials. Also multiple Aether sites using different access networks to connect to centralized SD-Core control plane.
+Network for more than 2 years now and in the year 2021 we added 5G support in the SD-Core. SD-Core is used in
+couple of operator trials. Also multiple Aether sites using different access networks to connect to
+centralized SD-Core control plane.
 This exercise has helped 4G/5G 3gpp procedures validations with multiple access networks, tools and user equipments.
 Some of the widely used procedures are UE Registration/De-registration, UE PDU Establishment/modification/Deletion,
 Xn handover, UE Context Release & Service request etc. This activity also includes handling of retransmission of
@@ -54,7 +55,7 @@ code to get the production quality stability. One of the important goal we achie
 upcoming changes. To achieve this limit, AMF & SMF has seen numerous architecture level
 changes.
 
-**Slice Application Access Control using policy configuration:** Network slice really becomes
+**Application Filtering Support:** Network slice really becomes
 useful when operator has the capability to apply access control. Operator can deploy multiple
 applications at the edge or internet and can restrict the users from accessing it based on the
 slice user belongs to. This adds extra layer of security in the edge app deployment.
@@ -62,7 +63,7 @@ slice user belongs to. This adds extra layer of security in the edge app deploym
 
 **Policy framework to support QoS at multiple levels** SD-Core makes use of policy network
 function (PCF/PCRF) to enforce qos decisions on the subscriber session. Policies are configured
-per network slices using configuration interface.  PCF/PCRF binds those policies to the subscribers.
+per network slice using configuration interface.  PCF/PCRF binds those policies to the subscribers.
 APIs gives the flexibility to Operator to assign UE level QoS, per application QoS and also slice level QoS.
 
 Testing
@@ -86,14 +87,14 @@ Known Issues and Limitations
     - Each device group should have unique DNN configuration
 
 .. note::
-    For any 3gpp release compliance refer - (see :ref:`4g-compliance`) and (see :ref:`5g-compliance`)
+    For any 3gpp release compliance refer - (:ref:`4g-compliance`) and (:ref:`5g-compliance`)
 
 Component Versions in the 1.0 Release
 -------------------------------------
 
 Helm Chart Versions and their component charts and containers:
 
-* sdcore-helm-chart: ``0.9.14``
+* sdcore-helm-chart: ``0.9.16``
     * omec-control-plane: ``0.9.15``
         * hssdb: ``registry.aetherproject.org/proxy/omecproject/c3po-hssdb:master-771c0c3``
         * hss  : ``registry.aetherproject.org/proxy/omecproject/c3po-hss:master-771c0c3``
@@ -113,3 +114,6 @@ Helm Chart Versions and their component charts and containers:
         * udm: ``registry.aetherproject.org/omecproject/5gc-udm:onf-release3.0.5-c28433a``
         * udr: ``registry.aetherproject.org/omecproject/5gc-udr:onf-release3.0.5-deef506``
         * ausf: ``registry.aetherproject.org/omecproject/5gc-ausf:onf-release3.0.5-be7d4ac``
+    * User Plane ``0.5.3``
+        * bess: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-bess:master-152a5eb"``
+        * pfcpiface: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-pfcpiface:master-152a5eb"``
