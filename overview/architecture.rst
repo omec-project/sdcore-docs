@@ -147,18 +147,3 @@ cloud deployment architecture has been optimized to handle variability in encoun
 delays communicating with the remote edge sites and is equipped to handle potential
 packet losses and retransmissions to support a multi-tenant, distributed geography
 deployment.
-
-
-
-Architecture Diagram of SD-Core 4G block
-----------------------------------------
-- show configPod, config distribution, Cassandra DB, SIMApp, 4G network Functions
-
-Architecture Diagram of SD-Core 5G block
-----------------------------------------
-- show configPod, config distribution, MongoDB, SIMApp, 5G network functions
-
-Configuration Distribution Architecture
----------------------------------------
-- how grpc, rest is used to distribute the configuration
-

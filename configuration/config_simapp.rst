@@ -2,8 +2,8 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-Configuration using Simapp POD
-==============================
+Configuration using Simapp interface
+====================================
 
 Easiest way to configure SD-Core is to use simapp. Simapp is the POD which takes
 yaml configuration and configures the subscribers, device groups, network slices

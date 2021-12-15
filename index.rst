@@ -71,7 +71,7 @@ can be found on the `SD-Core Wiki
 
 .. toctree::
    :maxdepth: 3
-   :caption: SD-Core Test Automation
+   :caption: Test Automation
    :hidden:
    :glob:
 

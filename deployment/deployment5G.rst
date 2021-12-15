@@ -17,17 +17,47 @@ You need to obtain access token and supply that as part of the Helm value.
 Hardware resource requirement
 -----------------------------
 
-SD-Core 5G has following K8s pods
+.. list-table:: CPU & Memory Requirements for 5G components
+  :widths: 5 5 5
+  :header-rows: 1
 
-  - AMF: 2 CPU Cores, 4Gi RAM
-  - SMF: 2 CPU Cores, 4Gi RAM
-  - NRF: 2 CPU Cores, 1Gi RAM
-  - NSSF : 2 CPU Cores, 1Gi RAM
-  - AUSF: 1 CPU Core, 1Gi RAM
-  - PCF: 1 CPU Core, 1Gi RAM
-  - UDR
-  - UDM
-  - MongoDB: 2 CPU Core, 4Gi RAM
+  * - SD-Core Component
+    - Required CPU
+    - Required Memory in Gi
+  * - AMF
+    - 2 CPU Cores
+    - 4Gi
+  * - SMF
+    - 2 CPU Cores
+    - 4Gi
+  * - NRF
+    - 2 CPU Cores
+    - 1Gi
+  * - NSSF
+    - 2 CPU Cores
+    - 1Gi
+  * - AUSF
+    - 1 CPU Cores
+    - 1Gi
+  * - PCF
+    - 1 CPU Cores
+    - 1Gi
+  * - UDR
+    - 2 CPU Cores
+    - 1Gi
+  * - UDM
+    - 2 CPU Cores
+    - 1Gi
+  * - Config5G(webconsole)
+    - 1 CPU Cores
+    - 1Gi
+  * - SimApp
+    - 1 CPU Cores
+    - 1Gi
+  * - MongoDB
+    - 2 CPU Cores
+    - 4Gi
+
 
 Prepare access credential for SD-Core images
 --------------------------------------------
@@ -52,7 +82,7 @@ Deployment Options
 Development Environments
 """"""""""""""""""""""""
 
-TODO - AIAB document link
+Please refer (see :ref:`aiab-guide`) to setup 5G development environment.
 
 Production Environments - 5G
 """"""""""""""""""""""""""""

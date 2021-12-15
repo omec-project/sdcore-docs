@@ -17,15 +17,35 @@ You need to obtain access token and supply that as part of the Helm value.
 Hardware resource requirement
 -----------------------------
 
-SD-Core 4G has following K8s pods
+.. list-table:: CPU & Memory Requirements for 4G components
+  :widths: 5 5 5
+  :header-rows: 1
 
-  - MME: 2 CPU Cores, 4Gi RAM
-  - SPGW: 2 CPU Cores, 4Gi RAM
-  - PCRF: 2 CPU Cores, 1Gi RAM
-  - HSS : 2 CPU Cores, 1Gi RAM
-  - ConfigPod: 1 CPU Core, 1Gi RAM
-  - SimApp: 1 CPU Core, 1Gi RAM
-  - Cassandra: 2 CPU Core, 4Gi RAM
+  * - SD-Core Component
+    - Required CPU
+    - Required Memory in Gi
+  * - MME
+    - 2 CPU Cores
+    - 2Gi
+  * - SPGW
+    - 2 CPU Cores
+    - 5Gi
+  * - PCRF
+    - 2 CPU Cores
+    - 1Gi
+  * - HSS
+    - 2 CPU Cores
+    - 1Gi
+  * - Config4G
+    - 1 CPU Cores
+    - 1Gi
+  * - SimApp
+    - 1 CPU Cores
+    - 1Gi
+  * - Cassandra
+    - 2 CPU Cores
+    - 4Gi
+
 
 Prepare access credential for SD-Core images
 --------------------------------------------
@@ -49,8 +69,7 @@ Deployment Options
 
 Development Environments
 """"""""""""""""""""""""
-
-TODO - AIAB document link
+Please refer (see :ref:`aiab-guide`) to setup 4G development environment.
 
 Production Environments - 4G
 """"""""""""""""""""""""""""

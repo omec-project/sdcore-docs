@@ -2,8 +2,8 @@
    SPDX-FileCopyrightText: © 2021 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-About
-=====
+Overview
+========
 
 The goal and objective of SD-Core test automation is to build a framework that
 provides highly scalable and low maintenance code which will help cover various

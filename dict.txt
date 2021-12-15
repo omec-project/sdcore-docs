@@ -1,3 +1,11 @@
+webconsole
+equipments
+api
+APIs
+testcases
+Nighly
+Subnet
+gc
 Rscript
 orchestrator
 Grafana

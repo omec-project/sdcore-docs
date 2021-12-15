@@ -2,8 +2,8 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-SD-Core Introduction
-====================
+Introduction
+============
 
 SD-Core™ is the Open Networking Foundation™ (ONF)’s open source, flexible, agile,
 scalable, and configurable dual-mode 4G/5G mobile core network solution that enables a
@@ -25,8 +25,8 @@ SD-Core can be configured for dynamically programmable network slicing, subscrib
 and policy management, providing precise access control for users, devices, data networks
 and edge applications.
 
-SD-Core Overview
-----------------
+Overview
+--------
 
     - Ensure only authenticated mobile devices have network access
     - Provides IP connectivity for data & voice services
