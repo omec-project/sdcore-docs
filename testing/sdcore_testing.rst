@@ -40,6 +40,10 @@ Currently the following NG40 test cases are implemented:
 6. ``4G_M2CN_PS`` (combined IMSI/PTMSI attach, detach)
 7. ``4G_HO`` (attach, relocate and dl ping, detach)
 8. ``4G_SCALE`` (attach, dl ping, detach with multiple UEs)
+9. ``4G_3_APPS`` (4G attach-detach with ICMP/UDP Data test with 3 applications)
+10. ``4G_SCALE_HO`` (attach, Handover, dl ping, detach with multiple UEs)
+11. ``4G_ATTACH_STRESS`` (attach-detach 200 times consecutively)
+12. ``4G_TAU`` (attach, Tracking Area Update, detach)
 
 5G Tests:
 
@@ -52,6 +56,9 @@ Currently the following NG40 test cases are implemented:
 6. ``5G_SA_M2AS_ICMP`` (registration, session establishment, dl ping, deregistration)
 7. ``5G_SA_M2AS_TCP`` (registration, session establishment, dl+ul tcp traffic, deregistration)
 8. ``5G_SA_M2AS_UDP`` (registration, session establishment, dl+ul udp traffic, deregistration)
+9. ``5G_SA_SCALE`` (registration, session establishment, dl+ul udp traffic, deregistration with multiple UEs)
+10. ``5G_SA_Error_Malformed_Reg_Type`` (Error Scenario: registration with malformed registration type)
+11. ``5G_SA_Error_Auth_response_with_invalid_RES`` (Error Scenario: Invalid RES sent in Auth Response)
 
 All the test cases are parameterized and can take arguments to specify number
 of UEs, attach/detach rate, traffic type/rate etc. For example, ``4G_SCALE``
@@ -95,10 +102,31 @@ implemented in the k8s library.
 
 The following integration tests are implemented at the moment:
 
-1. Subscriber Attach with HSS Restart
-2. Subscriber Attach with MME Restart
-3. Subscriber Attach with SPGWC Restart
-4. Subscriber Attach with PFCP Agent Restart
+4G Tests:
+
+1. Subscriber Attach with HSS Restart (attach, Restart HSS, detach)
+2. Subscriber Attach with SPGWC Restart (attach, Restart SPGWC, detach)
+3. Subscriber Attach Detach HSS Restart Attach Detach (attach-detach, Restart HSS, attach-detach)
+4. Subscriber Attach Detach SPGWC Restart Attach Detach (attach-detach, Restart SPGWC, attach-detach)
+5. Measure Downtime for HSS Restart (Verifies if HSS restarts within acceptable time limit)
+6. Measure Downtime for SPGWC Restart (Verifies if SPGWC restarts within acceptable time limit)
+
+5G Tests:
+
+1. ``Subscriber Register-Deregister with SMF Restart`` (registration, SMF Restart, deregistration)
+2. ``Subscriber Register-Deregister with AUSF Restart`` (registration, AUSF Restart, deregistration)
+3. ``Subscriber Register-Deregister with NRF Restart`` (registration, NRF Restart, deregistration)
+4. ``Subscriber Register-Deregister with NSSF Restart`` (registration, NSSF Restart, deregistration)
+5. ``Subscriber Register-Deregister with PCF Restart`` (registration, PCF Restart, deregistration)
+6. ``Subscriber Register-Deregister with UDR Restart`` (registration, UDR Restart, deregistration)
+7. ``Measure Downtime for SMF Restart`` (Verifies if SMF restarts within acceptable time limit)
+8. ``Measure Downtime for AUSF Restart`` (Verifies if AUSF restarts within acceptable time limit)
+9. ``Measure Downtime for NRF Restart`` (Verifies if NRF restarts within acceptable time limit)
+10. ``Measure Downtime for NSSF Restart`` (Verifies if NSSF restarts within acceptable time limit)
+11. ``Measure Downtime for PCF Restart`` (Verifies if PCF restarts within acceptable time limit)
+12. ``Measure Downtime for UDR Restart`` (Verifies if UDR restarts within acceptable time limit)
+13. ``Context Replacement at AMF`` (Verifies context replacement at AMF after NG40 restart)
+14. ``Context Replacement at UPF`` (Verifies context replacement at UPF after SMF restart)
 
 .. Note::
   More integration tests are being developed as part of Robot Framework
@@ -113,52 +141,49 @@ SD-Core nightly tests are a set of jobs managed by Aether Jenkins.
 All four test suites we mentioned above are scheduled to run nightly.
 
 1. ``functionality job (func)`` runs NG40 test cases included in the
-   functionality suite and verifies all tests pass.
+   functionality suite and Integration test suite and verifies all tests pass.
 2. ``scalability job (scale)`` runs the scalability test suite and reports
    the number of successful/failed attaches, detaches and pings.
-3. ``performance job (perf)`` runs the performance test suite and reports
-   SCTP heartbeat RTT, GTP ICMP RTT and call setup latency numbers.
 
 And all these jobs can be scheduled on any of the Aether PODs including
-``ci-4g`` pod, ``ci-5g`` pod, ``staging`` pod and ``qa`` pod. By combining
+``ci-4g`` pod, ``ci-5g`` pod, ``qa`` pod and ``qa2`` pod. By combining
 the test type and test pod the following Jenkins jobs are generated:
 
-1. ``ci-4g`` pod: `sdcore_func_ci-4g`, `sdcore_scale_ci-4g`, `sdcore_perf_ci-4g`, `sdcore_integ_ci-4g`
-1. ``ci-5g`` pod: `sdcore_func_ci-5g`, `sdcore_scale_ci-5g`
-2. ``staging`` pod: `func_staging`, `scale_staging`, `perf_staging`, `integ_staging`
-3. ``qa`` pod: `func_qa`, `scale_qa`, `perf_qa`, `integ_qa`
+1. ``ci-4g`` pod: `sdcore_ci-4g_4g_bess_func`, `sdcore_ci-4g_4g_bess_scale`
+2. ``ci-5g`` pod: `sdcore_ci-5g_5g_bess_func`, `sdcore_ci-5g_5g_bess_scale`
+3. ``qa`` pod: `sdcore_qa_4g_bess_func`, `sdcore_qa_4g_bess_scale`
+4. ``qa2`` pod: `sdcore_qa2_4g_bess_func`, `sdcore_qa2_4g_bess_scale`
 
 Nightly Job structure
 """""""""""""""""""""
 
-Take `sdcore_scale_ci-4g` job as an example. It runs the following downstream jobs:
+Take `sdcore_ci-4g_4g_bess_scale` job as an example. It runs the following downstream jobs:
 
-1. `omec_deploy_ci-4g`: this job re-deploys the ``ci-4g`` pod with latest OMEC images.
+1. `sdcore_ci-4g_deploy`: this job re-deploys the ``ci-4g`` pod with latest OMEC images.
 
 .. Note::
   only the ``ci-4g`` and ``ci-5g`` pod jobs trigger deployment downstream job. No
-  re-deployment is performed on the staging and qa pod before the tests
+  re-deployment is performed on the qa and qa2 pods before the tests.
 
-2. `ng40-test_ci-4g`: this job executes the scalability test suite.
+2. `sdcore_ci-4g_4g_bess_robot-test`: this job executes the scalability test suite.
 3. `archive-artifacts_ci-4g`: this job collects and uploads k8s and container logs.
 4. `post-results_ci-4g`: this job collects the NG40 test logs/pcaps and pushes the
    test data to database. It also generates plots using Rscript for func and
-   scale tests
+   scale tests.
 
-The integration tests are written using Robot Framework so have a slightly
-different Jenkins Job structure. Take `sdcore_integ_ci-4g` as an example. It runs the
-following downstream jobs:
+The integration tests are written using Robot Framework and are executed along
+   with the functional tests. Take `sdcore_ci-4g_4g_bess_func` as an example. It runs the
+   following downstream jobs:
 
-1. `omec_deploy_ci-4g`: this job executes the scalability test suite.
-2. `robotframework-test_ci-4g`: this job is similar to `ng40-test_ci-4g` with the
-   exception that instead of directly executing NG40 commands it calls robot
+1. `sdcore_ci-4g_deploy`: this job executes the scalability test suite.
+2. `sdcore_ci-4g_4g_bess_robot-test`: this job calls robot
    framework to execute the test cases and publishes the test results using
    `RobotPublisher` Jenkins plugin. The robot results will also be copied to
    the upstream job and published there.
 3. `archive-artifacts_ci-4g`: this job collects and uploads k8s and container logs.
 4. `post-results_ci-4g`: this job collects the NG40 test logs/pcaps and pushes the
    test data to database. It also generates plots using Rscript for func and
-   scale tests
+   scale tests.
 
 Patchset Tests
 --------------
@@ -186,19 +211,19 @@ Aether Jenkins (private). The jobs run on opencord Jenkins include
 
 And the jobs run on Aether Jenkins include
 
-1. `c3po_premerge_ci-4g`
-2. `Nucleus_premerge_ci-4g`
-3. `upf-epc_premerge_ci-4g`
-4. `spgw_premerge_ci-4g`
-5. `amf_premerge_ci-5g`
-6. `smf_premerge_ci-5g`
-7. `ausf_premerge_ci-5g`
-8. `nssf_premerge_ci-5g`
-9. `nrf_premerge_ci-5g`
-10. `pcf_premerge_ci-5g`
-11. `udm_premerge_ci-5g`
-12. `udr_premerge_ci-5g`
-13. `webconsole_premerge_ci-5g`
+1. `c3po_premerge_ci-4g_4g_bess`
+2. `Nucleus_premerge_ci-4g_4g_bess`
+3. `upf-epc_premerge_ci-4g_4g_bess`
+4. `spgw_premerge_ci-4g_4g_bess`
+5. `amf_premerge_ci-5g_5g_bess`
+6. `smf_premerge_ci-5g_5g_bess`
+7. `ausf_premerge_ci-5g_5g_bess`
+8. `nssf_premerge_ci-5g_5g_bess`
+9. `nrf_premerge_ci-5g_5g_bess`
+10. `pcf_premerge_ci-5g_5g_bess`
+11. `udm_premerge_ci-5g_5g_bess`
+12. `udr_premerge_ci-5g_5g_bess`
+13. `webconsole_premerge_ci-5g_5g_bess`
 
 Patchset Job structure
 """"""""""""""""""""""
@@ -207,7 +232,7 @@ Take ``c3po`` jobs as an example. ``c3po`` PR triggers a public job
 `omec_c3po_container_remote
 <https://jenkins.opencord.org/job/omec_c3po_container_remote/>`_ job running
 on opencord Jenkins through Github webhooks, which then triggers a private job
-`c3po_premerge_ci-4g` running on Aether Jenkins using a Jenkins plugin called
+`c3po_premerge_ci-4g_4g_bess` running on Aether Jenkins using a Jenkins plugin called
 `Parameterized Remote Trigger Plugin
 <https://www.jenkins.io/doc/pipeline/steps/Parameterized-Remote-Trigger/>`_.
 
@@ -215,12 +240,12 @@ The private ``c3po`` job runs the following downstream jobs sequentially:
 
 1. `docker-publish-github_c3po`: this job downloads the ``c3po`` PR, runs docker
    build and publishes the ``c3po`` docker images to `Aether registry`.
-2. `omec_deploy_ci-4g`: this job deploys the images built from previous job onto
+2. `sdcore_ci-4g_deploy`: this job deploys the images built from previous job onto
    the omec ``ci-4g`` pod.
-3. `ng40-test_ci-4g`: this job executes the functionality test suite.
+3. `sdcore_ci-4g_4g_bess_robot-test`: this job executes the functionality test suite.
 4. `archive-artifacts_ci-4g`: this job collects and uploads k8s and container logs.
 
-After all the downstream jobs are finished, the upstream job (`c3po_premerge_ci-4g`)
+After all the downstream jobs are finished, the upstream job (`c3po_premerge_ci-4g_4g_bess`)
 copies artifacts including k8s/container/ng40 logs and pcap files from
 downstream jobs and saves them as Jenkins job artifacts.
 
