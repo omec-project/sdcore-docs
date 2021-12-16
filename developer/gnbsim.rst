@@ -6,6 +6,9 @@
 gNB Simulator
 =============
 
+.. image:: ../_static/images/gNBSim.png
+  :width: 700px
+
 Description
 -----------
 The gNB Sim tool simulates gNodeB and UE by generating and processing NAS and
@@ -15,6 +18,7 @@ simulation profiles for the following procedures,
 * Registration
 * UE initiated PDU Session Establishment
 * UE Initiated De-registration.
+* AN Release
 
 It is also capable to generate and send user data packets (ICMP echo request)
 and process down-link user data (ICMP echo response) over the established data

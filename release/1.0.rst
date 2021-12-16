@@ -68,8 +68,9 @@ per network slice using configuration interface.  PCF/PCRF binds those policies 
 APIs gives the flexibility to Operator to assign UE level QoS, per application QoS and also slice level QoS.
 
 **5G gNB simulator:** gNB simulator simulates 5G UE & 5G gNodeB. gNBSim is capable of supporting
-multiple UEs and multiple gNodeBs. Tool also capable of doing data tests. This assists quick
+multiple UEs and multiple gNodeBs. The tool is also capable of doing data tests. This assists quick
 development of the features. This tool can be used to run automated tests for the 5G core network.
+Please refer :ref:`gNB-Simulator` documentation for more details.
 
 Testing
 -------
