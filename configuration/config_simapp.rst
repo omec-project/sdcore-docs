@@ -67,5 +67,22 @@ yaml configuration and configures the subscribers, device groups, network slices
                 upf:
                   upf-name: "upf"
                   upf-port: 8805
+              application-filtering-rules:
+                - rule-name: “rule-1”
+                 priority: 5
+                 action : permit
+                 endpoint: "10.91.1.3"
+                 traffic-class:
+                   name: “platinum”
+                   qci: 9
+                   arp: 125
+                   pdb: 300
+                   pelr: 6
 
-
+.. note::
+    Simapp takes initial configuration through helm chart. Above yaml files is initial config.
+    Operator can add multiple devices, device groups & slices in the initial config. If simapp
+    is already running then ``kubectl edit configmap simapp -n <namespace>`` can be used to update
+    the simapp configuration. Simapp handles config delete, modify & addition by watching configmap
+    for any changes. There is no need to restart simapp after configmap change. New config will
+    be automatically reloaded.
