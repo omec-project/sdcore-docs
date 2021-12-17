@@ -100,7 +100,7 @@ Component Versions in the 1.0 Release
 
 Helm Chart Versions and their component charts and containers:
 
-* sdcore-helm-chart: ``0.9.16``
+* sdcore-helm-chart: ``0.9.17``
     * omec-control-plane: ``0.9.15``
         * hssdb: ``registry.aetherproject.org/proxy/omecproject/c3po-hssdb:master-771c0c3``
         * hss  : ``registry.aetherproject.org/proxy/omecproject/c3po-hss:master-771c0c3``
@@ -120,8 +120,8 @@ Helm Chart Versions and their component charts and containers:
         * udm: ``registry.aetherproject.org/omecproject/5gc-udm:onf-release3.0.5-c28433a``
         * udr: ``registry.aetherproject.org/omecproject/5gc-udr:onf-release3.0.5-deef506``
         * ausf: ``registry.aetherproject.org/omecproject/5gc-ausf:onf-release3.0.5-be7d4ac``
-    * User Plane ``0.5.3``
-        * bess: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-bess:master-152a5eb"``
-        * pfcpiface: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-pfcpiface:master-152a5eb"``
+    * User Plane ``0.5.4``
+        * bess: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-bess:master-103b198"``
+        * pfcpiface: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-pfcpiface:master-103b198"``
     * 5g-ran-sim ``0.3.2``
         * gnbsim: ``registry.aetherproject.org/omecproject/5gc-gnbsim:dev-new-gnbsim-025ae2b``
