@@ -2,8 +2,8 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-SD-Core 1.0 Release
-===================
+SD-Core 1.0.0 Release
+=====================
 
 SD-Core supports 4G & 5G network functions. SD-Core provides APIs for configuration, telemetry, policy
 management. Access network can connected to AMF or MME depending on type of access used. Below is the
@@ -114,6 +114,47 @@ Helm Chart Versions and their component charts and containers:
     * 5g-control-plane: ``0.5.5``
         * amf: ``registry.aetherproject.org/omecproject/5gc-amf:onf-release3.0.5-9683d5c``
         * smf: ``registry.aetherproject.org/omecproject/5gc-smf:onf-release3.0.5-46dfe2d``
+        * nrf: ``registry.aetherproject.org/omecproject/5gc-nrf:onf-release3.0.5-13304e8``
+        * nssf: ``registry.aetherproject.org/omecproject/5gc-nssf:onf-release3.0.5-aa3a60b``
+        * pcf: ``registry.aetherproject.org/omecproject/5gc-pcf:onf-release3.0.5-9f7734b``
+        * udm: ``registry.aetherproject.org/omecproject/5gc-udm:onf-release3.0.5-c28433a``
+        * udr: ``registry.aetherproject.org/omecproject/5gc-udr:onf-release3.0.5-deef506``
+        * ausf: ``registry.aetherproject.org/omecproject/5gc-ausf:onf-release3.0.5-be7d4ac``
+    * User Plane ``0.5.4``
+        * bess: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-bess:master-103b198"``
+        * pfcpiface: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-pfcpiface:master-103b198"``
+    * 5g-ran-sim ``0.3.2``
+        * gnbsim: ``registry.aetherproject.org/omecproject/5gc-gnbsim:dev-new-gnbsim-025ae2b``
+
+SD-Core 1.0.1 Release
+=====================
+
+Minor release with bug fixes on top of release 1.0.0. Below is the list of defects fixed,
+
+* MME crash due to OOM kill.
+* MME fails to send PCO to SPGW - MME had NAS decoding issue which was causing MME to not send
+  PCO IE towards SPGW.
+* SPGW main thread blocks on DNS query - Improved SPGW code to raise DNS request in separate thread. Also
+  added support for DNS query timeout.
+* SMF changes to fix FAR action flags
+* SMF changes to support session report message to handle Downlink Data Notification from UPF.
+
+Helm Chart Versions and their component charts and containers:
+
+* sdcore-helm-chart: ``0.9.19``
+    * omec-control-plane: ``0.9.17``
+        * hssdb: ``registry.aetherproject.org/proxy/omecproject/c3po-hssdb:master-771c0c3``
+        * hss  : ``registry.aetherproject.org/proxy/omecproject/c3po-hss:master-771c0c3``
+        * pcrf  : ``registry.aetherproject.org/proxy/omecproject/c3po-pcrf:pcrf-a6bdc3d``
+        * pcrfdb  : ``registry.aetherproject.org/proxy/omecproject/c3po-pcrf:pcrf-a6bdc3d``
+        * config4g  : ``registry.aetherproject.org/omecproject/5gc-webui:onf-release3.0.5-e29f159``
+        * spgwc  : ``registry.aetherproject.org/omecproject/spgw:master-4fce2e6``
+        * mme  : ``registry.aetherproject.org/proxy/omecproject/nucleus:master-a503ae3``
+    * omec-sub-provision: ``0.3.2``
+        * simapp: ``registry.aetherproject.org/omecproject/simapp:main-329c82d``
+    * 5g-control-plane: ``0.5.6``
+        * amf: ``registry.aetherproject.org/omecproject/5gc-amf:onf-release3.0.5-9683d5c``
+        * smf: ``registry.aetherproject.org/omecproject/5gc-smf:onf-release3.0.5-3c91931``
         * nrf: ``registry.aetherproject.org/omecproject/5gc-nrf:onf-release3.0.5-13304e8``
         * nssf: ``registry.aetherproject.org/omecproject/5gc-nssf:onf-release3.0.5-aa3a60b``
         * pcf: ``registry.aetherproject.org/omecproject/5gc-pcf:onf-release3.0.5-9f7734b``
