@@ -80,11 +80,19 @@ Start the 5G SD-CORE
 ____________________
 
 If you have already installed the 4G SD-CORE, you must skip this step.
-Only one version of the SD-CORE can be installed at a time.::
+Only one version of the SD-CORE can be installed at a time
+
+To deploy 5G SD-CORE::
 
     make 5gc
 
-You can use gnbsim to test 5G functionality. Detailed steps in link (see :ref:`gNB-Simulator`)
+To deploy and test 5G SD-CORE::
+
+    make 5g-test
+
+The above step uses gNBSim to perform Registration + UE-Initiated PDU Session
+Establishment + User Data Packets. To test other procedures, modify *gnb.conf*
+in *ransim-values.yaml* (refer gNBSim documentation :ref:`gNB-Simulator`)
 
 Cleanup
 _______
