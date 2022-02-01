@@ -2,8 +2,8 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-SD-Core 1.0 Release
-===================
+SD-Core 1.0.0 Release
+=====================
 
 SD-Core supports 4G & 5G network functions. SD-Core provides APIs for configuration, telemetry, policy
 management. Access network can connected to AMF or MME depending on type of access used. Below is the
@@ -125,3 +125,37 @@ Helm Chart Versions and their component charts and containers:
         * pfcpiface: ``"registry.aetherproject.org/proxy/omecproject/upf-epc-pfcpiface:master-103b198"``
     * 5g-ran-sim ``0.3.2``
         * gnbsim: ``registry.aetherproject.org/omecproject/5gc-gnbsim:dev-new-gnbsim-025ae2b``
+
+SD-Core 1.0.1 Release
+=====================
+
+Minor release with bug fixes on top of release 1.0.0. Below is the list of defects fixed on top of previous release.
+
+    * MME crash due to OOM kill.
+    * MME fails to send PCO to SPGW - MME had NAS decoding issue which was causing MME to not send PCO IE towards SPGW.
+    * SPGW main thread blocks on DNS query - Improved SPGW code to raise DNS request in separate thread. Also added
+      support for DNS query timeout.
+    * SMF changes to fix FAR action flags
+
+Helm Chart Versions and their component charts versions
+
+* sdcore-helm-chart: 0.9.19
+    * omec-control-plane: 0.9.17
+    * omec-sub-provision: 0.3.2
+    * 5g-control-plane: 0.5.6
+    * User Plane 0.5.4
+    * 5g-ran-sim 0.3.2
+
+SD-Core 1.0.2 Release
+=====================
+
+Minor release with bug fixes on top of release 1.0.1. Below is the list of defects fixed on top of previous release.
+
+    * SPGW subscriber gauge metrics are removed once subscriber is detached from network.
+
+* sdcore-helm-chart: 0.9.20
+    * omec-control-plane: 0.9.18
+    * omec-sub-provision: 0.3.2
+    * 5g-control-plane: 0.5.6
+    * User Plane 0.5.4
+    * 5g-ran-sim 0.3.2
