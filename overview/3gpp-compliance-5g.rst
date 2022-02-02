@@ -27,9 +27,6 @@ High Level Summary
 * Unified Data Repository (UDR) Interfaces supported
     * N8, N10, N13, N21, N35, N36, N37
 
-.. image:: ../_static/images/udr_Arch_reference_model.png
-  :width: 700px
-
 * NF supported
     * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF
 
