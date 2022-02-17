@@ -159,3 +159,21 @@ Minor release with bug fixes on top of release 1.0.1. Below is the list of defec
     * 5g-control-plane: 0.5.6
     * User Plane 0.5.4
     * 5g-ran-sim 0.3.2
+
+SD-Core 1.0.3 Release
+=====================
+
+Minor release with bug fixes on top of release 1.0.2. Below is the list of defects fixed on top of previous release.
+
+    * SPGW -  Configurable DNS timeout. Default value 100ms. This helps admin to tune dns timeout
+      to any reasonable value.
+    * PCRF - If PCRF crashes then pcrf was not able to handle new calls. Database cleanup was missing to handle
+      context replacement
+    * MME - tau failure and service reject send failure fix. UL count was not incremented in some error cases.
+
+* sdcore-helm-chart: 0.9.22
+    * omec-control-plane: 0.9.18
+    * omec-sub-provision: 0.3.3
+    * 5g-control-plane: 0.5.7
+    * User Plane 0.5.4
+    * 5g-ran-sim 0.3.2
