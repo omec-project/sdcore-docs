@@ -172,7 +172,24 @@ Minor release with bug fixes on top of release 1.0.2. Below is the list of defec
     * MME - tau failure and service reject send failure fix. UL count was not incremented in some error cases.
 
 * sdcore-helm-chart: 0.9.22
-    * omec-control-plane: 0.9.18
+    * omec-control-plane: 0.9.20
+    * omec-sub-provision: 0.3.3
+    * 5g-control-plane: 0.5.7
+    * User Plane 0.5.4
+    * 5g-ran-sim 0.3.2
+
+SD-Core 1.0.4 Release
+=====================
+
+Minor release with bug fixes on top of release 1.0.3. Below is the list of defects fixed on top of previous release.
+
+    * PCRF - PCRF crash was seen after 7 days of run. It was found that PCRF pod was logging messages in file as well
+      as stdout. Now logging messages to file is made configurable and default its in disabled state.
+    * HSSF - HSS memory consumption was growing over period of time. It was found that HSSF pod was logging messages
+      in file as well as stdout. Now logging messages to file is made configurable and default its in disabled state.
+
+* sdcore-helm-chart: 0.9.23
+    * omec-control-plane: 0.9.21
     * omec-sub-provision: 0.3.3
     * 5g-control-plane: 0.5.7
     * User Plane 0.5.4
