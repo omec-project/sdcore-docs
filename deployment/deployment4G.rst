@@ -47,23 +47,6 @@ Hardware resource requirement
     - 4Gi
 
 
-Prepare access credential for SD-Core images
---------------------------------------------
-
-Container images can be download from ONF self-hosted container registry but you have to gain the access token first.
-
-1. Login to `Aether Harbor Registry <https://registry.aetherproject.org/harbor/sign-in?redirect_url=%2Fharbor%2Fprojects>`_ using your ONF Crowd credential,
-2. Select ``User Profile`` drop-down menu in the upper-right corner
-3. Generate the CLI secret and it's the secret token you have to access the container registry via CLI tool.
-4. Login to the container registry with your username and access token
-   by ``docker login command`` to ensure you can access it.
-
-.. code-block::
-
-      ╰─$ docker login registry.aetherproject.org --username hwchiu
-      Password:
-      Login Succeeded
-
 Deployment Options
 ------------------
 
@@ -80,7 +63,7 @@ Step1 - Clone SD-Core 4G Helm chart
 '''''''''''''''''''''''''''''''''''
 .. code-block::
 
-  git clone ssh://gerrit.opencord.org:29418/sdcore-helm-charts
+  git clone "https://gerrit.opencord.org/sdcore-helm-charts"
   cd sdcore-helm-charts/sdcore-helm-charts/
   helm dep update #Update Helm dependencies
 
@@ -99,7 +82,7 @@ The following command will deploy the SD-Core helm chart with release name sdcor
 
 .. code-block::
 
-    helm install -n sdcore-4g --create-namespace -f myvaules.yaml sdcore-4g .
+    helm install -n sdcore-4g --create-namespace -f myvalues.yaml sdcore-4g ~/cord/sdcore-helm-charts/sdcore-helm-charts
 
 To verify the installation:
 

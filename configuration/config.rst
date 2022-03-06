@@ -29,9 +29,15 @@ SD-Core supports 2 ways to configure network functions and micro services.
     - REST Config Interface
 
         - Basic static configuration is passed through helm chart
-        - Dynamic slice creation APIs are provided through REST interface.
+        - Dynamic *Network Slice* management  APIs are provided through REST interface.
         - REST APIs are defined to create/modify/delete network slice.
         - REST APIs are also provided to provision subscribers and grouping the subscribers under device Group.
+
+.. image:: ../_static/images/config_slice.png
+  :width: 500px
+  :align: center
+
+
 
 Configuration Steps
 -------------------

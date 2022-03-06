@@ -59,23 +59,6 @@ Hardware resource requirement
     - 4Gi
 
 
-Prepare access credential for SD-Core images
---------------------------------------------
-
-Container images can be download from ONF self-hosted container registry but you have to gain the access token first.
-
-1. Login to `Aether Harbor Registry <https://registry.aetherproject.org/harbor/sign-in?redirect_url=%2Fharbor%2Fprojects>`_ using your ONF Crowd credential,
-2. Select ``User Profile`` drop-down menu in the upper-right corner
-3. Generate the CLI secret and it's the secret token you have to access the container registry via CLI tool.
-4. Login to the container registry with your username and access token
-   by ``docker login command`` to ensure you can access it.
-
-.. code-block::
-
-      ╰─$ docker login registry.aetherproject.org --username hwchiu
-      Password:
-      Login Succeeded
-
 Deployment Options
 ------------------
 
@@ -93,7 +76,7 @@ Step1 - Clone SD-Core 5G Helm chart
 '''''''''''''''''''''''''''''''''''
 .. code-block::
 
-  git clone ssh://gerrit.opencord.org:29418/sdcore-helm-charts
+  git clone "https://gerrit.opencord.org/sdcore-helm-charts"
   cd sdcore-helm-charts/sdcore-helm-charts/
   helm dep update #Update Helm dependencies
 
@@ -108,17 +91,37 @@ Configuration section below.
 Step3 - Install 5G using SD-Core umbrella helm chart
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-The following command will deploy the SD-Core helm chart with release name sdcore-4g in the sdcore-4g namespace.
+The following command will deploy the SD-Core helm chart with release name sdcore-5g in the sdcore-5g namespace.
 
 .. code-block::
 
-    helm install -n sdcore-5g --create-namespace -f myvaules.yaml sdcore-5g .
+    helm install -n sdcore-5g --create-namespace -f myvalues.yaml sdcore-5g  ~/cord/sdcore-helm-charts/sdcore-helm-charts
 
 To verify the installation:
 
 .. code-block::
 
     helm -n sdcore-5g ls
+    ajayonf@node:~$ helm -n sdcore-5g ls
+    NAME     	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART         	APP VERSION
+    sdcore-5g	sdcore-5g	1       	2022-03-05 16:25:32.338495035 -0700 MST	deployed	sd-core-0.10.9
+    ajayonf@node:~$
+
+    ajayonf@node:~$ kubectl get pods -n sdcore-5g
+    NAME                       READY   STATUS    RESTARTS   AGE
+    amf-66bf99c879-5x4ms       1/1     Running   0          3m23s
+    ausf-65dc454b79-jp2cb      1/1     Running   0          3m23s
+    mongodb-6df94d8dd9-h8p4w   1/1     Running   0          3m23s
+    nrf-65bcfbb496-xvt6t       1/1     Running   0          3m23s
+    nssf-6f58859d67-552l2      1/1     Running   0          3m23s
+    pcf-5b4c75f57d-sl5rh       1/1     Running   0          3m23s
+    simapp-d8994999d-98k6v     1/1     Running   0          3m23s
+    smf-77c89ccc6d-4d8g2       1/1     Running   0          3m23s
+    udm-6dcdc457c6-gwmfk       1/1     Running   0          3m23s
+    udr-84678ff6dc-zkj52       1/1     Running   0          3m23s
+    upf-0                      0/5     Pending   0          3m23s
+    webui-66b4df44b-9clwf      1/1     Running   0          3m23s
+    ajayonf@node:~$
 
 To uninstall:
 

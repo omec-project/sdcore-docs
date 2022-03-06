@@ -16,7 +16,8 @@ components and run basic tests to validate the installation. This guide
 describes the steps to set up AiaB.
 
 AiaB can be set up with a 4G or 5G SD-CORE. We use SimApp to configure
-the required state in SD-CORE for testing core functionality.
+the required subscribers & network slices in SD-CORE for testing core
+functionality.
 
 Helm charts are the primary method of installing the SD-CORE resources.
 AiaB offers a great deal of flexibility regarding which Helm chart
@@ -39,48 +40,36 @@ To initialize the AiaB environment, first clone the following repository using
 your Gerrit ID::
 
     cd ~
-    git clone "ssh://<username>@gerrit.opencord.org:29418/aether-in-a-box"
+    git clone "https://gerrit.opencord.org/aether-in-a-box"
 
     mkdir -p ~/cord
     cd ~/cord
-    git clone "ssh://<username>@gerrit.opencord.org:29418/sdcore-helm-charts"
-    git clone "ssh://<username>@gerrit.opencord.org:29418/aether-helm-charts"
+    git clone "https://gerrit.opencord.org/sdcore-helm-charts"
 
-Set up Authentication Tokens
-____________________________
+.. note::
+    Only one version of the SD-CORE (4G or 5G) can be installed in AIAB environment
+    at a time. The first time you build AiaB, it takes a while because it sets up the
+    Kubernetes cluster. Subsequent builds will be much faster if you follow below steps
+    to delete & redeploy SD-Core (4G/5G) without destroying the Kubernetes
 
-::
+Using 4G SD-CORE
+________________
 
-    cd ~/aether-in-a-box
-
-Edit the file configs/authentication.
-
-Fill out REGISTRY_USERNAME and REGISTRY_CLI_SECRET as follows:
-
-    * Log into the Aether Harbor Registry using your Crowd credentials
-    * Select User Profile from the drop-down menu in the upper right corner
-    * For REGISTRY_USERNAME, use the Username in your profile
-    * Copy the CLI secret to the clipboard and paste to REGISTRY_CLI_SECRET
-
-Also fill out REPO_USERNAME and REPO_PASSWORD with the information needed to
-authenticate with Aether’s Helm chart repositories.
-
-If you have already set up AiaB but you used incorrect credentials, first
-clean up AiaB as described in the Cleanup section, then edit
-configs/authentication and re-build AiaB.
-
-Start the 4G SD-CORE
-____________________
-
-::
+To deploy 4G SD-CORE::
 
     make test
 
-Start the 5G SD-CORE
-____________________
+To delete 4G SD-CORE deployment ::
 
-If you have already installed the 4G SD-CORE, you must skip this step.
-Only one version of the SD-CORE can be installed at a time
+    make reset-test
+
+The above step performs UE attach and data test. If you wish to update any images
+of SD-Core 4G components then edit file  in *~/aether-in-a-box/sd-core-4g-values.yaml*.
+After updating config in *sd-core-4g-values.yaml* you can reset deployment and run
+the test again.
+
+Using 5G SD-CORE
+________________
 
 To deploy 5G SD-CORE::
 
@@ -92,34 +81,23 @@ To deploy and test 5G SD-CORE::
 
 The above step uses gNBSim to perform Registration + UE-Initiated PDU Session
 Establishment + User Data Packets. To test other procedures, modify *gnb.conf*
-in *ransim-values.yaml* (refer gNBSim documentation :ref:`gNB-Simulator`)
-
-Cleanup
-_______
-
-The first time you build AiaB, it takes a while because it sets up the
-Kubernetes cluster. Subsequent builds will be much faster if you follow
-these steps to clean up the Helm charts without destroying the Kubernetes
-cluster.::
-
-    Clean up the 4G SD-CORE: *make reset-test
-    Clean up the 5G SD-CORE: *make reset-5g-test
+in *~/aether-in-a-box/sd-core-5g-values.yaml* (refer gNBSim documentation :ref:`gNB-Simulator`)
 
 Developer Loop
 ______________
 
 Suppose you wish to test a new build of a 5G SD-CORE services. You can deploy
-custom images by editing ~/aether-in-a-box/5g-core-values.yaml, for example::
+custom images by editing ~/aether-in-a-box/sd-core-5g-values.yaml, for example::
 
     images:
       tags:
-        webui: registry.aetherproject.org/omecproject/5gc-webui:onf-release3.0.5-roc-935305f
-      pullPolicy: IfNotPresent
+        webui: omecproject/5gc-webui:master-7f96cfd
 
 To upgrade a running 5G SD-CORE with the new image, or to deploy the 5G SD-CORE
 with the image::
 
-    make 5gc
+    make reset-5g-test # delete 5G deployment if it was already started before updating image
+    make 5gc  #now this deployment will use new webui image
 
 Troubleshooting / Known Issues
 ______________________________
@@ -127,10 +105,9 @@ ______________________________
 If you suspect a problem, first verify that all pods are in Running state::
 
     kubectl -n omec get pods
-    kubectl -n aether-roc get pods
 
 If the pods are stuck in ImagePullBackOff state, then it’s likely an issue
-with credentials. See the Set up Authentication Tokens section.
+with image name.
 
 4G Test Fails
 _____________
@@ -138,14 +115,10 @@ _____________
 Occasionally make test (for 4G) fails for unknown reasons; this is true
 regardless of which Helm charts are used. If this happens, first try
 cleaning up AiaB and re-running the test. If make test fails consistently,
-check whether the configuration has been pushed to the SD-CORE::
+then try to debug the issue by looking at spgwc, mme logs.
 
-    kubectl -n omec logs config4g-0 | grep "Successfully"
+5G Test Fails
+_____________
 
-You should see that a device group and slice has been pushed::
-
-    [INFO][WebUI][CONFIG] Successfully posted message for device group 4g-oaisim-user to main config thread
-    [INFO][WebUI][CONFIG] Successfully posted message for slice default to main config thread
-
-Then tail the config4g-0 log and make sure that the configuration has been
-successfully pushed to all SD-CORE components.
+If make 5g-test fails consistently, then try to debug the issue by looking
+at logs at amf, smf.

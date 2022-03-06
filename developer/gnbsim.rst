@@ -25,6 +25,7 @@ It is also capable to generate and send user data packets (ICMP echo request)
 and process down-link user data (ICMP echo response) over the established data
 plane path (N3 Tunnel).
 
+
 Configure gNBSim
 -----------------------
 * The config file for gNBSim can be found at *<repo dir>/config/gnbsim.yaml*
@@ -57,30 +58,6 @@ Configure gNBSim
         Registration + UE initiated PDU Session Establishment + User Data packets
         + AN Release + UE Initiated Service Request
 
-Build gNBSim
--------------------
-* To modify gNBSim and build a new docker image:
-
-    .. code-block:: bash
-
-        $ cd <repo dir>
-        $ make docker-build
-
-* To use newly created image in the AiaB cluster:
-
-    .. code-block:: bash
-
-        $ cd <aiab repo dir>
-        $ make reset-5g-test
-
-    Update *ransim-values.yaml* to point to the newly built image, then run:
-
-    .. code-block:: bash
-
-        $ make 5g-test
-
-    (refer AiaB documentation :ref:`aiab-guide`)
-
 Run gNBSim
 -----------
 * To quickly launch and test AiaB with 5G SD-CORE using gNBSim:
@@ -111,3 +88,35 @@ Run gNBSim
     .. code-block:: bash
 
         $ ./gnbsim --cfg <config file path>
+
+Build gNBSim
+-------------------
+
+* If you find a need to change gNBSim code and use the updated image in the AIAB setup then
+  follow below steps.
+
+* To modify gNBSim and build a new docker image:
+
+    .. code-block:: bash
+
+        $ git clone https://github.com/omec-project/gnbsim.git
+        $ cd gnbsim
+        $ make docker-build  #requires golang installed on the machine
+
+* To use newly created image in the AiaB cluster:
+
+Update *~/aether-in-box/sd-core-5g-values.yaml* to point to the newly built image, then run:
+
+    .. code-block:: bash
+
+        $ cd ~/aether-in-a-box/
+        $ make reset-5g-test
+
+
+    .. code-block:: bash
+
+        $ make 5g-test
+
+    (refer AiaB documentation :ref:`aiab-guide`)
+
+

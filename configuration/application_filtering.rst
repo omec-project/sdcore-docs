@@ -7,6 +7,10 @@
 Application Filtering Overview
 ==============================
 
+.. image:: ../_static/images/SDCore_Access_Control.png
+  :width: 700px
+  :align: center
+
 Below config snapshot shows how to configure application filtering in the network slice.
 Each application filter in the network slice can have action either ``permit`` or ``deny``
 

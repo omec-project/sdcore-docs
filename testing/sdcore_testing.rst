@@ -206,8 +206,7 @@ Aether Jenkins (private). The jobs run on opencord Jenkins include
 
 1. `omec_c3po_container_remote <https://jenkins.opencord.org/job/omec_c3po_container_remote/>`_ (public)
 2. `omec_Nucleus_container_remote <https://jenkins.opencord.org/job/omec_Nucleus_container_remote/>`_ (public)
-3. `omec_upf-epc_container_remote <https://jenkins.opencord.org/job/omec_upf-epc_container_remote/>`_ (public)
-4. `omec_spgw_container_remote` (private, under member-only folder)
+3. `omec_spgw_container_remote` (private, under member-only folder)
 
 And the jobs run on Aether Jenkins include
 

@@ -8,6 +8,9 @@ Configuration using Simapp interface
 Easiest way to configure SD-Core is to use simapp. Simapp is the POD which takes
 yaml configuration and configures the subscribers, device groups, network slices
 
+Simapp Initial Configuration Helm Values
+----------------------------------------
+
 .. code-block::
 
   config:
@@ -81,8 +84,11 @@ yaml configuration and configures the subscribers, device groups, network slices
 
 .. note::
     Simapp takes initial configuration through helm chart. Above yaml files is initial config.
-    Operator can add multiple devices, device groups & slices in the initial config. If simapp
-    is already running then ``kubectl edit configmap simapp -n <namespace>`` can be used to update
-    the simapp configuration. Simapp handles config delete, modify & addition by watching configmap
-    for any changes. There is no need to restart simapp after configmap change. New config will
-    be automatically reloaded.
+    Operator can add multiple devices, device groups & slices in the initial config.
+
+Configuration Modification through Simapp interface
+---------------------------------------------------
+If simapp is already running then ``kubectl edit configmap simapp -n <namespace>`` can be used to update
+the simapp configuration. Simapp handles config delete, modify & addition by watching configmap
+for any changes. There is no need to restart simapp after configmap change. New config will be automatically
+reloaded and updated configuration is passed to SD-Core.
