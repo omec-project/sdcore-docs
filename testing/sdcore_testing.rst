@@ -44,6 +44,8 @@ Currently the following NG40 test cases are implemented:
 10. ``4G_SCALE_HO`` (attach, Handover, dl ping, detach with multiple UEs)
 11. ``4G_ATTACH_STRESS`` (attach-detach 200 times consecutively)
 12. ``4G_TAU`` (attach, Tracking Area Update, detach)
+13. ``4G_M2AS_UDP_TRAFFIC_CONFORMANT_TO_MAX_RATE`` (attach, UDP Data with correct qos bandwidth, detach)
+14. ``4G_M2AS_UDP_TRAFFIC_EXCEEDING_MAX_RATE`` (attach, UDP Data with exceeding bandwidth, detach)
 
 5G Tests:
 
@@ -59,6 +61,9 @@ Currently the following NG40 test cases are implemented:
 9. ``5G_SA_SCALE`` (registration, session establishment, dl+ul udp traffic, deregistration with multiple UEs)
 10. ``5G_SA_Error_Malformed_Reg_Type`` (Error Scenario: registration with malformed registration type)
 11. ``5G_SA_Error_Auth_response_with_invalid_RES`` (Error Scenario: Invalid RES sent in Auth Response)
+12. ``5G_SA_M2AS_UDP_TRAFFIC_CONFORMANT_TO_MAX_RATE``
+    (registration, UDP Data with correct qos bandwidth, deregistration)
+13. ``5G_SA_M2AS_UDP_TRAFFIC_EXCEEDING_MAX_RATE`` (registration, UDP Data with exceeding bandwidth, deregistration)
 
 All the test cases are parameterized and can take arguments to specify number
 of UEs, attach/detach rate, traffic type/rate etc. For example, ``4G_SCALE``
@@ -106,10 +111,18 @@ The following integration tests are implemented at the moment:
 
 1. Subscriber Attach with HSS Restart (attach, Restart HSS, detach)
 2. Subscriber Attach with SPGWC Restart (attach, Restart SPGWC, detach)
-3. Subscriber Attach Detach HSS Restart Attach Detach (attach-detach, Restart HSS, attach-detach)
-4. Subscriber Attach Detach SPGWC Restart Attach Detach (attach-detach, Restart SPGWC, attach-detach)
-5. Measure Downtime for HSS Restart (Verifies if HSS restarts within acceptable time limit)
-6. Measure Downtime for SPGWC Restart (Verifies if SPGWC restarts within acceptable time limit)
+3. Subscriber Attach with pfcp-agent Restart (attach, Restart pfcp-agent, detach)
+4. Subscriber Attach Detach HSS Restart Attach Detach (attach-detach, Restart HSS, attach-detach)
+5. Subscriber Attach Detach SPGWC Restart Attach Detach (attach-detach, Restart SPGWC, attach-detach)
+6. Subscriber Attach Detach MME Restart Attach Detach (attach-detach, Restart MME, attach-detach)
+7. Subscriber Attach Detach pfcp-agent Restart Attach Detach (attach-detach, Restart pfcp-agent, attach-detach)
+8. Measure Downtime for HSS Restart (Verifies if HSS restarts within acceptable time limit)
+9. Measure Downtime for SPGWC Restart (Verifies if SPGWC restarts within acceptable time limit)
+10. Measure Downtime for MME Restart (Verifies if MME restarts within acceptable time limit)
+11. Measure Downtime for pfcp-agent Restart (Verifies if pfcp-agent restarts within acceptable time limit)
+12. Context Replacement at MME (Verifies context replacement at MME after NG40 restart)
+13. Context Replacement at SPGWC (Verifies context replacement at SPGWC after MME restart)
+14. Context Replacement at UPF (Verifies context replacement at UPF after SPGWC restart)
 
 5G Tests:
 
@@ -119,14 +132,34 @@ The following integration tests are implemented at the moment:
 4. ``Subscriber Register-Deregister with NSSF Restart`` (registration, NSSF Restart, deregistration)
 5. ``Subscriber Register-Deregister with PCF Restart`` (registration, PCF Restart, deregistration)
 6. ``Subscriber Register-Deregister with UDR Restart`` (registration, UDR Restart, deregistration)
-7. ``Measure Downtime for SMF Restart`` (Verifies if SMF restarts within acceptable time limit)
-8. ``Measure Downtime for AUSF Restart`` (Verifies if AUSF restarts within acceptable time limit)
-9. ``Measure Downtime for NRF Restart`` (Verifies if NRF restarts within acceptable time limit)
-10. ``Measure Downtime for NSSF Restart`` (Verifies if NSSF restarts within acceptable time limit)
-11. ``Measure Downtime for PCF Restart`` (Verifies if PCF restarts within acceptable time limit)
-12. ``Measure Downtime for UDR Restart`` (Verifies if UDR restarts within acceptable time limit)
-13. ``Context Replacement at AMF`` (Verifies context replacement at AMF after NG40 restart)
-14. ``Context Replacement at UPF`` (Verifies context replacement at UPF after SMF restart)
+7. ``Subscriber Register-Deregister with UDM Restart`` (registration, UDM Restart, deregistration)
+8. ``Subscriber Register-Deregister AMF Restart Subscriber Register-Deregister`` (registration
+    -deregistration, AMF Restart, registration-deregistration)
+9. ``Subscriber Register-Deregister SMF Restart Subscriber Register-Deregister`` (registration
+    -deregistration, SMF Restart, registration-deregistration)
+10. ``Subscriber Register-Deregister AUSF Restart Subscriber Register-Deregister`` (registration
+    -deregistration, AUSF Restart, registration-deregistration)
+11. ``Subscriber Register-Deregister NRF Restart Subscriber Register-Deregister`` (registration
+    -deregistration, NRF Restart, registration-deregistration)
+12. ``Subscriber Register-Deregister NSSF Restart Subscriber Register-Deregister`` (registration
+    -deregistration, NSSF Restart, registration-deregistration)
+13. ``Subscriber Register-Deregister PCF Restart Subscriber Register-Deregister`` (registration
+    -deregistration, PCF Restart, registration-deregistration)
+14. ``Subscriber Register-Deregister UDM Restart Subscriber Register-Deregister`` (registration
+    -deregistration, UDM Restart, registration-deregistration)
+15. ``Subscriber Register-Deregister UDR Restart Subscriber Register-Deregister`` (registration
+    -deregistration, UDR Restart, registration-deregistration)
+16. ``Measure Downtime for SMF Restart`` (Verifies if AMF restarts within acceptable time limit)
+17. ``Measure Downtime for SMF Restart`` (Verifies if SMF restarts within acceptable time limit)
+18. ``Measure Downtime for AUSF Restart`` (Verifies if AUSF restarts within acceptable time limit)
+19. ``Measure Downtime for NRF Restart`` (Verifies if NRF restarts within acceptable time limit)
+20. ``Measure Downtime for NSSF Restart`` (Verifies if NSSF restarts within acceptable time limit)
+21. ``Measure Downtime for PCF Restart`` (Verifies if PCF restarts within acceptable time limit)
+22. ``Measure Downtime for UDR Restart`` (Verifies if UDR restarts within acceptable time limit)
+23. ``Measure Downtime for UDM Restart`` (Verifies if UDM restarts within acceptable time limit)
+24. ``Context Replacement at AMF`` (Verifies context replacement at AMF after NG40 restart)
+25. ``Context Replacement at UPF`` (Verifies context replacement at UPF after SMF restart)
+26. ``Context Replacement at SMF`` (Verifies context replacement at SMF after AMF restart)
 
 .. Note::
   More integration tests are being developed as part of Robot Framework
