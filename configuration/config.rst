@@ -16,6 +16,12 @@ Reference helm chart
 --------------------
 
     - `SD-Core Helm Chart Repository <https://gerrit.opencord.org/admin/repos/sdcore-helm-charts>`_
+    - Sub components in sdcore-helm-charts
+
+        - omec-control-plane: 4G Network functions helm charts
+        - 5g-control-plane: 5G Network functions helm charts
+        - omec-sub-provision: Simapp helm charts
+        - 5g-ran-sim : gNBSim helm charts
 
 Configuration Methods
 ---------------------
@@ -25,13 +31,19 @@ SD-Core supports 2 ways to configure network functions and micro services.
 
         - Each individual network function and microservice has its own helm chart.
         - User needs to provide override values and deploy the network functions as per their need.
+        - Use above helm charts appropriately and provide override values and install 4G/5G NFs.
 
     - REST Config Interface
 
-        - Basic static configuration is passed through helm chart
+        - Basic static configuration is still passed through helm chart ( logging level, image,...)
         - Dynamic *Network Slice* management  APIs are provided through REST interface.
         - REST APIs are defined to create/modify/delete network slice.
         - REST APIs are also provided to provision subscribers and grouping the subscribers under device Group.
+
+.. note::
+        - Simapp is the example of REST interface based configuration to provision subscribers in SD-Core
+        - Simapp is also used to provision Network Slices in SD-Core in the absence of Portal
+        - Aether ROC Portal used REST interface to configure Network Slices in SD-Core
 
 .. image:: ../_static/images/config_slice.png
   :width: 500px
@@ -65,4 +77,39 @@ and publish to respective clients over REST/grpc.
         - Site configuration including UPF, eNBs/gNBs assigned to the slice
         - Applications allowed to be accessed by this slice (see :ref:`application-filtering`)
 
+4G, 5G Configuration Differences
+--------------------------------
+One of the most important difference in 4G & 5G configuration is around network slice. 5G has
+network slice Ids sent in protocol messages whereas 4G does not have any slice Id in messages.
+We implement slicing in 4G using APNs. Let's go over these difference in detail below,
 
+- **Slice Id** : Since 4G does not have slice Id in any protocol messages, configured slice Ids
+  are ignored in 4G components. So it also means that even if configured slice Ids are
+  duplicate it will not have any impact. But its still a good practice to have unique Slice
+  Id per slice.
+
+- **APN/DNN configuration**: In case of 4G each slice should have separate APN. This is required
+  because APN is used as slice identifier internally in the 4G modules. This is not true in
+  case of 5G because 5G has slice Id along with APN/DNN. So in general its good practice to
+  keep APN/DNN in the slice unique so same slice can work for 4G & 5G configuration.
+
+
+- **UE Address Allocation**: In the Slice API you will see that we provide UE IP pool configuration.
+  Its important to know how UE IP address allocation is supported in SD-Core 4G & 5G components.
+
+  In case of 4G, Control Plane supports UE address allocation from UPF. So it also means that even
+  if you have specified UE address pool in the slice config, you still need to add the address pool
+  configuration in the UPF deployment.
+
+  In case of 5G, control plane has the capability to manage multiple IP pools so SMF uses the UE
+  address pool configuration received in the network slice APIs
+  and use them to appropriately assign UE address. But remember SD-Core 5G does not support UE IP
+  address allocation from UPF. So in case of 5G UPF configuration, even if you don't configure address
+  pool configuration it is still fine. We plan to add support of UPF UE address allocation in  next
+  release.
+
+- **DNN/APN in Initial Attach/Register Message** : In case of 4G, if UE has set any random APN then
+  MME overrides the APN based on the user profile in HSS. So its important to note that even if APN
+  is not matching with configured APN we are still good.  In case of 5G, apn name & Slice ID coming
+  from UE is used to select SMF, so its important to have UE configured with correct APN/DNN name.
+  Core network passed allowed slice IDs to UE in the registration accept message.
