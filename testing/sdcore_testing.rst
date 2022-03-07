@@ -173,89 +173,90 @@ Nightly Tests
 SD-Core nightly tests are a set of jobs managed by Aether Jenkins.
 All four test suites we mentioned above are scheduled to run nightly.
 
-1. ``functionality job (func)`` runs NG40 test cases included in the
-   functionality suite and Integration test suite and verifies all tests pass.
-2. ``scalability job (scale)`` runs the scalability test suite and reports
-   the number of successful/failed attaches, detaches and pings.
+* ``functionality job (func)`` - runs NG40 test cases included in the
+  functionality and integration test suites and verifies all tests pass.
 
-And all these jobs can be scheduled on any of the Aether PODs including
-``ci-4g`` pod, ``ci-5g`` pod, ``qa`` pod and ``qa2`` pod. By combining
+* ``scalability job (scale)`` - runs the scalability test suite and reports the
+  number of successful/failed attaches, detaches and pings.
+
+All these jobs can be scheduled on any of the Aether PODs. By combining
 the test type and test pod the following Jenkins jobs are generated:
 
-1. ``ci-4g`` pod: `sdcore_ci-4g_4g_bess_func`, `sdcore_ci-4g_4g_bess_scale`
-2. ``ci-5g`` pod: `sdcore_ci-5g_5g_bess_func`, `sdcore_ci-5g_5g_bess_scale`
-3. ``qa`` pod: `sdcore_qa_4g_bess_func`, `sdcore_qa_4g_bess_scale`
-4. ``qa2`` pod: `sdcore_qa2_4g_bess_func`, `sdcore_qa2_4g_bess_scale`
+* ``ci-4g`` pod: `sdcore_ci-4g_4g_bess_func`, `sdcore_ci-4g_4g_bess_scale`
+* ``ci-5g`` pod: `sdcore_ci-5g_5g_bess_func`, `sdcore_ci-5g_5g_bess_scale`
+* ``qa`` pod: `sdcore_qa_4g_bess_func`, `sdcore_qa_4g_bess_scale`
+* ``qa2`` pod: `sdcore_qa2_4g_bess_func`, `sdcore_qa2_4g_bess_scale`
 
 Nightly Job structure
 """""""""""""""""""""
 
-Take `sdcore_ci-4g_4g_bess_scale` job as an example. It runs the following downstream jobs:
-
-1. `sdcore_ci-4g_deploy`: this job re-deploys the ``ci-4g`` pod with latest OMEC images.
-
-.. Note::
-  only the ``ci-4g`` and ``ci-5g`` pod jobs trigger deployment downstream job. No
-  re-deployment is performed on the qa and qa2 pods before the tests.
-
-2. `sdcore_ci-4g_4g_bess_robot-test`: this job executes the scalability test suite.
-3. `archive-artifacts_ci-4g`: this job collects and uploads k8s and container logs.
-4. `post-results_ci-4g`: this job collects the NG40 test logs/pcaps and pushes the
-   test data to database. It also generates plots using Rscript for func and
-   scale tests.
-
 The integration tests are written using Robot Framework and are executed along
-   with the functional tests. Take `sdcore_ci-4g_4g_bess_func` as an example. It runs the
-   following downstream jobs:
+with the functional tests. The top-level pipeline
+(for example, `sdcore_ci-4g_4g_bess_func`) runs the following downstream jobs:
 
-1. `sdcore_ci-4g_deploy`: this job executes the scalability test suite.
-2. `sdcore_ci-4g_4g_bess_robot-test`: this job calls robot
-   framework to execute the test cases and publishes the test results using
-   `RobotPublisher` Jenkins plugin. The robot results will also be copied to
-   the upstream job and published there.
-3. `archive-artifacts_ci-4g`: this job collects and uploads k8s and container logs.
-4. `post-results_ci-4g`: this job collects the NG40 test logs/pcaps and pushes the
-   test data to database. It also generates plots using Rscript for func and
-   scale tests.
+1. `sdcore_ci-4g_deploy`
+2. `sdcore_ci-4g_4g_bess_robot-test`
+3. `archive-artifacts_ci-4g`
+4. `post-results_ci-4g`
 
-Patchset Tests
---------------
+Pre-Merge Tests
+---------------
 
-SD-Core pre-merge verification covers the following public Github repos: ``c3po``,
-``Nucleus``, ``upf-epc`` and the following private Github repos: ``spgw``. ``amf``,
-``smf``, ``ausf``, ``nssf``, ``nrf``, ``pcf``, ``udm``, ``udr``, ``webconsole``.
+SD-Core pre-merge verification covers the following 4G/5G Core Github repos:
+
+* ``c3po``
+* ``Nucleus``
+* ``upf-epc``
+* ``spgw``
+
+and 5G Core GitHub repos:
+
+* ``amf``
+* ``smf``
+* ``ausf``
+* ``nssf``
+* ``nrf``
+* ``pcf``
+* ``udm``
+* ``udr``
+* ``webconsole``
+
 SD-Core CI verifies the following:
 
 1. ONF CLA verification
 2. License verification (FOSSA/Reuse)
 3. NG40 tests
 
-These jobs are automatically triggered by submitted or updated PR to the repos
-above. They can also be triggered manually by commenting ``retest this please``
-to the PR. At this moment only CLI and NG40 verification are mandatory.
+These jobs are automatically triggered by submitted or updated pull-request to the repos
+above. Re-trigger the checks by commenting one of the following phrases in the active pull-request:
 
-The NG40 verification are a set of jobs running on both opencord Jenkins and
-Aether Jenkins (private). The jobs run on opencord Jenkins include
+* ``retest this please`` - re-tests all checks
+* ``test container`` - re-tests pre-merge jobs
+* ``test license`` - re-tests license verification
+* ``test fossa`` - re-tests FOSSA verification
 
-1. `omec_c3po_container_remote <https://jenkins.opencord.org/job/omec_c3po_container_remote/>`_ (public)
-2. `omec_Nucleus_container_remote <https://jenkins.opencord.org/job/omec_Nucleus_container_remote/>`_ (public)
-3. `omec_spgw_container_remote` (private, under member-only folder)
+The NG40 verification are a set of jobs running on both OpenCORD Jenkins and
+Aether Jenkins (private). The jobs run on OpenCORD Jenkins include:
 
-And the jobs run on Aether Jenkins include
+* `omec_c3po_container_remote <https://jenkins.opencord.org/job/omec_c3po_container_remote/>`_ (public)
+* `omec_Nucleus_container_remote <https://jenkins.opencord.org/job/omec_Nucleus_container_remote/>`_ (public)
+* `omec_spgw_container_remote` (private, under member-only folder)
 
-1. `c3po_premerge_ci-4g_4g_bess`
-2. `Nucleus_premerge_ci-4g_4g_bess`
-3. `upf-epc_premerge_ci-4g_4g_bess`
-4. `spgw_premerge_ci-4g_4g_bess`
-5. `amf_premerge_ci-5g_5g_bess`
-6. `smf_premerge_ci-5g_5g_bess`
-7. `ausf_premerge_ci-5g_5g_bess`
-8. `nssf_premerge_ci-5g_5g_bess`
-9. `nrf_premerge_ci-5g_5g_bess`
-10. `pcf_premerge_ci-5g_5g_bess`
-11. `udm_premerge_ci-5g_5g_bess`
-12. `udr_premerge_ci-5g_5g_bess`
-13. `webconsole_premerge_ci-5g_5g_bess`
+And the jobs run on Aether Jenkins include:
+
+* `c3po_premerge_ci-4g_4g_bess`
+* `Nucleus_premerge_ci-4g_4g_bess`
+* `upf-epc_premerge_ci-4g_4g_bess`
+* `spgw_premerge_ci-4g_4g_bess`
+* `amf_premerge_ci-5g_5g_bess`
+* `smf_premerge_ci-5g_5g_bess`
+* `ausf_premerge_ci-5g_5g_bess`
+* `nssf_premerge_ci-5g_5g_bess`
+* `nrf_premerge_ci-5g_5g_bess`
+* `pcf_premerge_ci-5g_5g_bess`
+* `udm_premerge_ci-5g_5g_bess`
+* `udr_premerge_ci-5g_5g_bess`
+* `webconsole_premerge_ci-5g_5g_bess`
 
 Patchset Job structure
 """"""""""""""""""""""
@@ -270,12 +271,10 @@ on opencord Jenkins through Github webhooks, which then triggers a private job
 
 The private ``c3po`` job runs the following downstream jobs sequentially:
 
-1. `docker-publish-github_c3po`: this job downloads the ``c3po`` PR, runs docker
-   build and publishes the ``c3po`` docker images to `Aether registry`.
-2. `sdcore_ci-4g_deploy`: this job deploys the images built from previous job onto
-   the omec ``ci-4g`` pod.
-3. `sdcore_ci-4g_4g_bess_robot-test`: this job executes the functionality test suite.
-4. `archive-artifacts_ci-4g`: this job collects and uploads k8s and container logs.
+1. `docker-publish-github_c3po`
+2. `sdcore_ci-4g_deploy`
+3. `sdcore_ci-4g_4g_bess_robot-test`
+4. `archive-artifacts_ci-4g`
 
 After all the downstream jobs are finished, the upstream job (`c3po_premerge_ci-4g_4g_bess`)
 copies artifacts including k8s/container/ng40 logs and pcap files from
@@ -293,31 +292,23 @@ Post-merge
 The following jobs are triggered as post-merge jobs when PRs are merged to
 SD-Core repos:
 
-1. `docker-publish-github-merge_c3po`
-2. `docker-publish-github-merge_Nucleus`
-3. `docker-publish-github-merge_upf-epc`
-4. `docker-publish-github-merge_spgw`
-5. `docker-publish-github-merge_amf`
-6. `docker-publish-github-merge_smf`
-7. `docker-publish-github-merge_ausf`
-8. `docker-publish-github-merge_nssf`
-9. `docker-publish-github-merge_nrf`
-10. `docker-publish-github-merge_pcf`
-11. `docker-publish-github-merge_udm`
-12. `docker-publish-github-merge_udr`
-13. `docker-publish-github-merge_webconsole`
+* `docker-publish-github-merge_c3po`
+* `docker-publish-github-merge_Nucleus`
+* `docker-publish-github-merge_upf-epc`
+* `docker-publish-github-merge_spgw`
+* `docker-publish-github-merge_amf`
+* `docker-publish-github-merge_smf`
+* `docker-publish-github-merge_ausf`
+* `docker-publish-github-merge_nssf`
+* `docker-publish-github-merge_nrf`
+* `docker-publish-github-merge_pcf`
+* `docker-publish-github-merge_udm`
+* `docker-publish-github-merge_udr`
+* `docker-publish-github-merge_webconsole`
 
-Again take the ``c3po`` job as an example. The post-merge job (`docker-publish-github-merge_c3po`)
+Take the ``c3po`` job as an example. The post-merge job (`docker-publish-github-merge_c3po`)
 runs the following downstream jobs sequentially:
 
-1. `docker-publish-github_c3po`: this is the same job as the one in pre-merge
-   section. It checks out the latest ``c3po`` code, runs docker build and
-   publishes the ``c3po`` docker images to `docker hub <https://hub.docker.com/u/omecproject>`__.
-
-.. Note::
-  the images for private repos are published to Aether registry instead of docker hub
-
-2. `c3po_postrelease`: this job submits a patchset to aether-pod-configs repo
-   for updating the CD pipeline with images published in the job above.
+* `docker-publish-github_c3po`: this is the same job as the one in pre-merge section. It checks out the latest ``c3po`` code, runs docker build and publishes the ``c3po`` docker images to `docker hub <https://hub.docker.com/u/omecproject>`__.
 
 Post-merge jobs for other SD-Core repos share the same structure.
