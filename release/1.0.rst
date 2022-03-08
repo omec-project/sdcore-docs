@@ -127,7 +127,7 @@ Helm Chart Versions and their component charts and containers:
         * gnbsim: ``registry.aetherproject.org/omecproject/5gc-gnbsim:dev-new-gnbsim-025ae2b``
 
 SD-Core 1.0.1 Release
-=====================
+---------------------
 
 Minor release with bug fixes on top of release 1.0.0. Below is the list of defects fixed,
 

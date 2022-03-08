@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
+# SPDX-License-Identifier: Apache-2.0
+
 # -*- coding: utf-8 -*-
 #
 # Configuration file for the Sphinx documentation builder.
@@ -71,6 +74,10 @@ prep_commands = [
 # inlcude only the branches matching master and aether-*
 smv_branch_whitelist = r'^(master|sdcore-.*)$'
 
+# Don't include any tags - smv docs say you can put None here, but that is broken
+# https://github.com/Holzhaus/sphinx-multiversion/issues/47
+smv_tag_whitelist = r'notags'
+
 # include all remote branches
 smv_remote_whitelist = r'^.*$'
 
@@ -100,10 +107,11 @@ exclude_patterns = [
         '*/LICENSE.md',
         '*/vendor',
         '.DS_Store',
+        'README',
         'Thumbs.db',
         '_build',
-        'venv-docs',
         'requirements.txt',
+        'venv-docs',
 ]
 
 # The name of the Pygments (syntax highlighting) style to use.
@@ -254,6 +262,8 @@ linkcheck_retries = 2
 
 intersphinx_mapping = {
     'sphinx': ('https://www.sphinx-doc.org/en/master', None),
+    'aether': ('https://docs.aetherproject.org/master', None),
+    'onf': ('https://docs.opennetworking.org/', None),
     'sysapproach5g': ('https://5g.systemsapproach.org/', None),
     'sysapproachnet': ('https://book.systemsapproach.org/', None),
     'sysapproachsdn': ('https://sdn.systemsapproach.org/', None),

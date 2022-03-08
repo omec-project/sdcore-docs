@@ -2,13 +2,10 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
+SD-Core
+=======
 
-.. image:: _static/sdcore-logo.svg
-   :width: 400px
-   :align: center
-
-
-The SD-Core™ project is a 4G/5G disaggregated mobile core optimized for public
+The SD-Core project is a 4G/5G disaggregated mobile core optimized for public
 cloud deployment in concert with distributed edge clouds and is ideally suited
 for carrier and private enterprise 5G networks. It exposes standard 3GPP interfaces
 enabling use of SD-Core as a conventional mobile core.
@@ -107,11 +104,3 @@ can be found on the `SD-Core Wiki
 
    release/1*
    release/process.rst
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Meta
-   :hidden:
-   :glob:
-
-   readme

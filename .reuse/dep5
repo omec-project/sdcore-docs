@@ -1,0 +1,9 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: VERSION images/* *.png *.svg *.jpg dict.txt
+Copyright: 2021 Open Networking Foundation
+License: Apache-2.0
+
+Files: _static/fonts/Inconsolata*.ttf
+Copyright: 2006 Raph Levien
+License: OFL-1.1
