@@ -44,6 +44,7 @@ PCF
 PCRF
 PFCP
 QoS
+Radisys
 Reachability
 Resynchronization
 RoC

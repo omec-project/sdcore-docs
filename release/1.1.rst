@@ -1,0 +1,124 @@
+..
+   SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
+   SPDX-License-Identifier: Apache-2.0
+
+SD-Core 1.1.0 Release
+=====================
+
+SD-Core supports 4G & 5G network functions. SD-Core provides APIs for configuration, telemetry,
+policy management. AN can connect to AMF or MME depending on the type of access used.
+Below is the summary of the features delivered in release SD-Core-1.1.
+
+Highlights
+----------
+
+**All Open Source**: Starting this release SD-Core code is open source. All code repositories,
+helm charts and aether-in-a-box is available to all the community members. Press release about
+this can be found at this `link <https://opennetworking.org/news-and-events/press-releases/onfs-leading-private-5g-connected-edge-platform-aether-now-released-to-open-source/>`_.
+
+**5G small cell integration**: While SD-Core’s 5G-SA mobile core has previously been demonstrated to
+work with 5G-SA RAN nodes (particularly in the `DT SD-RAN trial <https://www.youtube.com/watch?v=1Xc6kt0CXzI&ab_channel=OpenNetworkingFoundation>`_),
+this is the first release with support for 5G small-cells from T&W running Radisys 5G-SA RAN stack.
+Furthermore this release includes integration with both Aether ROC and SD-Fabric P4-UPF for 5G
+features, details of which can be found in the respective release notes.
+
+
+**Policy framework to support QoS at multiple levels**: SD-Core makes use of policy network
+function (PCF/PCRF) to enforce QoS decisions on subscriber sessions. Policies are configured
+per network slice using SD-Core’s configuration interface.  PCF/PCRF binds those policies to
+the subscribers. Operators can use configuration APIs to assign UE level QoS, per application
+QoS and also slice level QoS. In SD-Core 1.1 release subscriber policies (QoS & application
+filtering) are integrated in the 5G core network.
+
+
+**Application Filtering Support**: Network slicing, when extended end-to-end to include
+applications, gives the network-operator the capability to apply access control. The operator
+can deploy multiple applications at the edge or in the public-cloud, and can restrict the users
+from accessing applications that are not allocated to the user’s slice. This adds an extra layer
+of isolation in edge app deployments. SD-Core supports up to 5 application configurations per
+slice. Application filtering supports usage of port ranges and as well as Subnet configuration.
+
+**UE Subscription Removal**: Core network triggered UE deregistration is implemented to gracefully
+force a UE to detach from the network, in cases where the network-operator has removed the UE from
+the slice to which it previously belonged.
+
+**Subscriber Management Interface**: SD-Core provides a Subscriber Management Interface to
+add/update/remove user subscription from the Core Network. Simapp uses this interface to
+manage subscribers in SD-Core. When used with Aether, the latter uses an Operations portal
+to manage multiple Aether components including SD-Core. In this release, support for a
+subscriber proxy is added in Simapp, which is then used by the operations portal to learn
+about subscribers provisioned in Core Network by Simapp. This change helps SD-Core’s seamless
+integration in Aether.
+
+**5G gNB simulator**: The gNB simulator simulates 5G UEs & gNodeBs. It is capable of supporting
+multiple UEs and gNodeBs and performing both control plane and dataplane tests, which assist
+greatly in quick development of new 5G-SA features. In addition to a dev-test tool, it can also
+be used by QA teams to run automated tests for the 5G core network. Please refer to
+`gNB Sim documentation <https://github.com/omec-project/gnbsim#readme>`_ for more details.
+Support for Service Request and AN release procedures are added in this release.
+
+**Stability and Reliability**: We fixed a couple of stability issues seen in Aether deployments.
+This includes fixes around memory leaks, message retransmissions, DNS timeouts and TAU handling
+at MME.
+
+Known Issues and Limitations
+----------------------------
+
+    - The same IMSI cannot part of multiple device groups
+    - At most 5 application filtering rules can be added per Slice
+    - If a subscriber is attached to a Network Slice then subsequent application filter rules modify/deletion is
+      not notified towards UE & UPF. If UE disconnects and reconnects back to Network Slice then updated
+      application filters are applied to UE.
+    - If No Filtering Rules are configured then only Default(Allow-All) Filter rule is added implicitly.
+    - PLMN update for Slice does not work. It is recommended to delete the slice and recreate it again with
+      correct PLMN.
+
+
+.. note::
+    For any 3gpp release compliance refer - (:ref:`4g-compliance`) and (:ref:`5g-compliance`)
+
+Component Versions in the 1.1.0 Release
+---------------------------------------
+
+Helm Chart Versions and their component charts and containers:
+
+* sdcore-helm-chart: ``0.10.14``
+    * omec-control-plane: ``0.10.9``
+        * hssdb: ``omecproject/c3po-hssdb:master-df54425``
+        * hss  : ``omecproject/c3po-hss:master-df54425``
+        * pcrf  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
+        * pcrfdb  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
+        * config4g  : ``omecproject/5gc-webui:master-1fb4467``
+        * spgwc  : ``omecproject/spgw:master-96012d9``
+        * mme  : ``omecproject/nucleus:master-01dc535``
+
+    * omec-sub-provision: ``0.4.5``
+        * simapp: ``omecproject/simapp:main-2a3d85f``
+
+    * 5g-control-plane: ``0.6.17``
+        * amf: ``romecproject/5gc-amf:master-221e1a6``
+        * nrf: ``omecproject/5gc-nrf:master-5844fcf``
+        * smf: ``omecproject/5gc-smf:master-7088650``
+        * ausf: ``omecproject/5gc-ausf:master-7dcc39c``
+        * nssf: ``omecproject/5gc-nssf:master-e751140``
+        * pcf: ``omecproject/5gc-pcf:master-02f7325``
+        * udr: ``omecproject/5gc-udr:master-3756e35``
+        * udm: ``omecproject/5gc-udm:master-15369ab``
+        * webui: ``omecproject/5gc-webui:master-1fb4467``
+
+   * bess-upf ``0.0.5``
+        * bess: ``omecproject/upf-epc-bess:master-9a4d86c``
+        * pfcpiface: ``omecproject/upf-epc-pfcpiface:master-9a4d86c``
+
+    * 5g-ran-sim ``0.4.10``
+        * gnbsim: ``omecproject/5gc-gnbsim:main-4a0e945``
+
+Testing
+-------
+For various testing related details refer (see :ref:`sdcore-testing`)
+
+Documentation
+-------------
+
+SD-Core documentation is available at `docs.sd-core.opennetworking.org
+<https://docs.sd-core.opennetworking.org>`_
