@@ -19,7 +19,8 @@ this can be found at this `link <https://opennetworking.org/news-and-events/pres
 **5G small cell integration**: While SD-Core’s 5G-SA mobile core has previously been demonstrated to
 work with 5G-SA RAN nodes (particularly in the `DT SD-RAN trial <https://www.youtube.com/watch?v=1Xc6kt0CXzI&ab_channel=OpenNetworkingFoundation>`_),
 this is the first release with support for 5G small-cells from T&W running Radisys 5G-SA RAN stack.
-Furthermore this release includes integration with both Aether ROC and SD-Fabric P4-UPF for 5G
+Furthermore this release includes integration with both `Aether ROC <https://docs.aetherproject.org/master/release/2.0.html>`_ and
+`SD-Fabric P4-UPF <https://docs.sd-fabric.org/master/release/1.1.0.html>`_ for 5G
 features, details of which can be found in the respective release notes.
 
 
@@ -72,6 +73,9 @@ Known Issues and Limitations
     - If No Filtering Rules are configured then only Default(Allow-All) Filter rule is added implicitly.
     - PLMN update for Slice does not work. It is recommended to delete the slice and recreate it again with
       correct PLMN.
+    - Application filtering is not available for some combinations of 5G UEs and 5G gNBs. For 5G slices,
+      it is recommended that default behavior be set to ALLOW-ALL and application filtering rules not be
+      added at this time.
 
 
 .. note::
@@ -82,36 +86,36 @@ Component Versions in the 1.1.0 Release
 
 Helm Chart Versions and their component charts and containers:
 
-* sdcore-helm-chart: ``0.10.14``
-    * omec-control-plane: ``0.10.9``
+* sdcore-helm-chart: ``0.10.16``
+    * omec-control-plane: ``0.10.11``
         * hssdb: ``omecproject/c3po-hssdb:master-df54425``
         * hss  : ``omecproject/c3po-hss:master-df54425``
         * pcrf  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
         * pcrfdb  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
-        * config4g  : ``omecproject/5gc-webui:master-1fb4467``
+        * config4g  : ``omecproject/5gc-webui:master-727636a``
         * spgwc  : ``omecproject/spgw:master-96012d9``
         * mme  : ``omecproject/nucleus:master-01dc535``
 
     * omec-sub-provision: ``0.4.5``
         * simapp: ``omecproject/simapp:main-2a3d85f``
 
-    * 5g-control-plane: ``0.6.17``
-        * amf: ``romecproject/5gc-amf:master-221e1a6``
+    * 5g-control-plane: ``0.6.19``
+        * amf: ``romecproject/5gc-amf:master-1438b55``
         * nrf: ``omecproject/5gc-nrf:master-5844fcf``
-        * smf: ``omecproject/5gc-smf:master-7088650``
+        * smf: ``omecproject/5gc-smf:master-7ef661b``
         * ausf: ``omecproject/5gc-ausf:master-7dcc39c``
         * nssf: ``omecproject/5gc-nssf:master-e751140``
-        * pcf: ``omecproject/5gc-pcf:master-02f7325``
+        * pcf: ``omecproject/5gc-pcf:master-6bf5a23``
         * udr: ``omecproject/5gc-udr:master-3756e35``
         * udm: ``omecproject/5gc-udm:master-15369ab``
-        * webui: ``omecproject/5gc-webui:master-1fb4467``
+        * webui: ``omecproject/5gc-webui:master-727636a``
 
    * bess-upf ``0.0.5``
         * bess: ``omecproject/upf-epc-bess:master-9a4d86c``
         * pfcpiface: ``omecproject/upf-epc-pfcpiface:master-9a4d86c``
 
-    * 5g-ran-sim ``0.4.10``
-        * gnbsim: ``omecproject/5gc-gnbsim:main-4a0e945``
+    * 5g-ran-sim ``0.4.11``
+        * gnbsim: ``omecproject/5gc-gnbsim:main-d16fdb5``
 
 Testing
 -------
