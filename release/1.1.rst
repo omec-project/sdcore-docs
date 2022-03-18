@@ -117,6 +117,25 @@ Helm Chart Versions and their component charts and containers:
     * 5g-ran-sim ``0.4.11``
         * gnbsim: ``omecproject/5gc-gnbsim:main-d16fdb5``
 
+SD-Core 1.1.1 Release
+=====================
+
+Minor release with bug fixes on top of release 1.1.0. Below is the list of defects fixed on top of previous release.
+
+    * MME crash was seen while sending paging request to eNB
+    * SPGW crash was seen while handling DDN timeout event
+    * PCF changes to send unique qos flows in the Create Policy response.
+    * gNBSim changes to support profile timeout & handling NW triggered deregistration
+
+Helm Chart Versions and their component charts versions
+
+* sdcore-helm-chart: 0.10.18
+    * omec-control-plane: 0.10.12
+    * omec-sub-provision: 0.4.5
+    * 5g-control-plane: 0.6.20
+    * bess-upf: 0.0.5
+    * 5g-ran-sim: 0.4.12
+
 Testing
 -------
 For various testing related details refer (see :ref:`sdcore-testing`)
