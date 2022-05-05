@@ -2,8 +2,11 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-SD-Core 1.1.0 Release
-=====================
+SD-Core 1.1 Release
+===================
+
+1.1.0 Release Details
+---------------------
 
 SD-Core supports 4G & 5G network functions. SD-Core provides APIs for configuration, telemetry,
 policy management. AN can connect to AMF or MME depending on the type of access used.
@@ -117,8 +120,8 @@ Helm Chart Versions and their component charts and containers:
     * 5g-ran-sim ``0.4.11``
         * gnbsim: ``omecproject/5gc-gnbsim:main-d16fdb5``
 
-SD-Core 1.1.1 Release
-=====================
+1.1.1 Release Details
+---------------------
 
 Minor release with bug fixes on top of release 1.1.0. Below is the list of defects fixed on top of previous release.
 

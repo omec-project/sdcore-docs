@@ -11,8 +11,7 @@ Deployment Overview
 -------------------
 SD-Core is released with Helm chart and container images.
 We recommend using **Kubernetes** and **Helm** to deploy SD-Core.
-SD-Core images are hosted on an ONF member-only Docker registry.
-You need to obtain access token and supply that as part of the Helm value.
+SD-Core images are hosted on docker hub.
 
 Hardware resource requirement
 -----------------------------
