@@ -108,6 +108,18 @@ We implement slicing in 4G using APNs. Let's go over these difference in detail 
   pool configuration it is still fine. We plan to add support of UPF UE address allocation in  next
   release.
 
+
+.. code-block::
+
+  #override config to configure upf address pool
+  config:
+    upf:
+      cfgFiles:
+        upf.json:
+          cpiface:
+            enable_ue_ip_alloc: true
+            ue_ip_pool: "10.96.2.0/26"
+
 - **DNN/APN in Initial Attach/Register Message** : In case of 4G, if UE has set any random APN then
   MME overrides the APN based on the user profile in HSS. So its important to note that even if APN
   is not matching with configured APN we are still good.  In case of 5G, apn name & Slice ID coming
