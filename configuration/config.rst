@@ -58,6 +58,7 @@ and publish to respective clients over REST/grpc.
 
     - Step1 : Provision subscriber in 4G/5G subsystem
 
+        - *Can be done only thorugh SIMAPP*
         - This step is used to configure IMSI in the SD-Core
         - This procedure is used to configure security keys for a subscriber
         - Subscribers can be created during system startup or later
@@ -76,6 +77,10 @@ and publish to respective clients over REST/grpc.
         - Slice contains the Slice level QoS configuration
         - Site configuration including UPF, eNBs/gNBs assigned to the slice
         - Applications allowed to be accessed by this slice (see :ref:`application-filtering`)
+
+.. note::
+        - Step1 can only be done through Simapp. Look for simapp override values.
+        - Step2 & Step3 can be done through Simapp or ROC. Simapp has option to create network slice. Look for configuration *provision-network-slice: false* in simapp configuration
 
 4G, 5G Configuration Differences
 --------------------------------
