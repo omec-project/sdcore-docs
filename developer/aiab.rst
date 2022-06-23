@@ -57,7 +57,7 @@ ________________
 
 To deploy 4G SD-CORE::
 
-    make test
+    make 4g-core
 
 To delete 4G SD-CORE deployment ::
 
@@ -73,7 +73,7 @@ ________________
 
 To deploy 5G SD-CORE::
 
-    make 5gc
+    make 5g-core
 
 To deploy and test 5G SD-CORE::
 
@@ -97,7 +97,7 @@ To upgrade a running 5G SD-CORE with the new image, or to deploy the 5G SD-CORE
 with the image::
 
     make reset-5g-test # delete 5G deployment if it was already started before updating image
-    make 5gc  #now this deployment will use new webui image
+    make 5g-core  #now this deployment will use new webui image
 
 Troubleshooting / Known Issues
 ______________________________
@@ -112,9 +112,9 @@ with image name.
 4G Test Fails
 _____________
 
-Occasionally make test (for 4G) fails for unknown reasons; this is true
+Occasionally make 4g-core (for 4G) fails for unknown reasons; this is true
 regardless of which Helm charts are used. If this happens, first try
-cleaning up AiaB and re-running the test. If make test fails consistently,
+cleaning up AiaB and re-running the test. If make 4g-core fails consistently,
 then try to debug the issue by looking at spgwc, mme logs.
 
 5G Test Fails
