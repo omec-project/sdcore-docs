@@ -42,13 +42,25 @@ High Level Summary
     * Xn based inter NG-RAN handover
 
 * High Level Features Not supported
-    * URLLC
+    * Charging Interfaces
+    * Lawful Intercept
+    * URLLC (Ultra Low Level Latency Communication)
     * Location Based Services
     * Inter NG-RAN node N2 based handover
+    * TSN ( Time Sensitive Networking)
+    * Non-3gpp access
 
 
 SMF Compliance
 --------------
+
+* Specifications
+   * 23.501
+   * 23.502
+   * 29.502
+   * 29.244 (PFCP)
+   * 23.527 - Restoration
+
 * Interfaces
     * SBI : Yes
     * N4(UPF), N7(PCF), N10(UDM), N11(AMF) : Yes
@@ -84,12 +96,21 @@ SMF Compliance
     * NIDD
         * No
 
+* Not supported Features
+    * Charging interface
+    * 5G VN Group communication
 
 AMF Compliance
 --------------
+* Specification References
+    * 23.501
+    * 23.502
+    * 29.518 (AMF Services)
+    * 29.507 (AMF to PCF interface)
+
 * Interfaces
     * SBI : Yes
-    * N11(SMF), N15(PCF), N8(UDM), N12(AUSF), N22(NSSF), N2(AN), N1(UE) : Yes
+    * N11(SMF), N15(PCF), N8(UDM), N12(AUSF), N22(NSSF), N2(AN/NGAP), N1(UE/NAS) : Yes
     * N14(AMF), N58(NSSAAF) : No
 
 * Services
@@ -160,9 +181,15 @@ AMF Compliance
     * NSSF
         * Selection Data For Registration : Yes
 
+.. note::
+    Interface to EIR not supported. Interface between AMF/AMF not supported. 4G to 5G handover not supported.
 
 NRF Compliance
 --------------
+
+* Specifications
+   * 29.510
+
 * Interfaces
     * SBI : Yes
     * N27(NRF) : No
@@ -193,6 +220,11 @@ NRF Compliance
 
 AUSF Compliance
 ---------------
+
+* Specifications
+   * 33.501
+   * 29.509
+
 * Interfaces
     * SBI : Yes
     * N12(AMF), N13(UDM) : Yes
@@ -263,10 +295,16 @@ UDR Compliance
 
 UDM Compliance
 --------------
+
+* Specification
+    * 29.503 - 5G System; Unified Data Management Services; Stage 3
+
+
 * Interfaces
     * SBI : Yes
     * N8(AMF), N10(SMF), N13(AUSF), N60(PCF): Yes
     * N59(NSSAAF) : No
+    * N21 (SMSF) : No
 
 * Services
     * Subscriber Data Management
@@ -320,9 +358,14 @@ UDM Compliance
 
 NSSF Compliance
 ---------------
+
+* Specifications
+   * 29.531
+
 * Interfaces
     * SBI : Yes
     * N22(AMF) : Yes
+    * N31(NSSF): No
 
 * Services
     * NS Selection
@@ -342,9 +385,19 @@ NSSF Compliance
 
 PCF Compliance
 --------------
+
+* Specifications
+   * 23.501
+   * 23.502
+   * 23.503
+   * 29.507
+   * 29.512
+   * 29.513
+   * 29.514
+
 * Interfaces
     * SBI : Yes
-    * N7(SMF), N15(AMF), N60(UDM) : Yes
+    * N7(SMF), N15(AMF), N60(UDM), N36(UDR) : Yes
     * N5(AF) : No
 
 * Services

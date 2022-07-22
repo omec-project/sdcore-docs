@@ -22,12 +22,16 @@ High Level Procedures Supported
 High Level Procedures/Functions Not Supported
 ---------------------------------------------
 
+    - Location based services
     - MME, SGW handover
     - Indirect tunnel forwarding
     - Roaming architecture
     - Charging
     - Lawful intercept
     - IMS integration
+    - dedicated Bearers ( Partial support)
+    - Multiple PDN Support
+    - CSFB
 
 MME Compliance
 --------------
