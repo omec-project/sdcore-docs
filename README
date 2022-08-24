@@ -1,10 +1,12 @@
-.. SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
+..
+   SPDX-FileCopyrightText: 2022-present Intel Corporation
+   SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-SD-Fabric Docs
+SD-Core Docs
 ==============
 
-This site contains Sphinx format documentation for the SD-Fabric project.
+This site contains Sphinx format documentation for the SD-Core project.
 Please see the `Sphinx section of ONF Docs
 <https://docs.opennetworking.org/docs/sphinx.html>`_ for instructions on how to
 contribute to this documentation.
