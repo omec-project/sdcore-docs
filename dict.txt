@@ -124,6 +124,7 @@ iot
 ip
 jitter
 json
+keepalive
 latencies
 macroENB
 mbr
