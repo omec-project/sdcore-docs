@@ -85,6 +85,7 @@ configmap
 configs
 configurability
 dataplane
+de
 defaultAs
 deregistration
 dev
@@ -147,6 +148,7 @@ omec
 omecproject
 onf
 onpremises
+opc
 opencord
 orchestrator
 patchset
@@ -194,6 +196,7 @@ udp
 udr
 ue
 ue-dnn-qos
+ueId
 uerouting
 ul
 unsuffixed

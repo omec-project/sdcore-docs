@@ -34,6 +34,7 @@ to answer frequently asked questions.
 
 - SMF supports - UE address allocation from UPF. This feature was already supported in 4G (SPGW). Now
   with new release, this feature will be part of 5G Core.
+- AMF API to de-register subscriber
 
 **gNBSim improvements to support**
 
