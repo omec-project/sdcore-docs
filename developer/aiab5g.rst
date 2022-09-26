@@ -2,12 +2,12 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-.. _aiab-guide:
+.. _aiab5g-guide:
 
-Aether In a Box - 4G
+Aether In a Box - 5G
 ====================
 
-Setting Up Aether-in-a-Box - 4G
+Setting Up Aether-in-a-Box - 5G
 ________________________________
 
 Aether-in-a-Box (AiaB) provides an easy way to deploy Aether’s SD-CORE
@@ -36,6 +36,7 @@ Clone Repositories
 __________________
 
 To initialize the AiaB environment, first clone the following repository::
+your Gerrit ID::
 
     cd ~
     git clone "https://gerrit.opencord.org/aether-in-a-box"
@@ -50,44 +51,42 @@ To initialize the AiaB environment, first clone the following repository::
     Kubernetes cluster. Subsequent builds will be much faster if you follow below steps
     to delete & redeploy SD-Core (4G/5G) without destroying the Kubernetes
 
-Running 4G Test
+Running 5G Test
 ________________
 
-To deploy 4G SD-CORE using local helm charts::
+To deploy 5G SD-CORE using local helm charts::
 
-    make 4g-core
+    make 5g-core
 
-To delete 4G SD-CORE deployment ::
+To deploy and test 5G SD-CORE using local helm charts::
 
-    make reset-test
+    make 5g-test
 
-The above step performs UE attach and data test. If you wish to update any images
-of SD-Core 4G components then edit file  in *~/aether-in-a-box/sd-core-4g-values.yaml*.
-After updating config in *sd-core-4g-values.yaml* you can reset deployment and run
-the test again.
+The above step uses gNBSim to perform Registration + UE-Initiated PDU Session
+Establishment + User Data Packets. To test other procedures, modify *gnb.conf*
+in *~/aether-in-a-box/sd-core-5g-values.yaml* (refer gNBSim documentation :ref:`gNB-Simulator`)
 
 Developer Loop
 ______________
 
-Suppose you wish to test a new build of a 4G SD-CORE services. You can deploy
-custom images by editing ~/aether-in-a-box/sd-core-4g-values.yaml, for example::
+Suppose you wish to test a new build of a 5G SD-CORE services. You can deploy
+custom images by editing ~/aether-in-a-box/sd-core-5g-values.yaml, for example::
 
     images:
       tags:
-        spgwc: omecproject/spgw:master-e419062
+        webui: omecproject/5gc-webui:master-7f96cfd
 
-To upgrade a running 4G SD-CORE with the new image, or to redeploy the 4G SD-CORE
+To upgrade a running 5G SD-CORE with the new image, or to redeploy the 5G SD-CORE
 with the image::
 
-    make reset-test # delete 4G deployment if it was already started before updating image
-    make 4g-test  #now this deployment will use new webui image
+    make reset-5g-test # delete 5G deployment if it was already started before updating image
+    make 5g-core  #now this deployment will use new webui image
 
 Troubleshooting / Known Issues
 ______________________________
 
 Deployment Status
 """"""""""""""""""
-
 If you suspect a problem, first verify that all pods are in Running state::
 
     kubectl -n omec get pods
@@ -98,7 +97,5 @@ with image name.
 Test Failure
 """"""""""""
 
-Occasionally make 4g-core (for 4G) fails for unknown reasons; this is true
-regardless of which Helm charts are used. If this happens, first try
-cleaning up AiaB and re-running the test. If make 4g-core fails consistently,
-then try to debug the issue by looking at spgwc, mme logs.
+If make 5g-test fails consistently, then try to debug the issue by looking
+at logs at amf, smf.

@@ -7,16 +7,20 @@ SD-Core
 =======
 
 The SD-Core project is a 4G/5G disaggregated mobile core optimized for public
-cloud deployment in concert with distributed edge clouds and is ideally suited
-for carrier and private enterprise 5G networks. It exposes standard 3GPP interfaces
-enabling use of SD-Core as a conventional mobile core.
-
-SD-Core is an integral component of Aether, ONF’s 5G Connected Edge platform for
+cloud deployment in concert with distributed edge clouds. It exposes standard 3GPP interfaces
+enabling use of SD-Core as a conventional mobile core. SD-Core is an integral component
+of Aether, ONF’s 5G Connected Edge platform for
 private mobile connectivity and edge cloud services. It can be rapidly deployed
 pre-integrated with Aether, as a standalone 5G/4G mobile core, or as control and
 dataplane (UPF) components integrated into custom designed solutions. This range
 of versatility makes the open source SD-Core platform ideally suited for the
 broadest range of use cases and deployment scenarios.
+
+SD-Core is ideally suited for
+
+- Small carrier
+- Private enterprise 4G/5G networks
+- Research community or Universities who wish to study/learn more on 3gpp 4G/5G
 
 
 Getting Started with SD-Core
@@ -29,11 +33,6 @@ Getting Started with SD-Core
   - `SD-Core Wiki <https://wiki.opennetworking.org/display/COM/SD-Core>`_
   - `SD-Core Public Folder <https://drive.google.com/drive/folders/1dM5b0B65LkQQ0dGK1m-iIceRJfAASEm1>`_
 
-- Stay in touch by joining
-
-  - `SD-Core mailing list <https://groups.google.com/a/opennetworking.org/g/sdcore-announce>`_
-  - \#sdcore-dev channel in `ONF Community Slack <https://onf-community.slack.com>`_
-
 
 Community
 ---------
@@ -41,6 +40,12 @@ Community
 Information about participating in the SD Core community and development process
 can be found on the `SD-Core Wiki
 <https://wiki.opennetworking.org/display/COM/SD-Core>`_.
+
+- Stay in touch by joining
+
+  - `SD-Core mailing list <https://groups.google.com/a/opennetworking.org/g/sdcore-announce>`_
+  - \#sdcore-dev channel in `ONF Community Slack <https://onf-community.slack.com>`_
+
 
 .. toctree::
    :maxdepth: 2
@@ -57,7 +62,7 @@ can be found on the `SD-Core Wiki
 
 .. toctree::
    :maxdepth: 2
-   :caption: Configuration & Deployment
+   :caption: Configuration
    :hidden:
    :glob:
 
@@ -65,8 +70,17 @@ can be found on the `SD-Core Wiki
    configuration/config_rest.rst
    configuration/config_simapp.rst
    configuration/application_filtering.rst
+   configuration/qos_config.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Deployment
+   :hidden:
+   :glob:
+
    deployment/deployment4G.rst
    deployment/deployment5G.rst
+   deployment/deploymentupf.rst
 
 .. toctree::
    :maxdepth: 3
@@ -94,6 +108,7 @@ can be found on the `SD-Core Wiki
    :glob:
 
    developer/aiab.rst
+   developer/aiab5g.rst
    developer/gnbsim.rst
    developer/testpod.rst
 

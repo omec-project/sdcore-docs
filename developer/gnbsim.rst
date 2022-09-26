@@ -12,7 +12,7 @@ gNB Simulator can be deployed in following modes,
 -------------------------------------------------
 
 - This is default mode of deployment for gNB Simulator
-- Multus cni needs to be enabled on cluster. Required for bess-upf & gNB
+- Multus cni needs to be enabled on cluster. Required for bess-upf & gNBSim
 - `make 5gc` will by default deploy gNB Simulator in this mode
 - One interface is used for user plane traffic towards UPF
 - Second interface is used to send traffic towards control plane (i.e. AMF).
@@ -160,7 +160,7 @@ Run gNBSim
 
         $ make 5g-test
 
-    (refer AiaB documentation :ref:`aiab-guide`)
+    (refer AiaB documentation :ref:`aiab5g-guide`)
 
 * Alternatively, once 5G SD-CORE is up, you can enter into the gNBSim pod by
     running:
@@ -211,6 +211,6 @@ Update *~/aether-in-box/sd-core-5g-values.yaml* to point to the newly built imag
 
         $ make 5g-test
 
-    (refer AiaB documentation :ref:`aiab-guide`)
+    (refer AiaB documentation :ref:`aiab5g-guide`)
 
 

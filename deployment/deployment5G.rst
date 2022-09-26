@@ -58,6 +58,10 @@ Hardware resource requirement
     - 4Gi
 
 
+.. note::
+   SD-Core deployment is tested on Intel/AMD hardware. There is WIP to run SD-Core
+   on ARM architecture.
+
 Deployment Options
 ------------------
 

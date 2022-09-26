@@ -18,11 +18,23 @@ FAQs
     * **Is SD-Core/5G-Core cloud native?**
 
         *SD-Core is not cloud native, but it runs in K8s environment.*
-        *As per road map AMF, SMF will be cloud native by the mid of 2022. This is WIP.*
+        *As per road map AMF, SMF will be cloud native by the Q3 of 2022. This is WIP.*
 
     * **What are the changes omec 5G has on top of free5gc?**
 
-        * Please refer this - document for details of the changes.*
+        * Configuration APIs to configure all network functions
+        * QoS support at default flow and per application flow
+        * 5000 subscribers with 10 calls per second stability achieved (Single Instance)
+        * Error cases with UPF connectivity fixed
+        * Error case of no response or message retransmission towards UPF
+        * Error cases with Network functions restarts fixed
+        * Stability issues on NGAP interfaces and N1 interfaces fixed
+        * 100+ code commits to achieve code stability
+        * 3gpp compliance of 5G core is added in SD core documentation
+        * per UE FSM in AMF & SMF
+        * Transaction support in AMF & SMF
+        * UE address allocation by UPF support at SMF
+        * **There are many more changes done and above are just high level summary**
 
     * **Network Performance Testing of SD-Core**
 
