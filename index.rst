@@ -83,6 +83,15 @@ can be found on the `SD-Core Wiki
    deployment/deploymentupf.rst
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Design
+   :hidden:
+   :glob:
+
+   design/design-smf.rst
+   design/design-amf.rst
+
+.. toctree::
    :maxdepth: 3
    :caption: Test Automation
    :hidden:

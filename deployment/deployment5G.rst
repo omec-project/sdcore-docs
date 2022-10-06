@@ -56,7 +56,12 @@ Hardware resource requirement
   * - MongoDB
     - 2 CPU Cores
     - 4Gi
-
+  * - UPF-Adapter
+    - 1 CPU Cores
+    - 1Gi
+  * - SCTP Load Balancer
+    - 1 CPU Cores
+    - 1Gi
 
 .. note::
    SD-Core deployment is tested on Intel/AMD hardware. There is WIP to run SD-Core
@@ -105,26 +110,31 @@ To verify the installation:
 .. code-block::
 
     helm -n sdcore-5g ls
-    ajayonf@node:~$ helm -n sdcore-5g ls
+    xxxx@node:~$ helm -n sdcore-5g ls
     NAME     	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART         	APP VERSION
     sdcore-5g	sdcore-5g	1       	2022-03-05 16:25:32.338495035 -0700 MST	deployed	sd-core-0.10.9
-    ajayonf@node:~$
+    xxxx@node:~$
 
-    ajayonf@node:~$ kubectl get pods -n sdcore-5g
-    NAME                       READY   STATUS    RESTARTS   AGE
-    amf-66bf99c879-5x4ms       1/1     Running   0          3m23s
-    ausf-65dc454b79-jp2cb      1/1     Running   0          3m23s
-    mongodb-6df94d8dd9-h8p4w   1/1     Running   0          3m23s
-    nrf-65bcfbb496-xvt6t       1/1     Running   0          3m23s
-    nssf-6f58859d67-552l2      1/1     Running   0          3m23s
-    pcf-5b4c75f57d-sl5rh       1/1     Running   0          3m23s
-    simapp-d8994999d-98k6v     1/1     Running   0          3m23s
-    smf-77c89ccc6d-4d8g2       1/1     Running   0          3m23s
-    udm-6dcdc457c6-gwmfk       1/1     Running   0          3m23s
-    udr-84678ff6dc-zkj52       1/1     Running   0          3m23s
-    upf-0                      0/5     Pending   0          3m23s
-    webui-66b4df44b-9clwf      1/1     Running   0          3m23s
-    ajayonf@node:~$
+    xxxx@node:~$ kubectl get pods -n sdcore-5g
+    NAME                          READY   STATUS    RESTARTS   AGE
+    amf-6cddb6ff5-g5kwp           1/1     Running   0          8d
+    ausf-64fb5c5df5-g9xps         1/1     Running   0          8d
+    gnbsim-0                      1/1     Running   0          8d
+    mongodb-0                     1/1     Running   0          8d
+    mongodb-1                     1/1     Running   0          8d
+    mongodb-arbiter-0             1/1     Running   0          8d
+    nrf-69794885b-pgl8f           1/1     Running   0          8d
+    nssf-fc9c48c89-dxqn7          1/1     Running   0          8d
+    pcf-5c7d7767c9-wv6dl          1/1     Running   0          8d
+    simapp-669b99db9d-lbbm4       1/1     Running   0          8d
+    smf-b87fc6f8f-4jdqr           1/1     Running   0          8d
+    smf-b87fc6f8f-xt2n2           1/1     Running   0          8d
+    udm-f948b57dc-n5b4h           1/1     Running   0          8d
+    udr-698445bd87-8ptpm          1/1     Running   0          8d
+    upf-0                         5/5     Running   0          8d
+    upf-adapter-c4844b7fb-wqbvw   1/1     Running   0          8d
+    webui-8cfb9659c-hqfp9         1/1     Running   0          8d
+    xxxx@node:~$
 
 To uninstall:
 
@@ -133,4 +143,64 @@ To uninstall:
     helm -n sdcore-5g uninstall sdcore-5g
     kubectl delete namespace sdcore-5g # also remove the sdcore-5g if needed
 
+Cloud Native Configuration - 5G
+""""""""""""""""""""""""""""""""
 
+Following configuration need to be enabled in 5G helm values override file
+
+Enable AMF Sctp Load Balancer
+'''''''''''''''''''''''''''''
+Edit sd-core-5g-values.yaml as following
+
+.. code-block::
+
+    sctplb:
+      deploy: true
+
+Enable SMF DB Store
+'''''''''''''''''''
+Edit sd-core-5g-values.yaml as following
+
+.. code-block::
+
+    smf:
+      cfgFiles:
+        smfcfg.conf:
+          configuration:
+            enableDBStore: true
+
+Enable UPF-Adapter
+''''''''''''''''''
+Edit sd-core-5g-values.yaml as following
+
+.. code-block::
+
+    upfadapter:
+      deploy: true
+
+Enable NRF Keep-Alive
+''''''''''''''''''''''
+Edit sd-core-5g-values.yaml as following
+
+.. code-block::
+
+    nrf:
+      cfgFiles:
+        nrfcfg.conf:
+          configuration:
+            mongoDBStreamEnable: false
+            nfProfileExpiryEnable: true
+            nfKeepAliveTime: 60
+
+Enable UE IP-Address allocation by UPF
+''''''''''''''''''''''''''''''''''''''
+This is optional feature to allocate UE IP-Address via UPF rather than locally via SMF.
+Edit sd-core-5g-values.yaml as following
+
+.. code-block::
+
+ cpiface:
+   dnn: "internet"
+   hostname: "upf"
+   enable_ue_ip_alloc: true
+   ue_ip_pool: "172.250.0.0/16"
