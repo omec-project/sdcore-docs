@@ -146,7 +146,29 @@ To uninstall:
 Cloud Native Configuration - 5G
 """"""""""""""""""""""""""""""""
 
-Following configuration need to be enabled in 5G helm values override file
+Following configuration need to be enabled in 5G helm values override file.
+It is important to understand usage of following flags
+
+- **SCTP Load Balancer** :
+  Enable this flag to introduce SCTP Load Balancer between gNBs and multiple AMF instances
+  to load balance sctp connections across multiple AMF instances.
+
+- **DB Store** :
+  Enable this flag to preserve AMF context or SMF PDU session into Database.
+  This is required for any AMF/SMF instance to load session/context of any
+  other instance which being fault recovered.
+
+- **UPF-Adapter** :
+  Enable this flag to introduce UPF-Adapter between multiple SMF instances
+  and UPF. This required for the case where UPF doesn't support multiple
+  SMF association with same pfcp node-id.
+
+- **NRF Keep-Alive** :
+  Enable this flag for NRF to maintain multiple NF profiles and trigger periodic
+  profile updates from the registered NFs.
+
+- **UE IP-Address alloc via UPF** :
+  Enable this flag to get UE IP-Address allocated via UPF rather than locally by SMF.
 
 Enable AMF Sctp Load Balancer
 '''''''''''''''''''''''''''''
@@ -156,6 +178,18 @@ Edit sd-core-5g-values.yaml as following
 
     sctplb:
       deploy: true
+
+Enable AMF DB Store
+'''''''''''''''''''
+Edit sd-core-5g-values.yaml as following
+
+.. code-block::
+
+    amf:
+      cfgFiles:
+        amfcfg.conf:
+          configuration:
+            enableDBStore: true
 
 Enable SMF DB Store
 '''''''''''''''''''
