@@ -91,6 +91,12 @@ also configuration of QoS for the users in this group.
     REST API can use PUT Method to modify/replace the device group configuration.
     IMSIs can be added, removed through PUT Method.
 
+.. note::
+   If UPF is used to allocate UE address allocation then even if you have specified UE
+   address pool in the slice config, you still need to add the address pool
+   configuration in the UPF deployment.
+
+
 Network Slice Configuration
 """""""""""""""""""""""""""
 Below example creates Network Slice with set of eNBs, UPF and device groups.

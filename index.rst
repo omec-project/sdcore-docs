@@ -71,6 +71,7 @@ can be found on the `SD-Core Wiki
    configuration/config_simapp.rst
    configuration/application_filtering.rst
    configuration/qos_config.rst
+   configuration/config_upf.rst
 
 .. toctree::
    :maxdepth: 2

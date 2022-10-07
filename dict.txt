@@ -99,6 +99,7 @@ dl
 dnn
 dns
 downlink
+dpdk
 eNB
 eNBID
 eNBs
@@ -190,6 +191,7 @@ smfcfg
 smftest
 spgw
 spgwc
+sriov
 sst
 tac
 tcp

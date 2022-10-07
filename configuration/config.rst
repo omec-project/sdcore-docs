@@ -82,11 +82,17 @@ and publish to respective clients over REST/grpc.
         - Step1 can only be done through Simapp. Look for simapp override values.
         - Step2 & Step3 can be done through Simapp or ROC. Simapp has option to create network slice. Look for configuration *provision-network-slice: false* in simapp configuration
 
+.. note::
+   If UPF is used to allocate UE address allocation then even if you have specified UE
+   address pool in the slice config, you still need to add the address pool
+   configuration in the UPF deployment.
+
 4G, 5G Configuration Differences
 --------------------------------
 One of the most important difference in 4G & 5G configuration is around network slice. 5G has
-network slice Ids sent in protocol messages whereas 4G does not have any slice Id in messages.
-We implement slicing in 4G using APNs. Let's go over these difference in detail below,
+network slice Ids sent on 3gpp defined protocol messages whereas 4G does not have any slice Id in
+3gpp defined protocol messages. We implement slicing in 4G using APNs. Let's go over these
+difference in detail below,
 
 - **Slice Id** : Since 4G does not have slice Id in any protocol messages, configured slice Ids
   are ignored in 4G components. So it also means that even if configured slice Ids are
@@ -97,33 +103,6 @@ We implement slicing in 4G using APNs. Let's go over these difference in detail 
   because APN is used as slice identifier internally in the 4G modules. This is not true in
   case of 5G because 5G has slice Id along with APN/DNN. So in general its good practice to
   keep APN/DNN in the slice unique so same slice can work for 4G & 5G configuration.
-
-
-- **UE Address Allocation**: In the Slice API you will see that we provide UE IP pool configuration.
-  Its important to know how UE IP address allocation is supported in SD-Core 4G & 5G components.
-
-  In case of 4G, Control Plane supports UE address allocation from UPF. So it also means that even
-  if you have specified UE address pool in the slice config, you still need to add the address pool
-  configuration in the UPF deployment.
-
-  In case of 5G, control plane has the capability to manage multiple IP pools so SMF uses the UE
-  address pool configuration received in the network slice APIs
-  and use them to appropriately assign UE address. But remember SD-Core 5G does not support UE IP
-  address allocation from UPF. So in case of 5G UPF configuration, even if you don't configure address
-  pool configuration it is still fine. We plan to add support of UPF UE address allocation in  next
-  release.
-
-
-.. code-block::
-
-  #override config to configure upf address pool
-  config:
-    upf:
-      cfgFiles:
-        upf.json:
-          cpiface:
-            enable_ue_ip_alloc: true
-            ue_ip_pool: "10.96.2.0/26"
 
 - **DNN/APN in Initial Attach/Register Message** : In case of 4G, if UE has set any random APN then
   MME overrides the APN based on the user profile in HSS. So its important to note that even if APN

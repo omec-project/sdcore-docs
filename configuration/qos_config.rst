@@ -108,3 +108,25 @@ Also each application has QoS rates. QoS rates are part of device groups are per
                 upf:
                   upf-name: "upf"
                   upf-port: 8805
+
+BESS UPF Slice rate Configuration
+----------------------------------
+
+.. code-block::
+
+  config:
+    upf:
+      cfgFiles:
+        upf.json:
+          # Default global rate limits. Can be changed at runtime via BESS gRPC.
+          slice_rate_limit_config:
+            # Uplink
+            n6_bps: 1000000000 # 1Gbps
+            n6_burst_bytes: 12500000 # 10ms * 1Gbps
+            # Downlink
+            n3_bps: 1000000000 # 1Gbps
+            n3_burst_bytes: 12500000 # 10ms * 1Gbps
+
+.. note::
+  TBD : add REST api documentation to change slice QoS rates.
+  TBD : How to update slice QoS configuration in P4-UPF
