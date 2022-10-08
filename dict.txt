@@ -34,6 +34,7 @@ Makefile
 Mbps
 Minikube
 Mux
+NGAPId
 NRF
 NSSF
 Namf
@@ -73,6 +74,7 @@ aether
 aetherproject
 alloc
 amf
+anrelease
 ap
 api
 apis
@@ -89,9 +91,12 @@ configPod
 configmap
 configs
 configurability
+customProfile
+customProfiles
 dataplane
 de
 defaultAs
+deregister
 deregistration
 dev
 disaggregated
@@ -108,6 +113,7 @@ eNodeB
 eb
 epc
 equipments
+execInParallel
 func
 gNB
 gNBSim
@@ -118,10 +124,12 @@ gc
 gerrit
 gnb
 gnbsim
+golang
 gpp
 grpc
 hss
 hssdb
+http
 hyperscale
 hyperscaler
 iUPF
@@ -132,6 +140,7 @@ ip
 jitter
 json
 keepalive
+kubernetes
 latencies
 macroENB
 mbr
@@ -151,6 +160,8 @@ natively
 ng
 nrf
 nssf
+nwreqpdusessrelease
+nwtriggeruedereg
 omec
 omecproject
 onf
@@ -165,6 +176,7 @@ pcaps
 pcf
 pcrf
 pcrfdb
+pdusessest
 performant
 pfcp
 pfcpUdp
@@ -184,6 +196,7 @@ runtime
 scalability
 scalable
 sctp
+sctplb
 sd
 sdcore
 simapp
@@ -206,10 +219,13 @@ udr
 ue
 ue-dnn-qos
 ueId
+uereqpdusessrelease
 uerouting
+uetriggservicereq
 ul
 unsuffixed
 upf
+upfadapter
 uplink
 verifiably
 virtualenv

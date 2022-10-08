@@ -82,6 +82,7 @@ can be found on the `SD-Core Wiki
    deployment/deployment4G.rst
    deployment/deployment5G.rst
    deployment/deploymentupf.rst
+   deployment/deploymentgnbsim.rst
 
 .. toctree::
    :maxdepth: 2
@@ -91,25 +92,6 @@ can be found on the `SD-Core Wiki
 
    design/design-smf.rst
    design/design-amf.rst
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Test Automation
-   :hidden:
-   :glob:
-
-   testing/about_system_tests
-   testing/sdcore_testing
-   testing/acceptance_specification
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Troubleshooting Guide
-   :hidden:
-   :glob:
-
-   troubleshooting/flowchart.rst
 
 .. toctree::
    :maxdepth: 2
@@ -122,6 +104,23 @@ can be found on the `SD-Core Wiki
    developer/gnbsim.rst
    developer/testpod.rst
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Troubleshooting Guide
+   :hidden:
+   :glob:
+
+   troubleshooting/flowchart.rst
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Test Automation
+   :hidden:
+   :glob:
+
+   testing/about_system_tests
+   testing/sdcore_testing
+   testing/acceptance_specification
 
 .. toctree::
    :maxdepth: 2
@@ -130,5 +129,4 @@ can be found on the `SD-Core Wiki
    :glob:
 
    release/1*
-   release/upcoming.rst
    release/process.rst

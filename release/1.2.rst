@@ -1,0 +1,134 @@
+..
+   SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
+   SPDX-License-Identifier: Apache-2.0
+
+SD-Core 1.2 Release
+===================
+
+1.2.0 Release Details
+---------------------
+
+SD-Core supports 4G & 5G network functions. SD-Core provides APIs for configuration, telemetry,
+policy management. Access networks can connect to AMF or MME depending on the type of access used.
+Below is the summary of the features delivered in SD-Core 1.2 Release.
+
+
+Highlights
+----------
+Release 1.2.0 is focused towards releasing the first version of Cloud Native 5G Network Functions.
+All development done in this release is around 5G Network functions. Below is highlighted features
+of this release,
+
+
+**NRF Keepalive**: All 5G network functions now register with NRF and enable the keep alive feature.
+Each network function periodically updates its subscriptions towards NRF. NRF now removes the
+Network Function which fails to send keepalive for a configured number of seconds. This is one of
+the foundation features for running multiple instances of Network functions.
+
+**Multiple SMF Instances**: Aether can be deployed with multiple instances of SMF. If required manually
+SMF deployment can be scaled out to add more instances or deployment can be scaled in to reduce the
+number of SMF instances. A new kubernetes POD UPF Adapter pod  is deployed as an anchor POD. UPF adapter
+POD talks to UPF NF. All SMF instances share the resources like SEID, IP address, TEID. SMF now stores
+subscriber states in MongoDB.
+
+**Multiple AMF Instances**: Aether can be deployed with multiple AMF instances of AMF. If required
+manually AMF deployment can be scaled out to add more instances or AMF deployment can be scaled in
+to reduce the number of AMF instances. A new kubernetes POD SCTP-LB is added to terminate sctp
+connections from gNB.  All AMF instances share the resources pool like TMSI, AMF-NGAPId. SMF now
+stores subscriber states in MongoDB.
+
+**gNBSim Improvements**: Couple of exciting changes are available in gNBSim now. Notable changes
+include following features,
+
+         - gNBSim now supports custom profiles. User can define set of procedures to be executed
+           for given use
+         - All the subscribers within a profile can run in parallel. Same way if multiple profiles
+           are configured then all profiles can run in parallel. These features are important to
+           make multiple parallel transactions in the core network.
+         - User defined delay between the procedures of the custom profile.
+         - Step profile is introduced which helps execute one procedure at a time and wait for
+           users to call APIs to trigger the next procedure for the Users. This is a really
+           interesting feature for the developers who want more control on their test case execution.
+
+**Documentation improvements**: SD-Core documentation is updated with clear separation of 4G/5G
+documentation wherever it was needed. Also updated documentation around deployment of 5G,
+new PODs and their resource requirements. Some of the new sections have been added to explain
+QoS support, application filtering and upf configuration. Also a process has started to move
+most of the internal design documents to the google drive which can be accessed by any community
+member. Link for the SD-Core public document can be found here.
+
+**Minor Improvements**: There are couple of enhancements which were done in multiple network functions
+
+        - SMF supports UPF based UE address allocation: SMF need not manage UE address pool now, if
+          UPF supports UE address allocation.
+        - Helm Chart changes to run MongoDB in the cluster mode to give database redundancy in the
+          5G Core Network.
+        - Image size reduction- gNBSim, simapp now has a small container image size.
+        - Dockerfile cleanup - Multiple Dockerfile are cleaned to follow best practices and to
+          update the base images of compile time & run time images.
+        - Subscriber config & slice config APIs in the simapp now supports http2.
+        - Network Functions now handle error in grpc connection towards webconsole
+        - SMF now sends correct QFI towards UPF instead of 5QI
+        - Dockerfile improvements to use recent golang version and latest runtime alpine image
+        - Purge UE api now available in the AMF
+        - Fixing QoS issues by sending correct AMBR rates towards UE
+
+Known Issues and Limitations
+----------------------------
+
+    - Only one instance of UPF-adapter pod should be deployed
+    - Only one instance of SCTP-Lb pod should be deployed
+    - If webui pod is restarted and if callback configuration is not provided in webui pod
+      then simapp does not download the config again to webui. Restarting the simapp pod
+      solves the problem most of the time.
+    - UPF Pod needs to have UE pool configuration and UPF does not use UE IP Pool
+      configuration from Slice APIs
+    - The same IMSI cannot part of multiple device groups
+    - At most 5 application filtering rules can be added per Slice
+    - If a subscriber is attached to a Network Slice then subsequent application filter rules modify/deletion is
+      not notified towards UE & UPF. If UE disconnects and reconnects back to Network Slice then updated
+      application filters are applied to UE.
+    - If No Filtering Rules are configured then only Default(Allow-All) Filter rule is added implicitly.
+    - PLMN update for Slice does not work. It is recommended to delete the slice and recreate it again with
+      correct PLMN.
+
+.. note::
+    For any 3gpp release compliance refer - (:ref:`4g-compliance`) and (:ref:`5g-compliance`)
+
+Component Versions in the 1.2.0 Release
+---------------------------------------
+
+Helm Chart Versions and their component charts and containers:
+
+* sdcore-helm-chart: ``0.11.14``
+    * omec-control-plane: ``0.11.1``
+        * hssdb: ``omecproject/c3po-hssdb:master-df54425``
+        * hss  : ``omecproject/c3po-hss:master-df54425``
+        * pcrf  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
+        * pcrfdb  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
+        * config4g  : ``omecproject/5gc-webui:master-87adbcc``
+        * spgwc  : ``omecproject/spgw:master-e419062``
+        * mme  : ``omecproject/nucleus:master-a8002eb``
+
+    * omec-sub-provision: ``0.5.3``
+        * simapp: ``omecproject/simapp:main-a4f741a``
+
+    * 5g-control-plane: ``0.7.15``
+        * amf: ``romecproject/5gc-amf:master-af1c9f1``
+        * nrf: ``omecproject/5gc-nrf:master-4313faa``
+        * smf: ``omecproject/5gc-smf:master-d94b123``
+        * ausf: ``omecproject/5gc-ausf:master-c84dff4``
+        * nssf: ``omecproject/5gc-nssf:master-4e5aef3``
+        * pcf: ``omecproject/5gc-pcf:master-bcbdeb0``
+        * udr: ``omecproject/5gc-udr:master-35eb7b7``
+        * udm: ``omecproject/5gc-udm:master-a0f0671``
+        * webui: ``omecproject/5gc-webui:master-fec9bfc``
+        * sctplb: ``omecproject/sctplb:master-bf081d5``
+        * upfadapter: ``omecproject/5gc-smf:master-d7c32f2``
+
+   * bess-upf ``0.1.0``
+        * bess: ``omecproject/upf-epc-bess:master-5786085``
+        * pfcpiface: ``omecproject/upf-epc-pfcpiface:master-5786085``
+
+    * 5g-ran-sim ``0.5.9``
+        * gnbsim: ``omecproject/5gc-gnbsim:main-0e4b557``
