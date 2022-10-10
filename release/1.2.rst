@@ -26,15 +26,15 @@ Network Function which fails to send keepalive for a configured number of second
 the foundation features for running multiple instances of Network functions.
 
 **Multiple SMF Instances**: Aether can be deployed with multiple instances of SMF. If required manually
-SMF deployment can be scaled out to add more instances or deployment can be scaled in to reduce the
+SMF deployment can be scaled up to add more instances or deployment can be scaled down to reduce the
 number of SMF instances. A new kubernetes POD UPF Adapter pod  is deployed as an anchor POD. UPF adapter
 POD talks to UPF NF. All SMF instances share the resources like SEID, IP address, TEID. SMF now stores
 subscriber states in MongoDB.
 
-**Multiple AMF Instances**: Aether can be deployed with multiple AMF instances of AMF. If required
-manually AMF deployment can be scaled out to add more instances or AMF deployment can be scaled in
+**Multiple AMF Instances**: Aether can be deployed with multiple instances of AMF. If required
+manually AMF deployment can be scaled up to add more instances or AMF deployment can be scaled down
 to reduce the number of AMF instances. A new kubernetes POD SCTP-LB is added to terminate sctp
-connections from gNB.  All AMF instances share the resources pool like TMSI, AMF-NGAPId. SMF now
+connections from gNB.  All AMF instances share the resources pool like TMSI, AMF-NGAPId. AMF now
 stores subscriber states in MongoDB.
 
 **gNBSim Improvements**: Couple of exciting changes are available in gNBSim now. Notable changes
