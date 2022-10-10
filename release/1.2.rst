@@ -8,62 +8,65 @@ SD-Core 1.2 Release
 1.2.0 Release Details
 ---------------------
 
-SD-Core supports 4G & 5G network functions. SD-Core provides APIs for configuration, telemetry,
-policy management. Access networks can connect to AMF or MME depending on the type of access used.
-Below is the summary of the features delivered in SD-Core 1.2 Release.
-
+SD-Core supports 4G & 5G network functions and includes APIs for configuration, telemetry,
+policy management. Access networks can connect to Access & Mobility Management Function (AMF)
+or Mobility Management Entity (MME) depending on the type of access used. Below is the summary
+of the features delivered in SD-Core 1.2 Release.
 
 Highlights
 ----------
-Release 1.2.0 is focused towards releasing the first version of Cloud Native 5G Network Functions.
-All development done in this release is around 5G Network functions. Below is highlighted features
-of this release,
+
+Release 1.2.0 is the first version of SD-Core focused on support for Cloud Native 5G Network Functions.
+All new functionality in this release contributes to support of 5G Network functionality.
 
 
 **NRF Keepalive**: All 5G network functions now register with NRF and enable the keep alive feature.
 Each network function periodically updates its subscriptions towards NRF. NRF now removes the
 Network Function which fails to send keepalive for a configured number of seconds. This is one of
-the foundation features for running multiple instances of Network functions.
+the foundation features for running multiple instances of Network Functions.
 
 **Multiple SMF Instances**: Aether can be deployed with multiple instances of SMF. If required manually
 SMF deployment can be scaled up to add more instances or deployment can be scaled down to reduce the
-number of SMF instances. A new kubernetes POD UPF Adapter pod  is deployed as an anchor POD. UPF adapter
+number of SMF instances. A new Kubernetes POD UPF-Adapter pod  is deployed as an anchor POD. UPF adapter
 POD talks to UPF NF. All SMF instances share the resources like SEID, IP address, TEID. SMF now stores
-subscriber states in MongoDB.
+subscriber states in MongoDB. MongoDB should be  deployed in cluster mode for cloud native SD-Core.
+
 
 **Multiple AMF Instances**: Aether can be deployed with multiple instances of AMF. If required
 manually AMF deployment can be scaled up to add more instances or AMF deployment can be scaled down
-to reduce the number of AMF instances. A new kubernetes POD SCTP-LB is added to terminate sctp
+to reduce the number of AMF instances. A new Kubernetes POD SCTP-LB is added to terminate sctp
 connections from gNB.  All AMF instances share the resources pool like TMSI, AMF-NGAPId. AMF now
-stores subscriber states in MongoDB.
+stores subscriber states in MongoDB. MongoDB should be  deployed in cluster mode for cloud native SD-Core.
 
-**gNBSim Improvements**: Couple of exciting changes are available in gNBSim now. Notable changes
-include following features,
+**gNBSim Improvements**: Several exciting changes are available in gNBSim now. Notable changes
+include:
 
-         - gNBSim now supports custom profiles. User can define set of procedures to be executed
-           for given use
-         - All the subscribers within a profile can run in parallel. Same way if multiple profiles
-           are configured then all profiles can run in parallel. These features are important to
-           make multiple parallel transactions in the core network.
-         - User defined delay between the procedures of the custom profile.
-         - Step profile is introduced which helps execute one procedure at a time and wait for
-           users to call APIs to trigger the next procedure for the Users. This is a really
-           interesting feature for the developers who want more control on their test case execution.
+    - gNBSim now supports custom profiles. User can define set of procedures to be executed
+      for given use
+    - All the subscribers within a profile can run in parallel. Same way if multiple profiles
+      are configured then all profiles can run in parallel. These features are important to
+      make multiple parallel transactions in the core network.
+    - User defined delay between the procedures of the custom profile.
+    - Step profile is introduced which helps execute one procedure at a time and wait for
+      users to call APIs to trigger the next procedure for the Users. This is a really
+      interesting feature for the developers who want more control on their test case execution.
 
 **Documentation improvements**: SD-Core documentation is updated with clear separation of 4G/5G
-documentation wherever it was needed. Also updated documentation around deployment of 5G,
-new PODs and their resource requirements. Some of the new sections have been added to explain
-QoS support, application filtering and upf configuration. Also a process has started to move
-most of the internal design documents to the google drive which can be accessed by any community
-member. Link for the SD-Core public document can be found here.
+documentation where information diverges. Also updated documentation around deployment of 5G,
+new PODs and their resource requirements. Some of the new sections have been added to provide
+details on
+QoS support, application filtering and upf configuration. Also a process has begun to move
+most of the internal design documents to Google Drive which can be accessed by any community
+member. The URL for the SD-Core public document can be found
+`here <https://drive.google.com/drive/folders/1dM5b0B65LkQQ0dGK1m-iIceRJfAASEm1>`_.
 
-**Minor Improvements**: There are couple of enhancements which were done in multiple network functions
+**Minor Enhancements**:
 
         - SMF supports UPF based UE address allocation: SMF need not manage UE address pool now, if
           UPF supports UE address allocation.
         - Helm Chart changes to run MongoDB in the cluster mode to give database redundancy in the
           5G Core Network.
-        - Image size reduction- gNBSim, simapp now has a small container image size.
+        - Image size reduction - gNBSim, simapp now have a small container image size.
         - Dockerfile cleanup - Multiple Dockerfile are cleaned to follow best practices and to
           update the base images of compile time & run time images.
         - Subscriber config & slice config APIs in the simapp now supports http2.
@@ -73,8 +76,8 @@ member. Link for the SD-Core public document can be found here.
         - Purge UE api now available in the AMF
         - Fixing QoS issues by sending correct AMBR rates towards UE
 
-Known Issues and Limitations
-----------------------------
+Known Limitations:
+--------------------
 
     - Only one instance of UPF-adapter pod should be deployed
     - Only one instance of SCTP-Lb pod should be deployed
@@ -83,6 +86,7 @@ Known Issues and Limitations
       solves the problem most of the time.
     - UPF Pod needs to have UE pool configuration and UPF does not use UE IP Pool
       configuration from Slice APIs
+    - AMF Handover code does not store updated subscriber context in the database
     - The same IMSI cannot part of multiple device groups
     - At most 5 application filtering rules can be added per Slice
     - If a subscriber is attached to a Network Slice then subsequent application filter rules modify/deletion is
@@ -100,20 +104,20 @@ Component Versions in the 1.2.0 Release
 
 Helm Chart Versions and their component charts and containers:
 
-* sdcore-helm-chart: ``0.11.14``
-    * omec-control-plane: ``0.11.1``
+* sdcore-helm-chart: ``0.11.15``
+    * omec-control-plane: ``0.11.2``
         * hssdb: ``omecproject/c3po-hssdb:master-df54425``
         * hss  : ``omecproject/c3po-hss:master-df54425``
         * pcrf  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
         * pcrfdb  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
-        * config4g  : ``omecproject/5gc-webui:master-87adbcc``
+        * config4g  : ``omecproject/5gc-webui:master-1121545``
         * spgwc  : ``omecproject/spgw:master-e419062``
         * mme  : ``omecproject/nucleus:master-a8002eb``
 
     * omec-sub-provision: ``0.5.3``
         * simapp: ``omecproject/simapp:main-a4f741a``
 
-    * 5g-control-plane: ``0.7.15``
+    * 5g-control-plane: ``0.7.16``
         * amf: ``romecproject/5gc-amf:master-af1c9f1``
         * nrf: ``omecproject/5gc-nrf:master-4313faa``
         * smf: ``omecproject/5gc-smf:master-d94b123``
@@ -122,7 +126,7 @@ Helm Chart Versions and their component charts and containers:
         * pcf: ``omecproject/5gc-pcf:master-bcbdeb0``
         * udr: ``omecproject/5gc-udr:master-35eb7b7``
         * udm: ``omecproject/5gc-udm:master-a0f0671``
-        * webui: ``omecproject/5gc-webui:master-fec9bfc``
+        * webui: ``omecproject/5gc-webui:master-1121545``
         * sctplb: ``omecproject/sctplb:master-bf081d5``
         * upfadapter: ``omecproject/5gc-smf:master-d7c32f2``
 
