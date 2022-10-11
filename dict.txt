@@ -67,6 +67,7 @@ Sxab
 Testpod
 UDM
 UDR
+UEs
 Ue
 Wireshark
 Xn
@@ -104,6 +105,7 @@ disaggregation
 dl
 dnn
 dns
+doesn't
 downlink
 dpdk
 eNB
@@ -158,6 +160,7 @@ myvalues
 namespace
 natively
 ng
+ngap
 nrf
 nssf
 nwreqpdusessrelease
