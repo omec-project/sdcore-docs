@@ -129,4 +129,5 @@ can be found on the `SD-Core Wiki
    :glob:
 
    release/1*
+   release/upcoming.rst
    release/process.rst
