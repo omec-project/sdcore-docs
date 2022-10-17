@@ -67,6 +67,7 @@ Sxab
 Testpod
 UDM
 UDR
+UEs
 Ue
 Wireshark
 Xn
@@ -158,6 +159,7 @@ myvalues
 namespace
 natively
 ng
+ngap
 nrf
 nssf
 nwreqpdusessrelease
