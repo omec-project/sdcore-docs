@@ -35,6 +35,7 @@ FAQs
         * Transaction support in AMF & SMF
         * UE address allocation by UPF support at SMF
         * **There are many more changes done and above are just high level summary**
+        * Go through `google document link <https://docs.google.com/document/d/1B4WQdgK5QwLcsmgg9qMRP0lupawVzh1F8N5YjTpLBCM/edit#>`_ to get more details about changes.
 
     * **Network Performance Testing of SD-Core**
 
