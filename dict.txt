@@ -113,6 +113,7 @@ eNBID
 eNBs
 eNodeB
 eb
+eno
 epc
 equipments
 execInParallel
@@ -139,6 +140,7 @@ imsis
 instantiation
 iot
 ip
+iptables
 jitter
 json
 keepalive
@@ -158,6 +160,7 @@ mtu
 multus
 myvalues
 namespace
+nat
 natively
 ng
 ngap
