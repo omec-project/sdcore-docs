@@ -23,7 +23,7 @@ SD-Core VM Preparation
        # want setup NodePort Service Type
        ngapp:
          externalIp: 10.10.1.1 #ip address of DATA_IFACE
-         nodePort: 38412
+         port: 38412
 
 - Deploy 5g core with options DATA_IFACE=ens1f0 and ENABLE_GNBSIM=false, sample command::
 
