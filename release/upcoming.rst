@@ -19,9 +19,9 @@ Extensions of AMF, SMF Cloud Native Support
 
     - Robustness test with multiple AMF, SMF
     - Auto scale AMF, SMF with CPU/Memory/Custom metrics
+    - Adding SBI Load Balancer
     - Multiple instances of SCTP LBs
     - Multiple instances of UPF adapter
-    - Adding SBI Load Balancer
 
 Cloud Native UPF
 ----------------
@@ -40,8 +40,17 @@ NRF Notification
 ----------------
 
     - NRF discovery result cache support
-    - NRF notification integration in SCTPLb, Distributed Resource Sharing Module  (DRSM)
-    - Custom node registration in NRF e.g. upf-adapter & sctplb
+    - NRF notification integration in AMF, SMF
+    - SCTPLb to use NRF notification, discovery APIs (postponed)
+    - Distributed Resource Sharing Module (DRSM) to use NRF notification & discovery APIs
+    - UPF Adapter to use NRF notification & discovery APIs
+
+Redundancy Events
+-----------------
+
+    - Testing restart of Sctplb
+    - Testing restart of upf adapter
+    - Testing restart of metric function
 
 .. note::
    Some of the features mentioned above are stretch goals and we rely on community members to
