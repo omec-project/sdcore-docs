@@ -131,8 +131,8 @@ UERANSIM VM Preparation
            TX packets 558  bytes 46516 (46.5 KB)
            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-   node1:~$ ping -I uesimtun1 8.8.8.8
-   PING 8.8.8.8 (8.8.8.8) from 172.250.237.124 uesimtun1: 56(84) bytes of data.
+   node1:~$ ping -I uesimtun0 8.8.8.8
+   PING 8.8.8.8 (8.8.8.8) from 172.250.237.124 uesimtun0: 56(84) bytes of data.
    64 bytes from 8.8.8.8: icmp_seq=1 ttl=111 time=14.4 ms
    64 bytes from 8.8.8.8: icmp_seq=2 ttl=111 time=14.4 ms
    ^C
