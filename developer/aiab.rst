@@ -7,98 +7,24 @@
 Aether In a Box - 4G
 ====================
 
-Setting Up Aether-in-a-Box - 4G
-________________________________
-
-Aether-in-a-Box (AiaB) provides an easy way to deploy Aether’s SD-CORE
-components and run basic tests to validate the installation. This guide
-describes the steps to set up AiaB.
-
-AiaB can be set up with a 4G or 5G SD-CORE. We use SimApp to configure
-the required subscribers & network slices in SD-CORE for testing core
-functionality.
-
-Helm charts are the primary method of installing the SD-CORE resources.
-AiaB offers a great deal of flexibility regarding which Helm chart
-versions to install:
-
-* Local definitions of charts (for testing Helm chart changes)
-* Latest published charts (for deploying a development version of Aether)
-* Specified versions of charts (for deploying a specific Aether release)
-
-AiaB can be run on a bare metal machine or VM. System prerequisites:
-
-* Ubuntu 18.04 or later
-* Kernel 4.15 or later
-* Haswell CPU or newer
-
-Clone Repositories
-__________________
-
-To initialize the AiaB environment, first clone the following repository::
-
-    cd ~
-    git clone "https://gerrit.opencord.org/aether-in-a-box"
-
-    mkdir -p ~/cord
-    cd ~/cord
-    git clone "https://gerrit.opencord.org/sdcore-helm-charts"
-
-.. note::
-    Only one version of the SD-CORE (4G or 5G) can be installed in AIAB environment
-    at a time. The first time you build AiaB, it takes a while because it sets up the
-    Kubernetes cluster. Subsequent builds will be much faster if you follow below steps
-    to delete & redeploy SD-Core (4G/5G) without destroying the Kubernetes
-
-Running 4G Test
-________________
-
-To deploy 4G SD-CORE using local helm charts::
-
-    make 4g-core
-
-To delete 4G SD-CORE deployment ::
-
-    make reset-test
-
-The above step performs UE attach and data test. If you wish to update any images
-of SD-Core 4G components then edit file  in *~/aether-in-a-box/sd-core-4g-values.yaml*.
-After updating config in *sd-core-4g-values.yaml* you can reset deployment and run
-the test again.
+The documentation for Aether In a Box (AiaB) - 4G is located in `Installing the 4G AIAB <https://docs.aetherproject.org/master/developer/aiab.html#installing-the-4g-aiab>`_,
+where specifics about setting up AiaB 4G, running 4G test, troubleshooting,
+and other details are described. Moreover, details about deploying AiaB
+with external 4G radios are presented `Aether-in-a-Box with External 4G Radio <https://docs.aetherproject.org/master/developer/aiabhw.html>`_.
 
 Developer Loop
 ______________
 
 Suppose you wish to test a new build of a 4G SD-CORE services. You can deploy
-custom images by editing ~/aether-in-a-box/sd-core-4g-values.yaml, for example::
+custom images by editing ~/aether-in-a-box/sd-core-4g-values.yaml, for
+example::
 
     images:
       tags:
         spgwc: omecproject/spgw:master-e419062
 
-To upgrade a running 4G SD-CORE with the new image, or to redeploy the 4G SD-CORE
-with the image::
+To upgrade a running 4G SD-CORE with the new image, or to redeploy the 4G
+SD-CORE with the image::
 
     make reset-test # delete 4G deployment if it was already started before updating image
-    make 4g-test  #now this deployment will use new webui image
-
-Troubleshooting / Known Issues
-______________________________
-
-Deployment Status
-""""""""""""""""""
-
-If you suspect a problem, first verify that all pods are in Running state::
-
-    kubectl -n omec get pods
-
-If the pods are stuck in ImagePullBackOff state, then it’s likely an issue
-with image name.
-
-Test Failure
-""""""""""""
-
-Occasionally make 4g-core (for 4G) fails for unknown reasons; this is true
-regardless of which Helm charts are used. If this happens, first try
-cleaning up AiaB and re-running the test. If make 4g-core fails consistently,
-then try to debug the issue by looking at spgwc, mme logs.
+    make 4g-test  # now this deployment will use new spgwc image
