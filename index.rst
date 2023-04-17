@@ -93,6 +93,7 @@ can be found on the `SD-Core Wiki
 
    design/design-smf.rst
    design/design-amf.rst
+   design/design-metricfunc.rst
 
 .. toctree::
    :maxdepth: 2
@@ -104,6 +105,8 @@ can be found on the `SD-Core Wiki
    developer/aiab5g.rst
    developer/gnbsim.rst
    developer/testpod.rst
+   developer/rogue-subscriber.rst
+   developer/auto-scaling-5g-nfs.rst
 
 .. toctree::
    :maxdepth: 2

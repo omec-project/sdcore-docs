@@ -1,4 +1,5 @@
 ..
+   SPDX-FileCopyrightText: 2023-present Intel Corporation
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
@@ -160,7 +161,7 @@ It is important to understand usage of following flags
 
 - **UPF-Adapter** :
   Enable this flag to introduce UPF-Adapter between multiple SMF instances
-  and UPF. This required for the case where UPF doesn't support multiple
+  and UPF. This required for the case where UPF does not support multiple
   SMF association with same pfcp node-id.
 
 - **NRF Keep-Alive** :
@@ -168,7 +169,13 @@ It is important to understand usage of following flags
   profile updates from the registered NFs.
 
 - **UE IP-Address alloc via UPF** :
-  Enable this flag to get UE IP-Address allocated via UPF rather than locally by SMF.
+  Enable this config to get UE IP-Address allocated via UPF rather than locally by SMF.
+
+- **Static UE IP-Address alloc** :
+  Enable this config to reserve static UE IP-Address for any specific UE.
+
+- **Custom IMSI support** :
+  Employ this config to have custom IMSI(starts with leading zeroes) for development environment with real UE.
 
 Enable AMF Sctp Load Balancer
 '''''''''''''''''''''''''''''
@@ -238,3 +245,78 @@ Edit sd-core-5g-values.yaml as following
    hostname: "upf"
    enable_ue_ip_alloc: true
    ue_ip_pool: "172.250.0.0/16"
+
+
+Enable Static UE IP-Address allocation
+''''''''''''''''''''''''''''''''''''''
+This config shall help in reserving Static UE IP-Address for any given UE.
+The config should mention details about DNN, UE's IMSI and preferred IP-Address from that DNN pool.
+
+.. code-block::
+
+ smf:
+   cfgFiles:
+     smfcfg.conf:
+       configuration:
+         staticIpInfo:
+         - dnn: internet
+           imsiIpInfo:
+             supi-123456789012341: "172.250.237.10"
+             supi-123456789012342: "172.250.237.11"
+
+Enable Custom IMSI with real UE 5G deployment
+'''''''''''''''''''''''''''''''''''''''''''''
+
+Following configuration is required to have custom test IMSI with real UE 5G deployment.
+
+Existing MCC/MNC = 208/93
+New MCC/MNC = 001/22
+
+Patch following files
+
+* Mandatory
+
+Patch aether-in-a-box/sd-core-5g-values.yaml as following
+
+.. code-block::
+
+         # below block configures the subscribers and their security details.
+          # you can have any number of subscriber ranges
+          subscribers:
+  -       - ueId-start: "208930100007487"
+  -        ueId-end: "208930100007500"
+  -        plmnId: "20893"
+  +       - ueId-start: "001220100007487"
+  +        ueId-end: "001220100007500"
+  +        plmnId: "00122"
+           opc: "981d464c7c52eb6e5036234984ad0bcf"
+           op: ""
+           key: "5122250214c33e723a5dd523fc145fc0"
+           sequenceNumber: "16f3b3f70fc2"
+  -       - ueId-start: "208930100007501"
+  -        ueId-end: "208930100007599"
+  -        plmnId: "20893"
+  +       - ueId-start: "001220100007501"
+  +        ueId-end: "001220100007599"
+  +        plmnId: "00122"
+           opc: "981d464c7c52eb6e5036234984ad0bcf"
+           op: ""
+           key: "5122250214c33e723a5dd523fc145fc0"
+
+* only if ROC is employed
+
+Patch aether-in-a-box/roc-5g-models.json as following
+
+.. code-block::
+
+            "imsi-definition": {
+  -           "mcc": "208",
+  -           "mnc": "93",
+  +           "mcc": "001",
+  +           "mnc": "22",
+   {
+                "sim-id": "aiab-sim-1",
+                "display-name": "UE 1 Sim",
+  -             "imsi": "208930100007487"
+  +             "imsi": "001220100007487"
+              },
