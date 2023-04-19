@@ -126,6 +126,7 @@ gNodeBs
 gc
 gerrit
 gnb
+gnbs
 gnbsim
 golang
 gpp

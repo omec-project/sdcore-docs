@@ -241,4 +241,71 @@ gNBSim System level features
                #"repeat": 0 #default value 0 . i.e execute once
                #"next":  "quit" #default value quit. i.e. no further iteration to run
 
+* Support of Multiple gNBs: Two gnbs are configured by default. So User can create profiles by using these gnbs.
+  Configuration of two gNBs can be found here
+
+     .. code-block:: bash
+
+        gnb:
+          ips:
+          - '"192.168.251.5/24"' #gnb1 IP
+          - '"192.168.251.6/32"' #gnb2 IP
+        configuration:
+          runConfigProfilesAtStart: true
+          singleInterface: #this will be added thorugh configmap script
+          execInParallel: false #run all profiles in parallel
+          gnbs: # pool of gNodeBs
+            gnb1:
+              n2IpAddr: # gNB N2 interface IP address used to connect to AMF
+              n2Port: 9487 # gNB N2 Port used to connect to AMF
+              n3IpAddr: 192.168.251.5 # gNB N3 interface IP address used to connect to UPF
+              n3Port: 2152 # gNB N3 Port used to connect to UPF
+              name: gnb1 # gNB name that uniquely identify a gNB within application
+              globalRanId:
+                plmnId:
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                gNbId:
+                  bitLength: 24
+                  gNBValue: "000102" # gNB identifier (3 bytes hex string, range: 000000~FFFFFF)
+              supportedTaList:
+              - tac: "000001" # Tracking Area Code (3 bytes hex string, range: 000000~FFFFFF)
+                broadcastPlmnList:
+                  - plmnId:
+                      mcc: 208
+                      mnc: 93
+                    taiSliceSupportList:
+                        - sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+                          sd: "010203" # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+              defaultAmf:
+                hostName: amf # Host name of AMF
+                ipAddr: # AMF IP address
+                port: 38412 # AMF port
+            gnb2:
+              n2IpAddr: # gNB N2 interface IP address used to connect to AMF
+              n2Port: 9488 # gNB N2 Port used to connect to AMF
+              n3IpAddr: 192.168.251.6 # gNB N3 interface IP address used to connect to UPF
+              n3Port: 2152 # gNB N3 Port used to connect to UPF
+              name: gnb2 # gNB name that uniquely identify a gNB within application
+              globalRanId:
+                plmnId:
+                  mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
+                  mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+                gNbId:
+                  bitLength: 24
+                  gNBValue: "000112" # gNB identifier (3 bytes hex string, range: 000000~FFFFFF)
+              supportedTaList:
+              - tac: "000001" # Tracking Area Code (3 bytes hex string, range: 000000~FFFFFF)
+                broadcastPlmnList:
+                  - plmnId:
+                      mcc: 208
+                      mnc: 93
+                    taiSliceSupportList:
+                        - sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+                          sd: "010203" # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+              defaultAmf:
+                hostName: amf # Host name of AMF
+                ipAddr: # AMF IP address
+                port: 38412 # AMF port
+
 * Delay between Procedures can be added using customProfiles.
