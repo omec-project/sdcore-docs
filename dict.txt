@@ -34,6 +34,7 @@ MME
 Makefile
 Mbps
 Minikube
+Moto
 Mux
 NGAPId
 NRF
@@ -60,12 +61,14 @@ Rscript
 SD-Core
 SMF
 SPGW
+Sercomm
 SoR
 Speedtest
 Subnet
 SupportedTAs
 Sxab
 Testpod
+Tx
 UDM
 UDR
 UEs
@@ -231,6 +234,7 @@ spgw
 spgwc
 sriov
 sst
+stabilisation
 tac
 tcp
 testPod

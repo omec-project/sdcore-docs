@@ -1,0 +1,126 @@
+..
+   SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
+   SPDX-License-Identifier: Apache-2.0
+
+SD-Core 1.3 Release
+===================
+
+1.3.0 Release Details
+---------------------
+
+SD-Core supports 4G & 5G network functions and includes APIs for configuration, telemetry,
+policy management. Access networks can connect to Access & Mobility Management Function (AMF)
+or Mobility Management Entity (MME) depending on the type of access used. Below is the summary
+of the features delivered in SD-Core 1.3 Release.
+
+Highlights
+----------
+
+Release v1.3.0 focuses on stabilizing Cloud Native support to 5G network functions and adding Metrics support.
+Also, towards greater adoption by community members, many members used SD-Core to tests against real
+hardware gNodeB and phones.
+All new functionality in this release contributes to support of 5G Network functionality.
+
+
+**Real gNodeB & real UE Tests**: Multiple community members mentioned success with SD-Core being used against
+real UE & gNB. To name the few, CPQD(Brazil), ONF, Pronto project for DARPA, etc. ONF used gNodeB from Sercomm and
+while the real phones were Google Pixel and Moto5G.
+
+We also enhanced 5G core to support the test IMSI(the one having mcc/mnc as leading zeroes) for development testing.
+
+**5G Metric Dashboard**: A new NF, Metric Function has been added to provision 5G Cloud Native metrics.
+The Metric Function acts as both metrics aggregator and processor towards metric consumers like Analytics Engine,
+API Server or Prometheus Server.
+
+The 5G Metric dashboard shows whether the gNodeB and UPF are connected to the core, how many active UEs are connected,
+including UE’s IMSI and Slice information, and the uplink (Tx Bitrate) and downlink (Rx Bitrate) throughput at the UPF.
+Metrics work can be extended to show various metrics from 5G core network.
+
+**NRF Cache and Notification**: As part of NF Discovery Service, Each NF discovers Target NF for its profiles from NRF
+and stores Target NF profiles in a local cache. One cache is created per Target NF Type to make the lookup faster.
+
+The NF creates subscription for the NF profiles received from the NRF. When a notification is received from the NRF
+on profile Deregistration, the entry is evicted from the local cache. This will trigger the host NF to perform
+requested NF Discovery during the next UE procedure.
+
+**Test IMSI Support**: This support allows users to employ Test UEs with leading zeroes(mcc/mnc with leading zeroes)
+with SD-Core 5G. This eliminates the conflict with commercial PLMNs during UE attach.
+
+**Static UE IP-Address Support**: The SMF shall support allocation of static IP-address to UE. This feature shall be
+available via configuration of SUPI to IP-address mapping under SMF specific section via override values file.
+
+**Dynamic Subscription revoking provision**: This feature enables 5G network to revoke subscription of specific UE.
+It is required that user identifies the IP-Address of specific UE to be disabled. The custom user application can
+make available the IP-Address of specific UE to 5G core network via Metric-Function API. The 5G network shall revoke
+the specific UE’s subscription based on UE IP-Addresses received.
+
+**Multiple gNBs Support in gNBSim**: This enhancement allows deploying multiple gNBSim instances. This would extend
+gNBSim capabilities towards XN and N2 handover procedures.
+
+**Inter-op stabilisation across multiple instances of SMF and AMF**: Enhancements have been done around stabilisation
+of multiple instances of SMF and AMF inter-operation. This adds robustness towards cloud native stateless and
+high-availability feature.
+
+**Autoscaling of AMF/SMF instances in AIAB using KEDA**: It enables dynamic scaling of network functions to handle
+increased traffic or workload demands, ensuring optimal performance and cost-effectiveness.
+Kubernetes Event-driven Autoscaling (KEDA) is an open-source tool that makes it easier to implement autoscaling for
+cloud-native network functions(https://github.com/kedacore/keda).
+
+**Minor Enhancements**:
+
+        - Update Subscriber Context in DB after the Handover Procedure is completed.
+        - Multiple instances of Sctp-lb could run but this should be done manually.
+
+Known Limitations:
+--------------------
+
+    - Only one instance of the UPF-adapter pod should be deployed.
+
+    - Scale up or down instances of AMF/SMF/Sctp-Lb can be done manually.
+
+    - If webui pod is restarted and if callback configuration is not provided in webui pod then simapp does
+      not download the config again to webui. Restarting the simapp pod solves the problem most of the time.
+
+    - UPF Pod needs to have UE pool configuration and UPF does not use UE IP Pool configuration from Slice APIs.
+
+.. note::
+    For any 3gpp release compliance refer - (:ref:`4g-compliance`) and (:ref:`5g-compliance`)
+
+Component Versions in the 1.3.0 Release
+---------------------------------------
+
+Helm Chart Versions and their component charts and containers:
+
+* sdcore-helm-chart: ``0.12.7``
+    * omec-control-plane: ``0.12.0``
+        * hssdb: ``omecproject/c3po-hssdb:master-df54425``
+        * hss  : ``omecproject/c3po-hss:master-df54425``
+        * pcrf  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
+        * pcrfdb  : ``omecproject/c3po-pcrf:pcrf-d58dd1c``
+        * config4g  : ``omecproject/5gc-webui:master-1121545``
+        * spgwc  : ``omecproject/spgw:master-e419062``
+        * mme  : ``omecproject/nucleus:master-a8002eb``
+
+    * omec-sub-provision: ``0.6.0``
+        * simapp: ``omecproject/simapp:main-a4f741a``
+
+    * 5g-control-plane: ``0.8.14``
+        * amf: ``omecproject/5gc-amf:master-a4759db``
+        * nrf: ``omecproject/5gc-nrf:master-b747b98``
+        * smf: ``omecproject/5gc-smf:master-5d31b0a``
+        * ausf: ``omecproject/5gc-ausf:master-c84dff4``
+        * nssf: ``omecproject/5gc-nssf:master-4e5aef3``
+        * pcf: ``omecproject/5gc-pcf:master-bcbdeb0``
+        * udr: ``omecproject/5gc-udr:master-35eb7b7``
+        * udm: ``omecproject/5gc-udm:master-6956659``
+        * webui: ``omecproject/5gc-webui:master-1121545``
+        * sctplb: ``omecproject/sctplb:master-bf081d5``
+        * metricfunc: ``omecproject/metricfunc:main-58fa274``
+        * upfadapter: ``omecproject/5gc-smf:master-5d31b0a``
+
+   * bess-upf ``0.1.0``
+        * bess: ``omecproject/upf-epc-bess:master-5786085``
+        * pfcpiface: ``omecproject/upf-epc-pfcpiface:master-5786085``
+
+    * 5g-ran-sim ``0.6.5``
+        * gnbsim: ``omecproject/5gc-gnbsim:main-1caccfc``
