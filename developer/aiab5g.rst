@@ -7,10 +7,9 @@
 Aether In a Box - 5G
 ====================
 
-The documentation for Aether In a Box (AiaB) - 5G is located in `Installing the 5G AIAB <https://docs.aetherproject.org/master/developer/aiab.html#installing-the-5g-aiab>`_,
+The documentation for Aether In a Box (AiaB) - 5G is located in `Aether OnRamp <https://docs.aetherproject.org/master/onramp/overview.html>`_,
 where specifics about setting up AiaB 5G, running 5G test, troubleshooting,
-and other details are described. Moreover, details about deploying AiaB
-with external 5G radios are presented `Aether-in-a-Box with External 5G Radio <https://docs.aetherproject.org/master/developer/aiabhw5g.html>`_.
+and other details are described.
 
 Developer Loop
 ______________

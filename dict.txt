@@ -143,12 +143,16 @@ hpa
 hss
 hssdb
 http
+hugepage
+hugepages
 hyperscale
 hyperscaler
 iUPF
 imsi
 imsis
 instantiation
+intel
+iommu
 iot
 ip
 iptables
@@ -199,6 +203,7 @@ patchsets
 pcap
 pcaps
 pcf
+pci
 pcrf
 pcrfdb
 pdusessest
@@ -256,6 +261,7 @@ upf
 upfadapter
 uplink
 verifiably
+vfio
 virtualenv
 webconsole
 webhooks
