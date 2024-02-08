@@ -252,7 +252,7 @@ gNBSim System level features
           - '"192.168.251.6/32"' #gnb2 IP
         configuration:
           runConfigProfilesAtStart: true
-          singleInterface: #this will be added thorugh configmap script
+          singleInterface: #this will be added through configmap script
           execInParallel: false #run all profiles in parallel
           gnbs: # pool of gNodeBs
             gnb1:
