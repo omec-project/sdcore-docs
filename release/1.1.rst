@@ -58,7 +58,7 @@ integration in Aether.
 multiple UEs and gNodeBs and performing both control plane and dataplane tests, which assist
 greatly in quick development of new 5G-SA features. In addition to a dev-test tool, it can also
 be used by QA teams to run automated tests for the 5G core network. Please refer to
-`gNB Sim documentation <https://github.com/omec-project/gnbsim#readme>`_ for more details.
+`gNB Sim documentation <https://github.com/omec-project/gnbsim/blob/main/README.md>`_ for more details.
 Support for Service Request and AN release procedures are added in this release.
 
 **Stability and Reliability**: We fixed a couple of stability issues seen in Aether deployments.
