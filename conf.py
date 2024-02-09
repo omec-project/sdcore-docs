@@ -71,7 +71,7 @@ spelling_word_list_filename=['dict.txt', ]
 prep_commands = [
 ]
 
-# inlcude only the branches matching master and aether-*
+# include only the branches matching master and aether-*
 smv_branch_whitelist = r'^(master|sdcore-.*)$'
 
 # Don't include any tags - smv docs say you can put None here, but that is broken
