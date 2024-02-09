@@ -79,13 +79,13 @@ step 1: Create VF devices and bind them to the vfio-pci driver
 
     ls -l /sys/class/net/ens801f0/device/virtfn*
 
-- Make sure all the VF devices contains valid MAC address(not all zero's),
+- Make sure all VF devices contain a valid MAC address (not all zero's),
 
   .. code-block::
 
     ip link show ens801f0
 
-  If the MAC shown for VF's are all zero's then retrieve the MAC using the PCI obtained above as follows,
+  If the MAC shown for the VF's are all zero's, then retrieve the MAC using the PCI obtained above, as follows,
 
   .. code-block::
 
@@ -95,7 +95,7 @@ step 1: Create VF devices and bind them to the vfio-pci driver
     cat /sys/bus/pci/devices/0000\:b1\:01.1/net/ens801f0v1/address
     00:11:22:33:44:51
 
-  Set the above retrieved MAC address for the VF's using below command,
+  Then, set the VF's MAC address using the value obtained above
 
   .. code-block::
 
