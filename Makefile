@@ -26,6 +26,7 @@ help: $(VENV_NAME)
 $(VENV_NAME):
 	python3 -m venv $@ ;\
   source $@/bin/activate ;\
+  pip install --upgrade pip \
   pip install -r requirements.txt
 
 # lint and link verification. linkcheck is part of sphinx
