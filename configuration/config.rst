@@ -58,7 +58,7 @@ and publish to respective clients over REST/grpc.
 
     - Step1 : Provision subscriber in 4G/5G subsystem
 
-        - *Can be done only thorugh SIMAPP*
+        - *Can be done only through SIMAPP*
         - This step is used to configure IMSI in the SD-Core
         - This procedure is used to configure security keys for a subscriber
         - Subscribers can be created during system startup or later
