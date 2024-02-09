@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 Sphinx~=7.2
-doc8~=0.10.1
+doc8~=1.1.1
 reuse~=3.0.1
 sphinx-rtd-theme~=2.0.0
 sphinxcontrib-spelling~=8.0.0
