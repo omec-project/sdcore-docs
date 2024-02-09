@@ -29,7 +29,7 @@ Getting Started with SD-Core
 
   - `SD-Core Website <https://opennetworking.org/sd-core/>`_
   - `SD-Core Whitepaper <https://opennetworking.org/wp-content/uploads/2021/07/SD-Core-Technical-White-Paper-FINAL-1.pdf>`_
-  - `SD-Core Techinar <https://youtu.be/-eQzbSxXgSU>`_
+  - `SD-Core Techinar <https://www.youtube.com/watch?v=-eQzbSxXgSU>`_
   - `SD-Core Wiki <https://wiki.opennetworking.org/display/COM/SD-Core>`_
   - `SD-Core Public Folder <https://drive.google.com/drive/folders/1dM5b0B65LkQQ0dGK1m-iIceRJfAASEm1>`_
 

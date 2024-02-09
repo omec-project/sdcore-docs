@@ -31,7 +31,7 @@ of the test frameworks used:
   * - Aether Core Component
     - Test Framework
   * - SD-Core
-    - `NG40/NG4T <https://www.ng4t.com/>`_
+    - `NG40/NG4T <https://www.viavisolutions.com/en-us/ng4t>`_
 
 Test Automation
 ---------------
