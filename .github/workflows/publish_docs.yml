@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Validate reST source
         run: make test
+      - name: Build html
+        run: make html
       - name: Build docs
         run: make multiversion
       - name: List built files
