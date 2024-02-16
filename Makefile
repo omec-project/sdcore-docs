@@ -7,7 +7,7 @@
 SHELL = bash -e -o pipefail
 
 # You can set these variables from the command line.
-SPHINXOPTS   ?= -W
+SPHINXOPTS   ?= -W --dump-metadata
 SPHINXBUILD  ?= sphinx-build
 SOURCEDIR    ?= .
 BUILDDIR     ?= _build
