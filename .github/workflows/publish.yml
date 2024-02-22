@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024 Intel Corporation
+
+name: Publish Docs Workflow
+run-name: ${{ github.actor }} is publishing document artifacts 🚀
+
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build docs
+        run: make html
+
+      - name: List built files
+        run: |
+          files=$(ls ${{ github.workspace }}/_build/html)
+          if [ -z "$files" ]; then
+            echo "No files found in _build/html directory"
+            exit 1
+          else
+            echo "$files"
+          fi
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build docs
+        run: make multiversion
+
+      - name: List built files
+        run: ls ${{ github.workspace }}/_build/multiversion/*
+
+      - name: Prep private key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ${{ github.workspace }}/id_rsa
+          chmod 600 ${{ github.workspace }}/id_rsa
+
+      - name: Run rsync script
+        run: ./.github/scripts/rsync.sh ${{ secrets.SSH_LOGIN_USERNAME }} ${{ secrets.REMOTE_SERVER_IP }} ${{ secrets.SSH_PORT }} ${{ github.workspace }}/_build/multiversion/master /srv/sites/docs.sd-core.opennetworking.org ${{ github.workspace }}/id_rsa

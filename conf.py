@@ -71,7 +71,7 @@ spelling_word_list_filename=['dict.txt', ]
 prep_commands = [
 ]
 
-# include only the branches matching master and aether-*
+# include only the branches matching master and sdcore-*
 smv_branch_whitelist = r'^(master|sdcore-.*)$'
 
 # Don't include any tags - smv docs say you can put None here, but that is broken
@@ -253,6 +253,7 @@ todo_include_todos = True
 linkcheck_ignore = [
     r'https://jenkins.aetherproject.org/.*',
     r'https://gerrit.opencord.org/.*',
+    r'https://wiki.opennetworking.org/.*',
 ]
 
 linkcheck_timeout = 3
