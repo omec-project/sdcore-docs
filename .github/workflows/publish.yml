@@ -29,6 +29,8 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    env:
+      BUILD_OUTPUT_PATH: _build/multiversion/
     steps:
       - uses: actions/checkout@v4
 
@@ -36,12 +38,14 @@ jobs:
         run: make multiversion
 
       - name: List built files
-        run: ls ${{ github.workspace }}/_build/multiversion/*
+        run: ls $BUILD_OUTPUT_PATH*
 
-      - name: Prep private key
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ${{ github.workspace }}/id_rsa
-          chmod 600 ${{ github.workspace }}/id_rsa
-
-      - name: Run rsync script
-        run: ./.github/scripts/rsync.sh ${{ secrets.SSH_LOGIN_USERNAME }} ${{ secrets.REMOTE_SERVER_IP }} ${{ secrets.SSH_PORT }} ${{ github.workspace }}/_build/multiversion/master /srv/sites/docs.sd-core.opennetworking.org ${{ github.workspace }}/id_rsa
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -rvzh --delete-after --exclude=.git
+          path: $BUILD_OUTPUT_PATH
+          remote_path: /srv/sites/docs.sd-core.opennetworking.org/
+          remote_host: static.opennetworking.org
+          remote_user: ${{ secrets.JENKINS_USERNAME }}
+          remote_key: ${{ secrets.JENKINS_SSHKEY }}
