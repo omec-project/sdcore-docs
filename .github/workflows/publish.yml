@@ -49,3 +49,4 @@ jobs:
           remote_host: static.opennetworking.org
           remote_user: ${{ secrets.JENKINS_USERNAME }}
           remote_key: ${{ secrets.JENKINS_SSHKEY }}
+          remote_key_pass: ${{ secrets.JENKINS_PASSPHRASE }}
