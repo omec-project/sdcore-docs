@@ -2,7 +2,6 @@
 # Copyright 2024 Intel Corporation
 
 name: Publish Docs Workflow
-run-name: ${{ github.actor }} is publishing document artifacts 🚀
 
 on:
   - push
