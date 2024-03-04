@@ -4,8 +4,10 @@
 name: Publish Docs Workflow
 
 on:
-  - push
-  - workflow_dispatch
+  push:
+    branches:
+      - master  
+  workflow_dispatch:
 
 jobs:
   validate:
