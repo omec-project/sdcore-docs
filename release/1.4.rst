@@ -37,8 +37,11 @@ possible size for the resulting Docker image.
 consolidated into the `util` repository such that the whole 5G sd-core is
 composed of as few as possible repositories.
 
-**Webui GET operations**: Add GET operations for DeviceGroups and Network
-Slices.
+**Webui**: Improvements in this module include:
+- Add GET operations for DeviceGroups and Network Slices.
+- Storing configuration in mongodb (separate database collection for
+configuration).
+- Recovering configuration in case `webui` crashes.
 
 **Sctp-Lb**: Full refactoring if SCTPLB code and its Docker image (size
 decreased from ~1.2GB to 21.2MB)
@@ -50,8 +53,11 @@ sleeps that will free up some CPU time. The worst case scenario with this sleep
 is that the service will take 5 seconds more to get configured after initial
 deployment.
 
-**gNBSim**: Add support for retransmit message. Also, add support for statistics
-at procedure level and transaction level. Moreover, add E2E latency measurements
+**gNBSim**: Several improvements were added to this component, including:
+- Add support for retransmit message
+- Add support for statistics at procedure level and transaction level
+- Add E2E latency measurements
+- Add support for Temporary Mobile Subscriber Identity (TMSI)
 
 **UPF**: The UPF was the component that has the most feature additions among all
 of the SD-Core components. Among the most relevant changes are:
