@@ -42,6 +42,7 @@ composed of as few as possible repositories.
 - Storing configuration in mongodb (separate database collection for
 configuration).
 - Recovering configuration in case `webui` crashes.
+- Port for the `webui` is now configurable for all NFs (it was hard-coded before)
 
 **Sctp-Lb**: Full refactoring if SCTPLB code and its Docker image (size
 decreased from ~1.2GB to 21.2MB)
