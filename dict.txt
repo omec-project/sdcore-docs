@@ -176,6 +176,7 @@ miniKube
 minikube
 mme
 mnc
+mongodb
 msg
 mtu
 multus
