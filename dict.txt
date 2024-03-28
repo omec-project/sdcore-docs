@@ -139,6 +139,7 @@ gnbsim
 golang
 gpp
 grpc
+hadolint
 hpa
 hss
 hssdb
@@ -164,6 +165,7 @@ kubectl
 kubernetes
 kustomization
 latencies
+linters
 macroENB
 mbr
 mcc
@@ -174,6 +176,7 @@ miniKube
 minikube
 mme
 mnc
+mongodb
 msg
 mtu
 multus
