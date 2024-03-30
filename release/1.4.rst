@@ -28,7 +28,8 @@ Additionally, enable linter for Dockerfile (hadolint) and linters for other
 components.
 
 **CI/CD pipeline**: GitHub Actions were enabled in all of the sd-core 5G
-components. Moreover, `Dependabot` was added to help manage dependency updates.
+components. Moreover, `Dependabot` was added to help manage dependency and
+security updates.
 
 **Docker images**: Full refactoring of Dockerfile to obtain the smallest
 possible size for the resulting Docker image.
@@ -44,7 +45,7 @@ configuration).
 - Recovering configuration in case `webui` crashes.
 - Port for the `webui` is now configurable for all NFs (it was hard-coded before)
 
-**Sctp-Lb**: Full refactoring if SCTPLB code and its Docker image (size
+**Sctp-Lb**: Full refactoring of SCTPLB code and its Docker image (size
 decreased from ~1.2GB to 21.2MB)
 
 **Config 5G**: When deploying SD-Core, all services using this client code go
