@@ -17,9 +17,10 @@ type of access used. Below is the summary of the features delivered in SD-Core
 Highlights
 ----------
 
-Release v1.4.0 focuses on improving the source code, improve the CI/CD pipeline,
-bug fixes, and several improvements in the UPF. All new functionality in this
-release contributes to better support of 5G Network functionality.
+Release v1.4.0 focuses on improving the quality of the source code, adding new
+automated checks in the CI/CD pipeline, bug fixes to increase stability, and
+several improvements in the UPF. All new functionality in this release
+contributes to better support of 5G Network functionality.
 
 **Go version**: Code-base was updated to use Go 1.21.
 
@@ -37,6 +38,9 @@ possible size for the resulting Docker image.
 **Consolidated repositories**: Multiple small/tiny repositories were
 consolidated into the `util` repository such that the whole 5G sd-core is
 composed of as few as possible repositories.
+
+**Network Functions**: Remove NRF caching in multiple network functions. A more
+up-to-spec caching will be re-enabled in the future.
 
 **Webui**: Improvements in this module include:
 - Add GET operations for DeviceGroups and Network Slices.
