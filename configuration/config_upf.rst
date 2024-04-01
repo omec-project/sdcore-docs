@@ -7,7 +7,7 @@ UPF Configuration
 
 Below you may find some of the upf override configuration.
 
-Bess default values `can be found here <https://gerrit.opencord.org/plugins/gitiles/sdfabric-helm-charts/+/refs/heads/master/bess-upf/values.yaml>`_
+Bess default values `can be found here <https://github.com/omec-project/sdcore-helm-charts/blob/main/bess-upf/values.yaml>`_
 
 UPF Address Pool
 -----------------

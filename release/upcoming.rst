@@ -5,7 +5,7 @@
 SD-Core Next Release
 ========================
 
-We expect next SD-Core release to be available in the mid of **Jan 2023**.
+We expect next SD-Core release to be available in the **Sep 2024**.
 
 Metrics Support
 ----------------
@@ -32,7 +32,6 @@ Cloud Native UPF
 gNBSim Features
 ----------------
 
-    - gNBSim deployment as single docker container
     - Running multiple gNodeBs under same gNBSim container
     - gNodeB handover support
 

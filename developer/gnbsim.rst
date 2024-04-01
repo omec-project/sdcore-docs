@@ -28,8 +28,8 @@ plane path (N3 Tunnel).
 gNBSim Code References
 ----------------------
 
-* Code Repository: `github repository <https://github.com/omec-project/gnbsim>`_
-* Helm Chart: `gerrit repository <https://gerrit.opencord.org/plugins/gitiles/sdcore-helm-charts/+/refs/heads/master/5g-ran-sim/>`_
+* Code Repository: `gNBSim repository <https://github.com/omec-project/gnbsim>`_
+* Helm Chart: `github repository <https://github.com/omec-project/sdcore-helm-charts/tree/main/5g-ran-sim>`_
 * RAN SIM Helm Chart: `5g-ran-sim repository <https://charts.aetherproject.org>`_
 
 

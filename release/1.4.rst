@@ -66,10 +66,12 @@ deployment.
 
 **gNBSim**: Several improvements were added to this component, including:
 
-* Add support for retransmit message
-* Add support for statistics at procedure level and transaction level
-* Add E2E latency measurements
-* Add support for Temporary Mobile Subscriber Identity (TMSI)
+* Add support for retransmit message.
+* Add support for statistics at procedure level and transaction level.
+* Add E2E latency measurements.
+* Add support for Temporary Mobile Subscriber Identity (TMSI).
+* gNBSim can be deployed as a single Docker container, while the ``SD-Core`` runs
+  in a Kubernetes cluster.
 
 **UPF**: The UPF was the component that has the most feature additions among all
 of the SD-Core components. Among the most relevant changes are:

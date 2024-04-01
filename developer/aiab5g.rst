@@ -20,7 +20,7 @@ example::
 
     images:
       tags:
-        webui: omecproject/5gc-webui:master-7f96cfd
+        webui: omecproject/5gc-webui:rel-1.4.0
 
 To upgrade a running 5G SD-CORE with the new image, or to redeploy the 5G
 SD-CORE with the image::

@@ -20,7 +20,7 @@ Code receives Git tags as a part of the CI process
   created only the version is a SemVer released version (example: ``1.2.3``, no
   ``-dev`` or ``-rc`` extensions)
 
-* Tagging is *only done by the CI system* (Jenkins), which pushes tags to git
+* Tagging is *only done by the CI system* (GitHub Actions), which pushes tags to git
   repos after a submit/merge of code which changes the **VERSION** file.
 
 * CI system enforces tag uniqueness - no two commits have the same released
@@ -40,6 +40,18 @@ All docker images are tagged based on their git tags.
 
   * This allows a container to be rebuilt given an arbitrary git commit with
     fair confidence that it will result in the same code in the container.
+
+* There are two sets of Docker images that are created
+
+  * The first set of Docker images is created based on every Pull Request that
+    is merged in the source code and the image has the following two tags:
+    ``latest`` and ``master-hashId``, where the ``hashId`` is the short commit ID.
+    These 2 images are pushed into the ``sdcore`` project in ``registry.aetherproject.org``
+    (https://registry.aetherproject.org/harbor/projects/9/repositories)
+  * The second set is the official release image which is created only when
+    there is a new code release (when **VERSION** file changed). This image is
+    pushed to ``DockerHub`` (https://hub.docker.com/u/omecproject) and has a tag
+    named ``rel-semver`` (e.g., rel-1.4.0).
 
 * Official images are only pushed to registries by the CI system
 

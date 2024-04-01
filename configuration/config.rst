@@ -15,7 +15,7 @@ used by third-party automation and management platforms.
 Reference helm chart
 --------------------
 
-    - `SD-Core Helm Chart Repository <https://gerrit.opencord.org/admin/repos/sdcore-helm-charts>`_
+    - `SD-Core Helm Chart Repository <https://github.com/omec-project/sdcore-helm-charts>`_
     - Sub components in sdcore-helm-charts
 
         - omec-control-plane: 4G Network functions helm charts

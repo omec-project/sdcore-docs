@@ -85,7 +85,7 @@ Step1 - Clone SD-Core 5G Helm chart
 '''''''''''''''''''''''''''''''''''
 .. code-block::
 
-  git clone "https://gerrit.opencord.org/sdcore-helm-charts"
+  git clone https://github.com/omec-project/sdcore-helm-charts.git
   cd sdcore-helm-charts/sdcore-helm-charts/
   helm dep update #Update Helm dependencies
 
