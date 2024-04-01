@@ -17,7 +17,7 @@ type of access used. Below is the summary of the features delivered in SD-Core
 Highlights
 ----------
 
-Release v1.4.0 focuses on improving the quality of the source code, adding new
+Release 1.4.0 focuses on improving the quality of the source code, adding new
 automated checks in the CI/CD pipeline, bug fixes to increase stability, and
 several improvements in the UPF. All new functionality in this release
 contributes to better support of 5G Network functionality.
@@ -39,18 +39,23 @@ possible size for the resulting Docker image.
 consolidated into the `util` repository such that the whole 5G sd-core is
 composed of as few as possible repositories.
 
+**Helm Charts and Documentation**: The repositories for the Helm Charts
+(sdcore-helm-charts) and Documentation (sdcore-docs) were moved from Gerrit to
+GitHub. Moreover,the Helm Charts for the UPF were moved from the
+`sdfabric-helm-charts` umbrella into the `sdcore-helm-charts` umbrella.
+
 **Network Functions**: Remove NRF caching in multiple network functions. A more
 up-to-spec caching will be re-enabled in the future.
 
 **Webui**: Improvements in this module include:
-- Add GET operations for DeviceGroups and Network Slices.
-- Storing configuration in mongodb (separate database collection for
-configuration).
-- Recovering configuration in case `webui` crashes.
-- Port for the `webui` is now configurable for all NFs (it was hard-coded before)
 
-**Sctp-Lb**: Full refactoring of SCTPLB code and its Docker image (size
-decreased from ~1.2GB to 21.2MB)
+* Add GET operations for DeviceGroups and Network Slices.
+* Storing configuration in mongodb (separate database collection for configuration).
+* Recovering configuration in case `webui` crashes.
+* Port for the `webui` is now configurable for all NFs (it was hard-coded before).
+
+**Sctp-Lb**: Full refactoring of SCTPLB code, including the SCTP load balancing
+algorithm and its Docker image (size decreased from ~1.2GB to 21.2MB)
 
 **Config 5G**: When deploying SD-Core, all services using this client code go
 into a tight loop using 100% of a CPU thread until webui is available and
@@ -60,30 +65,28 @@ is that the service will take 5 seconds more to get configured after initial
 deployment.
 
 **gNBSim**: Several improvements were added to this component, including:
-- Add support for retransmit message
-- Add support for statistics at procedure level and transaction level
-- Add E2E latency measurements
-- Add support for Temporary Mobile Subscriber Identity (TMSI)
+
+* Add support for retransmit message
+* Add support for statistics at procedure level and transaction level
+* Add E2E latency measurements
+* Add support for Temporary Mobile Subscriber Identity (TMSI)
 
 **UPF**: The UPF was the component that has the most feature additions among all
 of the SD-Core components. Among the most relevant changes are:
-- Add GTPu path measurement/monitoring as specified in 3GPP TS 23.501
-(Release 16).
-- Enable CNDP (Cloud Native Data Plane) as another mode of operation.
-- Make `BESS` to use a newer version of DPDK (i.e., DPDK-22.11).
-- Use `JSONC` format for the UPF's configuration instead of JSON to be able to
-add comments to configuration file.
-- Mark GTP (IP) packets with the same DSCP value as the inner IP packet.
-- Fix issue with GTP Echo response.
-- Improve documentation to deploy UPF in modes (AF_PACKET, AF_XDP, CNDP, DPDK).
-- Refactor route-control script to reduce complexity and to improve readability,
-logging, error handling, and threading.
 
-**UPF (Helm Charts)**: Helm Charts for the UPF got moved from the
-`sdfabric-helm-charts` umbrella into the `sdcore-helm-charts` umbrella.
+* Add GTPu path measurement/monitoring as specified in 3GPP TS 23.501 (Release 16).
+* Enable CNDP (Cloud Native Data Plane) as another mode of operation.
+* Make `BESS` to use a newer version of DPDK (i.e., DPDK-22.11).
+* Use `JSONC` format for the UPF's configuration instead of JSON to be able to
+  add comments to configuration file.
+* Mark GTP (IP) packets with the same DSCP value as the inner IP packet.
+* Fix issue with GTP Echo response.
+* Improve documentation to deploy UPF in modes (AF_PACKET, AF_XDP, CNDP, DPDK).
+* Refactor route-control script to reduce complexity and to improve readability,
+  logging, error handling, and threading.
 
 .. note::
-    For any 3gpp release compliance refer - (:ref:`4g-compliance`) and (:ref:`5g-compliance`)
+    For any 3gpp release compliance refer to (:ref:`4g-compliance`) and (:ref:`5g-compliance`)
 
 Component Versions in the 1.4.0 Release
 ---------------------------------------
