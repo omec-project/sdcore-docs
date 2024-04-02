@@ -17,10 +17,11 @@ type of access used. Below is the summary of the features delivered in SD-Core
 Highlights
 ----------
 
-Release 1.4.0 focuses on improving the quality of the source code, adding new
-automated checks in the CI/CD pipeline, bug fixes to increase stability, and
-several improvements in the UPF. All new functionality in this release
-contributes to better support of 5G Network functionality.
+Release 1.4.0 focuses on improving the quality of the source code, migrate to
+GitHub Actions the CI/CD pipeline, add new checks to the CI/CD pipeline, bug
+fixes to increase stability, several improvements in the UPF, test functionality
+using Aether. All new functionality in this release contributes to better
+support of 5G Network functionality.
 
 **Go version**: Code-base was updated to use Go 1.21.
 
@@ -95,7 +96,7 @@ Component Versions in the 1.4.0 Release
 
 Helm Chart Versions and their component charts and containers:
 
-* sdcore-helm-chart: ``0.12.8``
+* sdcore-helm-chart: ``1.0.0``
     * omec-control-plane: ``0.12.0``
         * hssdb: ``omecproject/c3po-hssdb:master-df54425``
         * hss  : ``omecproject/c3po-hss:master-df54425``
