@@ -9,9 +9,6 @@ on:
       - master
   workflow_dispatch:
 
-env:
-  REPO_OWNER: "omec-project"
-
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -35,7 +32,7 @@ jobs:
   # CAUTION: Other actions depend on this name "tag-github"
   tag-github:
     runs-on: ubuntu-latest
-    if: github.repository_owner == env.REPO_OWNER
+    if: github.repository_owner == 'omec-project'
     outputs:
       changed: ${{ steps.version-change.outputs.changed }}
       version: ${{ steps.version-change.outputs.version }}
@@ -119,7 +116,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    if: github.repository_owner == env.REPO_OWNER
+    if: github.repository_owner == 'omec-project'
     env:
       BUILD_OUTPUT_PATH: _build/multiversion/
     steps:
