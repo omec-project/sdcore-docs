@@ -117,7 +117,7 @@ BESS UPF Slice rate Configuration
   config:
     upf:
       cfgFiles:
-        upf.json:
+        upf.jsonc:
           # Default global rate limits. Can be changed at runtime via BESS gRPC.
           slice_rate_limit_config:
             # Uplink
