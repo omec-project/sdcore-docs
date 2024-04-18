@@ -18,7 +18,7 @@ Below config is basic minimal config which has UE address pool configuration
   config:
     upf:
       cfgFiles:
-        upf.json:
+        upf.jsonc:
           mode: af_packet  #this mode means no dpdk
           hwcksum: true
           log_level: "trace"
@@ -40,7 +40,7 @@ Slice rate Configuration
   config:
     upf:
       cfgFiles:
-        upf.json:
+        upf.jsonc:
           # Default global rate limits. Can be changed at runtime via BESS gRPC.
           slice_rate_limit_config:
             # Uplink
@@ -74,5 +74,5 @@ UPF Enable dpdk & sriov
         # Provide sriov resource name when sriov is enabled
         resourceName: "intel.com/intel_sriov_vfio"
       cfgFiles:
-        upf.json:
+        upf.jsonc:
           mode: dpdk

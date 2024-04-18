@@ -179,8 +179,8 @@ step 2 - Install SRIOV device plugin
       "pods": "110"
     }
 
-step 3 - Deploy 5G core using AiaB
-'''''''''''''''''''''''''''''''''''
+step 3 - Deploy 5G core using AiaB or OnRamp
+''''''''''''''''''''''''''''''''''''''''''''
 
 Update sd-core-5g-values.yaml file parameters as follows (along with any other changes
 required with respect to the environment),
@@ -231,7 +231,7 @@ required with respect to the environment),
     +        ip: "192.168.250.3/24"
     +        gateway: "192.168.250.1"
           cfgFiles:
-            upf.json:
+            upf.jsonc:
     -          mode: af_packet  #this mode means no dpdk
     +          mode: dpdk  #this mode means no dpdk
 
