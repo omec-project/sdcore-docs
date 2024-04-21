@@ -82,7 +82,6 @@ can be found on the `SD-Core Wiki
    deployment/deployment4G.rst
    deployment/deployment5G.rst
    deployment/deploymentupf.rst
-   deployment/deploymentgnbsim.rst
    deployment/deploymentueransim.rst
 
 .. toctree::
