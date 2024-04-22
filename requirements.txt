@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
 # SPDX-License-Identifier: Apache-2.0
 
-Sphinx~=7.2
+Sphinx~=7.3
 doc8~=1.1.1
 reuse~=3.0.2
 sphinx-rtd-theme~=2.0.0
