@@ -7,7 +7,7 @@
 Aether In a Box - 5G
 ====================
 
-Previously developers used Aether in a Box (AIAB) environment to test SD-Core. But AIAB is
+Previously developers used Aether in a Box (AiaB) environment to test SD-Core. But AiaB is
 now deprecated and Aether OnRamp is suggested way for developers to install Aether.
 
 The documentation for deploying SD-Core (Private 5G) solution on a Kubernetes cluster is
