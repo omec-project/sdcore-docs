@@ -8,7 +8,7 @@ gNBSim
 ------
 
 gNBSim is the default test tool used in the SD-Core Project (Private 5G project). gNBSim documentation is available
-in the gNBSim github repository
+in the gNBSim GitHub repository
 
 * Code Repository: `gNBSim repository <https://github.com/omec-project/gnbsim>`_
 * Helm Chart Code: `github repository <https://github.com/omec-project/sdcore-helm-charts/tree/main/5g-ran-sim>`_

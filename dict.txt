@@ -133,7 +133,6 @@ gNodeB
 gNodeBs
 gc
 gerrit
-github
 gnb
 gnbs
 gnbsim
