@@ -67,7 +67,6 @@ Speedtest
 Subnet
 SupportedTAs
 Sxab
-Testpod
 Tx
 UDM
 UDR
@@ -245,9 +244,7 @@ sst
 stabilisation
 tac
 tcp
-testPod
 testcases
-testpod
 tunnelling
 udm
 udp
