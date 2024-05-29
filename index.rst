@@ -103,7 +103,6 @@ can be found on the `SD-Core Wiki
    developer/aiab.rst
    developer/aiab5g.rst
    developer/gnbsim.rst
-   developer/testpod.rst
    developer/rogue-subscriber.rst
    developer/auto-scaling-5g-nfs.rst
 
