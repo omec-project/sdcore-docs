@@ -3,7 +3,7 @@
 
 Sphinx~=7.3
 doc8~=1.1.1
-reuse~=3.0.2
+reuse~=4.0.3
 sphinx-rtd-theme~=2.0.0
 sphinxcontrib-spelling~=8.0.0
 sphinx-multiversion~=0.2.4
