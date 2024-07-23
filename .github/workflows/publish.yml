@@ -15,6 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
       - name: Build docs
         run: make html
 
@@ -121,6 +126,11 @@ jobs:
       BUILD_OUTPUT_PATH: _build/multiversion/
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
 
       - name: Build docs
         run: make multiversion

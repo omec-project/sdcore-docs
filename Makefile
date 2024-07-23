@@ -20,21 +20,21 @@ VENV_NAME      := venv-docs
 # Put it first so that "make" without argument is like "make help".
 help: $(VENV_NAME)
 	source $</bin/activate ; set -u ;\
-  $(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 # Create the virtualenv with all the tools installed
 $(VENV_NAME):
 	python3 -m venv $@ ;\
-  source $@/bin/activate ;\
-  pip install --upgrade pip \
-  pip install -r requirements.txt
+	source $@/bin/activate ;\
+	pip install --upgrade pip ;\
+	pip install -r requirements.txt
 
 # lint and link verification. linkcheck is part of sphinx
 test: license doc8 dict-check spelling linkcheck
 
 doc8: $(VENV_NAME)
 	source $</bin/activate ; set -u ;\
-  doc8 --ignore-path $< --ignore-path _build --ignore-path LICENSES --max-line-length 119
+	doc8 --ignore-path $< --ignore-path _build --ignore-path LICENSES --max-line-length 119
 
 # Words in dict.txt must be in the correct alphabetical order and must not duplicated.
 dict-check: sort-dict
@@ -48,8 +48,8 @@ sort-dict:
 
 license: $(VENV_NAME)
 	source $</bin/activate ; set -u ;\
-  reuse --version ;\
-  reuse --root . lint
+	reuse --version ;\
+	reuse --root . lint
 
 # clean up
 clean:
@@ -61,11 +61,11 @@ clean-all: clean
 # build multiple versions
 multiversion: $(VENV_NAME) Makefile
 	source $</bin/activate ; set -u ;\
-  sphinx-multiversion "$(SOURCEDIR)" "$(BUILDDIR)/multiversion" $(SPHINXOPTS)
+	sphinx-multiversion "$(SOURCEDIR)" "$(BUILDDIR)/multiversion" $(SPHINXOPTS)
 	cp "$(SOURCEDIR)/_templates/meta_refresh.html" "$(BUILDDIR)/multiversion/index.html"
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: $(VENV_NAME) Makefile
 	source $</bin/activate ; set -u ;\
-  $(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
