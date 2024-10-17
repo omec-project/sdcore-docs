@@ -5,9 +5,9 @@
 Release Process
 ===============
 
-NOTE -- On or around Oct 16, 2024, the 'master' branch was renamed to be 
-'main'.  Interpret documentation and expectations accordingly.  Not all 
-references were updated to reflect the change.  Hopefully, all build 
+NOTE -- On or around Oct 16, 2024, the 'master' branch was renamed to be
+'main'.  Interpret documentation and expectations accordingly.  Not all
+references were updated to reflect the change.  Hopefully, all build
 statements were.
 
 Prerequisites
