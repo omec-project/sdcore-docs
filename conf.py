@@ -71,8 +71,11 @@ spelling_word_list_filename=['dict.txt', ]
 prep_commands = [
 ]
 
-# include only the branches matching master and sdcore-*
-smv_branch_whitelist = r'^(master|sdcore-.*)$'
+# include only the branches matching main and sdcore-*
+# Note, we changed 'master' to 'main', so 'master' may show up repeatedly in
+# documentation.  Simply use 'main' where you expect to see 'master' branch 
+# items.
+smv_branch_whitelist = r'^(main|sdcore-.*)$'
 
 # Don't include any tags - smv docs say you can put None here, but that is broken
 # https://github.com/Holzhaus/sphinx-multiversion/issues/47

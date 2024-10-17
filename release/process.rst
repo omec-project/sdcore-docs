@@ -5,6 +5,11 @@
 Release Process
 ===============
 
+NOTE -- On or around Oct 16, 2024, the 'master' branch was renamed to be
+'main'.  Interpret documentation and expectations accordingly.  Not all
+references were updated to reflect the change.  Hopefully, all build
+statements were.
+
 Prerequisites
 -------------
 
@@ -36,7 +41,7 @@ All docker images are tagged based on their git tags.
 
 * For released versions, the CI system should prevent a Dockerfile from
   referencing a parent containers that are a moving target, such as ``latest``
-  or ``master``.
+  or ``main``.
 
   * This allows a container to be rebuilt given an arbitrary git commit with
     fair confidence that it will result in the same code in the container.
