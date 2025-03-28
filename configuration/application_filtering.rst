@@ -70,7 +70,7 @@ Each application filter in the network slice can have action either ``permit`` o
                 endpoint: "10.0.0.0/8"
                 protocol: 6
                 dest-port-start: 20005
-                dest-port-end : 20005
+                dest-port-end: 20005
                 traffic-class:
                   name: “platinum”
                   qci: 9
@@ -79,11 +79,11 @@ Each application filter in the network slice can have action either ``permit`` o
                   pelr: 6
               - rule-name: “deny-private-2”
                 priority: 251
-                action : permit
+                action: permit
                 endpoint: "172.16.0.0/16"
                 protocol: 6
                 dest-port-start: 20005
-                dest-port-end : 20005
+                dest-port-end: 20005
                 traffic-class:
                   name: “platinum”
                   qci: 9
