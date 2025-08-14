@@ -44,7 +44,7 @@ can be found on the `SD-Core Wiki
 - Stay in touch by joining
 
   - `SD-Core mailing list <https://groups.google.com/a/opennetworking.org/g/sdcore-announce>`_
-  - \#sdcore-dev channel in `ONF Community Slack <https://onf-community.slack.com>`_
+  - \#sdcore-dev channel in `Aether Community Slack <https://aether5g-project.slack.com>`_
 
 
 .. toctree::

@@ -24,15 +24,6 @@ of the test frameworks used:
   :height: 540
   :alt: Aether Overview Diagram
 
-.. list-table:: Test Frameworks
-  :widths: 5 3
-  :header-rows: 1
-
-  * - Aether Core Component
-    - Test Framework
-  * - SD-Core
-    - `NG40/NG4T <https://www.viavisolutions.com/en-us/ng4t>`_
-
 Test Automation
 ---------------
 
