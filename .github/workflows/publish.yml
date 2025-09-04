@@ -139,7 +139,7 @@ jobs:
         run: ls $BUILD_OUTPUT_PATH*
 
       - name: rsync deployments
-        uses: burnett01/rsync-deployments@7.0.2
+        uses: burnett01/rsync-deployments@7.1.0
         with:
           switches: -rvzh --delete-after --exclude=.git
           path: $BUILD_OUTPUT_PATH
