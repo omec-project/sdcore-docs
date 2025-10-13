@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024 Intel Corporation
+
+name: Publish Docs Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  validate:
+    uses: omec-project/.github/.github/workflows/validate.yml@main
+    with:
+      branch_name: ${{ github.ref }}
+
+  tag-github:
+    uses: omec-project/.github/.github/workflows/tag-github.yml@main
+    secrets: inherit
+
+  update-version:
+    needs: tag-github
+    uses: omec-project/.github/.github/workflows/update-version.yml@main
+    with:
+      changed: ${{ needs.tag-github.outputs.changed }}
+      version: ${{ needs.tag-github.outputs.version }}
+    secrets: inherit
+
+  publish:
+    if: github.repository_owner == 'omec-project'
+    uses: omec-project/.github/.github/workflows/publish-docs.yml@main
+    secrets: inherit
+    with:
+      branch_name: ${{ github.ref }}
