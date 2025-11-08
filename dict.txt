@@ -120,6 +120,7 @@ eNBID
 eNBs
 eNodeB
 eb
+emptyDir
 eno
 epc
 equipments
@@ -267,5 +268,3 @@ webconsole
 webhooks
 webui
 yaml
-
-emptyDir
