@@ -10,7 +10,7 @@ feature for debugging parse errors in the ``pfcp-agent`` container.
 
 
 Use transient storage (empty dir)
---------------------------------
+--------------------------------------------------
 
 .. code-block:: yaml
 
@@ -29,7 +29,7 @@ the runtime will prune files when the directory exceeds ``maxBytes`` or
 ``maxFiles``.
 
 Use persistent storage (PVC)
-----------------------------
+-----------------------------------------------
 
 .. code-block:: yaml
 
