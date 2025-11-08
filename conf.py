@@ -257,6 +257,10 @@ linkcheck_ignore = [
     r'https://jenkins.aetherproject.org/.*',
     r'https://gerrit.opencord.org/.*',
     r'https://wiki.opennetworking.org/.*',
+    # Opennetworking.org currently returns certificate verification errors in CI
+    # (expired/invalid cert). Ignore their domain temporarily to avoid linkcheck
+    # failures. Replace or re-enable checks when upstream fixes their cert.
+    r'https?://opennetworking\.org/.*',
 ]
 
 linkcheck_timeout = 3
