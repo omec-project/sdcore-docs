@@ -9,6 +9,9 @@ Below you may find some of the upf override configuration.
 
 Bess default values `can be found here <https://github.com/omec-project/sdcore-helm-charts/blob/main/bess-upf/values.yaml>`_
 
+For an example of enabling PFCP raw-dump (values.yaml snippets) for the
+``pfcp-agent`` see :doc:`pfcp-dump-examples`.
+
 UPF Address Pool
 -----------------
 
