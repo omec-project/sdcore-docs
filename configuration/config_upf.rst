@@ -9,14 +9,10 @@ Below you may find some of the upf override configuration.
 
 Bess default values `can be found here <https://github.com/omec-project/sdcore-helm-charts/blob/main/bess-upf/values.yaml>`_
 
-For an example of enabling PFCP raw-dump (values.yaml snippets) for the
-``pfcp-agent`` see the "PFCP Dump Examples" section below.
-
-
 PFCP Dump Examples
 ------------------
 
-This file contains example ``values.yaml`` snippets to enable the PFCP raw-dump
+This contains ``values.yaml`` snippets to enable the PFCP raw-dump
 feature for debugging parse errors in the ``pfcp-agent`` container.
 
 
