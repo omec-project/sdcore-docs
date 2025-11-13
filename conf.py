@@ -257,6 +257,7 @@ linkcheck_ignore = [
     r'https://jenkins.aetherproject.org/.*',
     r'https://gerrit.opencord.org/.*',
     r'https://wiki.opennetworking.org/.*',
+    r'https?://opennetworking\.org/.*',
 ]
 
 linkcheck_timeout = 3

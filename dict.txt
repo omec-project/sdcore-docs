@@ -120,6 +120,7 @@ eNBID
 eNBs
 eNodeB
 eb
+emptyDir
 eno
 epc
 equipments
