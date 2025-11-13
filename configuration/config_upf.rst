@@ -15,9 +15,8 @@ PFCP Dump Examples
 This contains ``values.yaml`` snippets to enable the PFCP raw-dump
 feature for debugging parse errors in the ``pfcp-agent`` container.
 
-
 Use transient storage (empty dir)
---------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: yaml
 
@@ -36,7 +35,7 @@ the runtime will prune files when the directory exceeds ``maxBytes`` or
 ``maxFiles``.
 
 Use persistent storage (PVC)
------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: yaml
 
@@ -57,7 +56,7 @@ This configuration will cause the chart to create a PersistentVolumeClaim named
 the configured ``dir``.
 
 Notes
------
+^^^^^
 
 - ``maxBytes`` and ``maxFiles`` are enforced by the UPF process (pruning).
   Set either to ``0`` to disable that limit.
