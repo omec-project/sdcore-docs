@@ -247,7 +247,7 @@ To test device can attach to Aether network
 |   connected on the status, depending on      |                                    |
 |   the device it will show "Aether" or        |                                    |
 |   "MCCMNC" format.                           |                                    |
-|4. Browse https://www.google.com/?             |( )YES  ( )NO                       |
+|4. Browse https://www.google.com/?            |( )YES  ( )NO                       |
 |   From the device web browser                |                                    |
 |                                              |Comments:                           |
 +----------------------------------------------+------------------------------------+
@@ -265,7 +265,7 @@ To test device can detach/disconnected by user initiation
 |                                              |disconnect from the internet/Aether |
 |2. Deselect the network (or forget the network|Network                             |
 |   , depending on device configuration)       |                                    |
-|3. Try to browse https://www.google.com/?      |( )YES  ( )NO                       |
+|3. Try to browse https://www.google.com/?     |( )YES  ( )NO                       |
 |   From your web browser                      |                                    |
 |                                              |Comments:                           |
 +----------------------------------------------+------------------------------------+
