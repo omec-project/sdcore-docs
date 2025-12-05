@@ -1,7 +1,8 @@
-..
-   SPDX-FileCopyrightText: 2022-present Intel Corporation
-   SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
-   SPDX-License-Identifier: Apache-2.0
+<!--
+SPDX-FileCopyrightText: 2022-present Intel Corporation
+SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
+SPDX-License-Identifier: Apache-2.0
+-->
 
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/omec-project/sdcore-docs/badge)](https://scorecard.dev/viewer/?uri=github.com/omec-project/sdcore-docs)
 
