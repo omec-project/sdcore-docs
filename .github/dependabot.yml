@@ -11,6 +11,10 @@ updates:
       day: "wednesday"
       time: "21:00"
       timezone: "America/Los_Angeles"
+    groups:
+      actions-deps:
+        patterns:
+          - "*"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -19,15 +23,3 @@ updates:
       day: "wednesday"
       time: "21:00"
       timezone: "America/Los_Angeles"
-
-  - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: "weekly"
-      day: "wednesday"
-      time: "21:00"
-      timezone: "America/Los_Angeles"
-    groups:
-      actions-deps:
-        patterns:
-          - "*"
