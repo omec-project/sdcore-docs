@@ -73,7 +73,7 @@ prep_commands = [
 
 # include only the branches matching main and sdcore-*
 # Note, we changed 'master' to 'main', so 'master' may show up repeatedly in
-# documentation.  Simply use 'main' where you expect to see 'master' branch 
+# documentation. Simply use 'main' where you expect to see 'master' branch
 # items.
 smv_branch_whitelist = r'^(main|sdcore-.*)$'
 
@@ -268,7 +268,6 @@ linkcheck_retries = 2
 intersphinx_mapping = {
     'sphinx': ('https://www.sphinx-doc.org/en/master', None),
     'aether': ('https://docs.aetherproject.org/master', None),
-    'onf': ('https://docs.opennetworking.org/', None),
     'sysapproach5g': ('https://5g.systemsapproach.org/', None),
     'sysapproachnet': ('https://book.systemsapproach.org/', None),
     'sysapproachsdn': ('https://sdn.systemsapproach.org/', None),
