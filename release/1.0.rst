@@ -82,8 +82,8 @@ For various testing related details refer (see :ref:`sdcore-testing`)
 Documentation
 -------------
 
-SD-Core documentation is available at `docs.sd-core.opennetworking.org
-<https://docs.sd-core.opennetworking.org>`_
+SD-Core documentation is available at `docs.sd-core.aetherproject.org
+<https://docs.sd-core.aetherproject.org>`_
 
 
 Known Issues and Limitations

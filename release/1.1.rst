@@ -19,7 +19,7 @@ Highlights
 helm charts and aether-in-a-box is available to all the community members. Press release about
 this can be found at this `link <https://opennetworking.org/news-and-events/press-releases/onfs-leading-private-5g-connected-edge-platform-aether-now-released-to-open-source/>`_.
 
-**5G small cell integration**: While SD-Core’s 5G-SA mobile core has previously been demonstrated to
+**5G small cell integration**: While SD-Core's 5G-SA mobile core has previously been demonstrated to
 work with 5G-SA RAN nodes (particularly in the `DT SD-RAN trial <https://www.youtube.com/watch?v=1Xc6kt0CXzI&ab_channel=OpenNetworkingFoundation>`_),
 this is the first release with support for 5G small-cells from T&W running Radisys 5G-SA RAN stack.
 Furthermore this release includes integration with both `Aether ROC <https://docs.aetherproject.org/master/release/2.0.html>`_ and
@@ -29,7 +29,7 @@ features, details of which can be found in the respective release notes.
 
 **Policy framework to support QoS at multiple levels**: SD-Core makes use of policy network
 function (PCF/PCRF) to enforce QoS decisions on subscriber sessions. Policies are configured
-per network slice using SD-Core’s configuration interface.  PCF/PCRF binds those policies to
+per network slice using SD-Core's configuration interface.  PCF/PCRF binds those policies to
 the subscribers. Operators can use configuration APIs to assign UE level QoS, per application
 QoS and also slice level QoS. In SD-Core 1.1 release subscriber policies (QoS & application
 filtering) are integrated in the 5G core network.
@@ -38,7 +38,7 @@ filtering) are integrated in the 5G core network.
 **Application Filtering Support**: Network slicing, when extended end-to-end to include
 applications, gives the network-operator the capability to apply access control. The operator
 can deploy multiple applications at the edge or in the public-cloud, and can restrict the users
-from accessing applications that are not allocated to the user’s slice. This adds an extra layer
+from accessing applications that are not allocated to the user's slice. This adds an extra layer
 of isolation in edge app deployments. SD-Core supports up to 5 application configurations per
 slice. Application filtering supports usage of port ranges and as well as Subnet configuration.
 
@@ -146,5 +146,5 @@ For various testing related details refer (see :ref:`sdcore-testing`)
 Documentation
 -------------
 
-SD-Core documentation is available at `docs.sd-core.opennetworking.org
-<https://docs.sd-core.opennetworking.org>`_
+SD-Core documentation is available at `docs.sd-core.aetherproject.org
+<https://docs.sd-core.aetherproject.org>`_
