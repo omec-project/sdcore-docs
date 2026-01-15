@@ -22,7 +22,7 @@ jobs:
       security-events: write
       id-token: write
       attestations: write
-    uses: omec-project/.github/.github/workflows/make-target-reuse.yml@23e0adf45c41d1564468697ae12bae734510e388 # v0.0.4
+    uses: omec-project/.github/.github/workflows/make-target-reuse.yml@313f90fdb8e4b93d4c3968c0b88f217fe84de9b8 # v0.0.5
     with:
       branch_name: ${{ github.ref }}
       target: doc8
@@ -33,7 +33,7 @@ jobs:
       checks: write
       id-token: write
       attestations: write
-    uses: omec-project/.github/.github/workflows/make-target-reuse.yml@23e0adf45c41d1564468697ae12bae734510e388 # v0.0.4
+    uses: omec-project/.github/.github/workflows/make-target-reuse.yml@313f90fdb8e4b93d4c3968c0b88f217fe84de9b8 # v0.0.5
     with:
       branch_name: ${{ github.ref }}
       target: spelling
@@ -44,7 +44,7 @@ jobs:
       checks: write
       id-token: write
       attestations: write
-    uses: omec-project/.github/.github/workflows/make-target-reuse.yml@23e0adf45c41d1564468697ae12bae734510e388 # v0.0.4
+    uses: omec-project/.github/.github/workflows/make-target-reuse.yml@313f90fdb8e4b93d4c3968c0b88f217fe84de9b8 # v0.0.5
     with:
       branch_name: ${{ github.ref }}
       target: linkcheck
@@ -54,7 +54,7 @@ jobs:
       contents: read
       id-token: write
       attestations: write
-    uses: omec-project/.github/.github/workflows/license-check.yml@23e0adf45c41d1564468697ae12bae734510e388 # v0.0.4
+    uses: omec-project/.github/.github/workflows/license-check.yml@313f90fdb8e4b93d4c3968c0b88f217fe84de9b8 # v0.0.5
     with:
       branch_name: ${{ github.ref }}
 
@@ -64,7 +64,7 @@ jobs:
       security-events: write
       id-token: write
       attestations: write
-    uses: omec-project/.github/.github/workflows/fossa-scan.yml@23e0adf45c41d1564468697ae12bae734510e388 # v0.0.4
+    uses: omec-project/.github/.github/workflows/fossa-scan.yml@313f90fdb8e4b93d4c3968c0b88f217fe84de9b8 # v0.0.5
     with:
       branch_name: ${{ github.ref }}
 
@@ -87,6 +87,6 @@ jobs:
       repository-projects: read
       security-events: write
       statuses: read
-    uses: omec-project/.github/.github/workflows/scorecard-analysis.yml@23e0adf45c41d1564468697ae12bae734510e388 # v0.0.4
+    uses: omec-project/.github/.github/workflows/scorecard-analysis.yml@313f90fdb8e4b93d4c3968c0b88f217fe84de9b8 # v0.0.5
     with:
       branch_name: ${{ github.ref }}
