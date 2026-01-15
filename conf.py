@@ -315,6 +315,3 @@ intersphinx_mapping = {
     'sysapproachnet': ('https://book.systemsapproach.org/', None),
     'sysapproachsdn': ('https://sdn.systemsapproach.org/', None),
     }
-
-def setup(app):
-    pass
