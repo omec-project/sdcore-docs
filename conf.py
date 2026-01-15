@@ -177,6 +177,19 @@ html_css_files = [
     'css/furo_custom.css',  # Custom CSS for SD-Core branding
 ]
 
+# -- GitHub Pages configuration ----------------------------------------------
+
+# GitHub Pages specific settings
+if os.environ.get('GITHUB_ACTIONS'):
+    # Running in GitHub Actions
+    html_baseurl = os.environ.get('GITHUB_PAGES_URL', '')
+
+    # Set the canonical URL for better SEO
+    if html_baseurl:
+        html_theme_options.update({
+            "announcement": f"📖 You are viewing SD-Core Documentation v{version} | <a href='{html_baseurl}'>Latest Versions</a>",
+        })
+
 # Version information in the sidebar
 html_context = {
     'display_github': True,
@@ -186,6 +199,7 @@ html_context = {
     'conf_py_path': '/',
     'source_suffix': '.rst',
     'current_version': version,
+    'edit_page': True,
 }
 
 # Custom sidebar templates, must be a dictionary that maps document names
