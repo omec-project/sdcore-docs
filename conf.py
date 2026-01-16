@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2026 Intel Corporation
 # SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
 # SPDX-License-Identifier: Apache-2.0
 
@@ -5,9 +6,8 @@
 #
 # Configuration file for the Sphinx documentation builder.
 #
-# This file does only contain a selection of the most common options. For a
-# full list see the documentation:
-# http://www.sphinx-doc.org/en/master/config
+# For the full list of built-in configuration values, see the documentation:
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Path setup --------------------------------------------------------------
 
@@ -26,6 +26,7 @@ def get_version():
         return f.read().strip()
 
 # -- Project information -----------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = u'SD-Core Docs'
 copyright = u'2021-current, Open Networking Foundation'
@@ -58,7 +59,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.todo',
     'sphinxcontrib.spelling',
-    "sphinx_multiversion",
+    'sphinx.ext.githubpages',
 ]
 
 # require document prefix on section labels
@@ -67,25 +68,9 @@ autosectionlabel_prefix_document = True
 # Text files with lists of words that shouldn't fail the spellchecker:
 spelling_word_list_filename=['dict.txt', ]
 
-# sphinx-multiversion prep, run in each versioned source directory
-prep_commands = [
-]
-
-# include only the branches matching main and sdcore-*
-# Note, we changed 'master' to 'main', so 'master' may show up repeatedly in
-# documentation. Simply use 'main' where you expect to see 'master' branch
-# items.
-smv_branch_whitelist = r'^(main|sdcore-.*)$'
-
-# Don't include any tags - smv docs say you can put None here, but that is broken
-# https://github.com/Holzhaus/sphinx-multiversion/issues/47
-smv_tag_whitelist = r'notags'
-
-# include all remote branches
-smv_remote_whitelist = r'^.*$'
-
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -125,24 +110,97 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 
+# Furo theme configuration
+html_title = f"{project} Documentation"
 html_logo = '_static/sdcore.svg'
-
 html_favicon = '_static/sdcore-favicon-128.png'
 
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#
+# Furo theme options
 html_theme_options = {
-    'logo_only': True
+    # Hide the project name in sidebar since we have a logo
+    "sidebar_hide_name": True,
+
+    # Custom color scheme for SD-Core branding
+    "light_css_variables": {
+        "color-brand-primary": "#1f5582",  # SD-Core blue
+        "color-brand-content": "#1f5582",
+        "color-admonition-background": "transparent",
+        "font-stack": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
+        "font-stack--monospace": "Consolas, Monaco, 'Courier New', Courier, monospace",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#4a9eff",  # Lighter blue for dark mode
+        "color-brand-content": "#4a9eff",
+    },
+
+    # Footer configuration
+    "footer_icons": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/omec-project",
+            "html": """
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            """,
+            "class": "",
+        },
+        {
+            "name": "Aether Project",
+            "url": "https://aetherproject.org/",
+            "html": """
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                </svg>
+            """,
+            "class": "",
+        },
+    ],
+
+    # Navigation configuration
+    "navigation_with_keys": True,
+    "top_of_page_button": "edit",
+
+    # Version announcement (can be used for version info)
+    "announcement": f"📖 You are viewing SD-Core Documentation v{version}",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# Custom CSS files for Furo theme customization
+html_css_files = [
+    'css/furo_custom.css',  # Custom CSS for SD-Core branding
+]
+
+# -- GitHub Pages configuration ----------------------------------------------
+
+# GitHub Pages specific settings
+if os.environ.get('GITHUB_ACTIONS'):
+    # Running in GitHub Actions
+    html_baseurl = os.environ.get('GITHUB_PAGES_URL', '')
+
+    # Set the canonical URL for better SEO
+    if html_baseurl:
+        html_theme_options.update({
+            "announcement": f"📖 You are viewing SD-Core Documentation v{version} | <a href='{html_baseurl}'>Latest Versions</a>",
+        })
+
+# Version information in the sidebar
+html_context = {
+    'display_github': True,
+    'github_user': 'omec-project',
+    'github_repo': 'sdcore-docs',
+    'github_version': 'main',
+    'conf_py_path': '/',
+    'source_suffix': '.rst',
+    'current_version': version,
+    'edit_page': True,
+}
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -232,7 +290,6 @@ epub_exclude_files = ['search.html']
 # -- Extension configuration -------------------------------------------------
 
 # blockdiag/etc. config
-
 rackdiag_antialias = True
 rackdiag_html_image_format = "SVG"
 rackdiag_fontpath = [
@@ -272,7 +329,3 @@ intersphinx_mapping = {
     'sysapproachnet': ('https://book.systemsapproach.org/', None),
     'sysapproachsdn': ('https://sdn.systemsapproach.org/', None),
     }
-
-def setup(app):
-
-    app.add_css_file('css/rtd_theme_mods.css')
