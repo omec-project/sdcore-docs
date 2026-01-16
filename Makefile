@@ -24,6 +24,9 @@ VERSION_TAGS   := $(shell git tag --sort=-version:refname | head -3)
 # Temporary directory for git worktrees
 WORKTREE_DIR   := $(BUILDDIR)/worktrees
 
+# Use variable for file location
+VERSION_INDEX_TEMPLATE = _templates/version_index.html
+
 .PHONY: help Makefile test doc8 dict-check sort-dict license clean clean-all \
         multiversion add-nojekyll create-version-index version-info clean-worktrees
 
@@ -138,11 +141,11 @@ multiversion: $(VENV_NAME) Makefile clean-worktrees
 create-version-index:
 	@echo "Creating version index page..."
 	@mkdir -p "$(BUILDDIR)/multiversion"
-	@if [ ! -f "_templates/version-index.html" ]; then \
-		echo "Error: Template file _templates/version-index.html not found"; \
+	@if [ ! -f "$(VERSION_INDEX_TEMPLATE)" ]; then \
+		echo "Error: Template file $(VERSION_INDEX_TEMPLATE) not found"; \
 		exit 1; \
 	fi
-	@cp "_templates/version-index.html" "$(BUILDDIR)/multiversion/index.html"
+	@cp "$(VERSION_INDEX_TEMPLATE)" "$(BUILDDIR)/multiversion/index.html"
 	@if [ -n "$(VERSION_TAGS)" ]; then \
 		version_cards="" ;\
 		for tag in $(VERSION_TAGS); do \
