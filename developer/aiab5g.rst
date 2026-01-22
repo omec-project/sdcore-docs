@@ -11,5 +11,5 @@ Previously developers used Aether in a Box (AiaB) environment to test SD-Core. B
 now deprecated and Aether OnRamp is suggested way for developers to install Aether.
 
 The documentation for deploying SD-Core (Private 5G) solution on a Kubernetes cluster is
-located in `Aether OnRamp <https://docs.aetherproject.org/master/onramp/overview.html>`_,
+located in `Aether OnRamp <https://docs.aetherproject.org/onramp/overview.html>`_,
 where specifics about setting up Aether 5G, running 5G test, troubleshooting, and other details are described.
