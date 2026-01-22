@@ -267,7 +267,7 @@ linkcheck_retries = 2
 
 intersphinx_mapping = {
     'sphinx': ('https://www.sphinx-doc.org/en/master', None),
-    'aether': ('https://docs.aetherproject.org/master', None),
+    'aether': ('https://docs.aetherproject.org/', None),
     'sysapproach5g': ('https://5g.systemsapproach.org/', None),
     'sysapproachnet': ('https://book.systemsapproach.org/', None),
     'sysapproachsdn': ('https://sdn.systemsapproach.org/', None),
