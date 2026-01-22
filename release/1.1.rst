@@ -22,7 +22,7 @@ this can be found at this `link <https://opennetworking.org/news-and-events/pres
 **5G small cell integration**: While SD-Core's 5G-SA mobile core has previously been demonstrated to
 work with 5G-SA RAN nodes (particularly in the `DT SD-RAN trial <https://www.youtube.com/watch?v=1Xc6kt0CXzI&ab_channel=OpenNetworkingFoundation>`_),
 this is the first release with support for 5G small-cells from T&W running Radisys 5G-SA RAN stack.
-Furthermore this release includes integration with both `Aether ROC <https://docs.aetherproject.org/master/release/2.0.html>`_ and
+Furthermore this release includes integration with both `Aether ROC <https://docs.aetherproject.org/onramp/roc.html>`_ and
 `SD-Fabric P4-UPF <https://docs.sd-fabric.org/master/release/1.1.0.html>`_ for 5G
 features, details of which can be found in the respective release notes.
 
