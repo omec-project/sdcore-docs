@@ -58,11 +58,10 @@ clean:
 clean-all: clean
 	rm -rf $(VENV_NAME)
 
-# build multiple versions
+# build docs (compatibility target for CI workflow)
 multiversion: $(VENV_NAME) Makefile
 	source $</bin/activate ; set -u ;\
-	sphinx-multiversion "$(SOURCEDIR)" "$(BUILDDIR)/multiversion" $(SPHINXOPTS)
-	cp "$(SOURCEDIR)/_templates/meta_refresh.html" "$(BUILDDIR)/multiversion/index.html"
+	$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/multiversion" $(SPHINXOPTS)
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
