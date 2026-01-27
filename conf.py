@@ -58,7 +58,6 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.todo',
     'sphinxcontrib.spelling',
-    "sphinx_multiversion",
 ]
 
 # require document prefix on section labels
@@ -66,23 +65,6 @@ autosectionlabel_prefix_document = True
 
 # Text files with lists of words that shouldn't fail the spellchecker:
 spelling_word_list_filename=['dict.txt', ]
-
-# sphinx-multiversion prep, run in each versioned source directory
-prep_commands = [
-]
-
-# include only the branches matching main and sdcore-*
-# Note, we changed 'master' to 'main', so 'master' may show up repeatedly in
-# documentation. Simply use 'main' where you expect to see 'master' branch
-# items.
-smv_branch_whitelist = r'^(main|sdcore-.*)$'
-
-# Don't include any tags - smv docs say you can put None here, but that is broken
-# https://github.com/Holzhaus/sphinx-multiversion/issues/47
-smv_tag_whitelist = r'notags'
-
-# include all remote branches
-smv_remote_whitelist = r'^.*$'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
