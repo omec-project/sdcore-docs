@@ -49,6 +49,7 @@ jobs:
       contents: write
       actions: read
       id-token: write
+      pages: write
     uses: omec-project/.github/.github/workflows/publish-docs.yml@64e827412bb394b5458ef48b4e178fc1c702678a # v0.0.10
     secrets: inherit
     with:
