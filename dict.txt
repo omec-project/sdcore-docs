@@ -27,6 +27,7 @@ HSS
 Haswell
 Homebrew
 IDmap
+IPv
 Keepalive
 Kubernetes
 LTE
@@ -101,6 +102,7 @@ configurability
 cpu
 customProfile
 customProfiles
+datapath
 dataplane
 de
 defaultAs

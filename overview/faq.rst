@@ -2,45 +2,50 @@
    SPDX-FileCopyrightText: © 2020 Open Networking Foundation <support@opennetworking.org>
    SPDX-License-Identifier: Apache-2.0
 
-FAQs
-====
+Frequently Asked Questions
+==========================
 
-    * **Does SD-Core support for roaming architecture?**
+**Does SD-Core support roaming architecture?**
 
-      *SD-Core is primarily focused for private 5G  & private LTE use cases and*
-      *hence roaming aspects of architecture are not supported.*
+   SD-Core is primarily focused on private 5G and private LTE use cases, and
+   therefore roaming aspects of the architecture are not currently supported.
 
-    * **Does SD-Core support charging functionality or CHF (charging network function)?**
+**Does SD-Core support charging functionality or CHF (Charging Network Function)?**
 
-        *SD-Core is primarily focussed for private 5G & private LTE use cases and*
-        *hence charging related aspects are not supported.*
+   SD-Core is primarily focused on private 5G and private LTE use cases, and
+   therefore charging-related aspects are not currently supported.
 
-    * **Is SD-Core/5G-Core cloud native?**
+**Is SD-Core/5G-Core cloud native?**
 
-        *SD-Core is not cloud native, but it runs in K8s environment.*
-        *As per road map AMF, SMF will be cloud native by the Q3 of 2022. This is WIP.*
+   SD-Core components are designed to run in Kubernetes environments with cloud-native
+   principles including containerization, scalability, and dynamic configuration.
 
-    * **What are the changes omec 5G has on top of free5gc?**
+**What is SD-Core's relationship with free5GC?**
 
-        * Configuration APIs to configure all network functions
-        * QoS support at default flow and per application flow
-        * 5000 subscribers with 10 calls per second stability achieved (Single Instance)
-        * Error cases with UPF connectivity fixed
-        * Error case of no response or message retransmission towards UPF
-        * Error cases with Network functions restarts fixed
-        * Stability issues on NGAP interfaces and N1 interfaces fixed
-        * 100+ code commits to achieve code stability
-        * 3gpp compliance of 5G core is added in SD core documentation
-        * per UE FSM in AMF & SMF
-        * Transaction support in AMF & SMF
-        * UE address allocation by UPF support at SMF
-        * **There are many more changes done and above are just high level summary**
-        * Go through `google document link <https://docs.google.com/document/d/1B4WQdgK5QwLcsmgg9qMRP0lupawVzh1F8N5YjTpLBCM/edit#>`_ to get more details about changes.
+   SD-Core's 5G control plane leverages seed code from the free5GC project, upon which
+   the SD-Core community has implemented numerous architectural enhancements and optimizations.
+   Key improvements include:
 
-    * **Network Performance Testing of SD-Core**
+   - Configuration APIs to configure all network functions
+   - QoS support for default flows and per-application flows
+   - Stability improvements supporting 5000 subscribers with 10 calls per second
+     (single instance)
+   - Fixed error cases related to UPF connectivity
+   - Improved handling of message retransmission and timeout scenarios with UPF
+   - Enhanced stability during network function restarts
+   - Stability improvements on NGAP and N1 interfaces
+   - Over 100 code commits focused on stability improvements
+   - 3GPP compliance documentation for 5G core
+   - Per-UE Finite State Machine (FSM) in AMF and SMF
+   - Transaction support in AMF and SMF
+   - UE address allocation by UPF support in SMF
 
-        *No performance results available. Limited scale testing is performed to check*
-        *the control plane subscriber capacity and  transaction rate. But still its not*
-        *formal enough to share with wider community. Watch out for release notes and testing
-        *section to get current performance results*
+   This is a high-level summary. For more details, see the
+   `detailed changes document <https://docs.google.com/document/d/1B4WQdgK5QwLcsmgg9qMRP0lupawVzh1F8N5YjTpLBCM/edit#>`_.
+
+**What about network performance testing of SD-Core?**
+
+   Limited scale testing has been performed to evaluate control plane subscriber capacity
+   and transaction rates. Formal performance results will be published in the release notes
+   and testing sections as they become available.
 
