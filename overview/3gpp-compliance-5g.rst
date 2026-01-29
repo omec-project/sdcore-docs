@@ -28,10 +28,10 @@ High Level Summary
     * N8, N10, N13, N21, N35, N36, N37
 
 * NF supported
-    * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF
+    * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF, N3IWF
 
 * NF not supported
-    * NEF, NWDAF, CHF, N3IWF, UDSF, AF
+    * NEF, NWDAF, CHF, UDSF, AF
 
 * High Level Features supported
     * UE Registration
@@ -48,7 +48,6 @@ High Level Summary
     * Location Based Services
     * Inter NG-RAN node N2 based handover
     * TSN ( Time Sensitive Networking)
-    * Non-3gpp access
 
 
 SMF Compliance

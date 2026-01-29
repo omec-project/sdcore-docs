@@ -5,22 +5,22 @@
 SD-Core as a Cloud Managed Service
 ==================================
 
-    * SD-Core is a flexible, agile, scalable and configurable dual-mode 4G/5G core
-      network platform that builds upon and enhances ONF’s OMEC and free 5GC core
-      network platforms to support LTE, 5G NSA and 5G SA services.
+    * SD-Core is a flexible, agile, scalable, and configurable dual-mode 4G/5G core
+      network platform that builds upon and enhances ONF's OMEC and free5GC core
+      network platforms to support LTE, 5G NSA, and 5G SA services.
 
-    * The SD-Core control plane provides the flexibility of simultaneous supports
-      for 5G standalone, 5G non-standalone and 4G/LTE deployments.
+    * The SD-Core control plane provides the flexibility to simultaneously support
+      5G standalone, 5G non-standalone, and 4G/LTE deployments.
 
     * SD-Core provides a rich set of APIs to Runtime Operation Control (ROC).
 
-        * Operators can use these APIs to provision the subscribers in the mobile core
-          and their associated access and connectivity policies.
-        * Control runtime configuration of network functions e.g. management of Network slices
-        * ROC includes built-in adapters for SD-Core to translate its monitoring and configuration
-          APIs to customer and operator portals as well as third-party applications with corresponding
-          levels of abstraction. Third party applications can leverage telemetry data to create
-          applications for closed loop control.
+        * Operators can use these APIs to provision subscribers in the mobile core
+          and their associated access and connectivity policies
+        * Control runtime configuration of network functions (e.g., management of network slices)
+        * ROC includes built-in adapters for SD-Core to translate its monitoring and
+          configuration APIs to customer and operator portals as well as third-party applications
+        * Third-party applications can leverage telemetry data to create applications for
+          closed-loop control
 
 .. image:: ../_static/images/SD-Core-Architecture.png
   :width: 700px
@@ -33,9 +33,9 @@ SD-Core architecture enables the following distinct features:
       external networks and systems (e.g., RAN, communication services, etc.). As such,
       components can be consumed independently and be used as part of a multi-vendor
       mobile core deployment.
-    - SD-Core’s 5G core control plane functions leverage seed code from the free5GC project,
+    - SD-Core's 5G core control plane functions leverage seed code from the free5GC project,
       upon which the SD-Core community has implemented numerous architectural changes that
-      are integrated and optimized with SD-Core’s set of UPF solutions along with several
+      are integrated and optimized with SD-Core's BESS-UPF implementation along with several
       new features
     - The solution enables 4G, 5G Standalone (SA) and 5G Non-Standalone (NSA) connectivity.
     - The architecture is fully disaggregated, composed of containerized components. Helm charts are
@@ -44,9 +44,9 @@ SD-Core architecture enables the following distinct features:
     - The solution is consumable as a cloud-managed service.
     - All interfaces are designed to be robust in order to handle all network errors including but
       not limited to packet loss, peer network function failure, and duplicate packets.
-    - SD-Core’s 4G Core is designed to have a CUPS (Control-User Plane Separation) compliant architecture and
+    - SD-Core's 4G Core is designed to have a CUPS (Control-User Plane Separation) compliant architecture and
       uses the 3GPP Packet Forwarding Control Protocol (PFCP) to implement CUPS
-    - SD-Core’s 4G control plane has been enhanced to provide functional support for 5G Nonstandalone
+    - SD-Core's 4G control plane has been enhanced to provide functional support for 5G Nonstandalone
       operation with compliant eNBs and gNBs as per 3GPP specifications. 5G NSA related enhancements
       include support of the extended bearer rates on required interfaces as well as the 5G NSA attributes
       in the HSS.
@@ -54,18 +54,21 @@ SD-Core architecture enables the following distinct features:
 .. image:: ../_static/images/Sd-Core-NFs.png
   :width: 700px
 
-Multiple Distributed User Planes
---------------------------------
+User Plane Function (UPF)
+--------------------------
 
-SD-Core has two User Plane Functions (UPFs) designed to be deployed throughout
-the network edge. Each UPF is optimized to handle specific classes of application
-and take advantage of various hardware acceleration options. Deployments can
-intermix the UPF variants.
+SD-Core provides a software-based User Plane Function (UPF) designed to be deployed throughout
+the network edge. The UPF is optimized to handle various classes of applications and supports
+multiple hardware acceleration options.
 
-    * P4-Based UPF optimized for private enterprise deployments, and providing fine-grained
-      visibility for verifiable performance and secure operations
-    * Containerized Dual-Core UPF optimized for private enterprise deployments, capable of
-      processing LTE and 5G traffic simultaneously
+**BESS-UPF**
+
+  A software-based datapath built on top of the Berkeley Extensible Software Switch (BESS) framework.
+  BESS-UPF is optimized for private enterprise deployments, capable of processing both LTE and 5G
+  traffic simultaneously. It supports multiple modes including DPDK, CNDP, AF_PACKET and AF_XDP for
+  flexible deployment options. BESS-UPF provides features such as IPv4 support, N3/N4/N6/N9 interfacing,
+  static and dynamic IP routing, QoS enforcement with per-slice and per-session rate limiting, and
+  comprehensive monitoring capabilities.
 
 
 In SD-Core, a connected device is assigned to a UPF based on the network-wide slice configuration.
@@ -83,7 +86,7 @@ service-based architecture of 5G core, this isolation may include only the UPF o
 of the control plane services such as the SMF. However, mobile core control functions that
 are responsible for managing user mobility, user authentication, and network slicing need
 to remain centralized across all slices. SD-Core provides the necessary APIs to manage
-network slices using external agents. ONF’s ROC, pre-integrated with SD-Core, allows for this
+network slices using external agents. ONF's ROC, pre-integrated with SD-Core, allows for this
 central management via portals as well as automation. If the management requires
 instantiation of a new UPF and/or a new SMF instance, ROC oversees this by interacting with
 edge cloud or hyperscale container management services to provision such new network
@@ -93,7 +96,7 @@ Once all mobile core service instances are provisioned for a new slice, ROC uses
 APIs to configure the slice as well as all required central network functions. SD-Core provides
 APIs to create and configure network slices and assign resources to each slice. Operators can
 assign a slice for a group of users/devices based on the use case. The behavior of each slice
-is configurable and can be dynamically changed during run time. SD-Core’s architecture
+is configurable and can be dynamically changed during run time. SD-Core's architecture
 supports assigning dedicated network functions to a specific slice or providing logical
 separation if network functions are to be shared among various slices. Various QoS and
 access policies can be applied to each slice to control the assigned resources as well as IP
@@ -103,14 +106,12 @@ specific packet data networks/edge applications or keeping all devices or flows 
 same QoS classification grouped under one slice. Network slice selection is achieved through
 3GPP-specified network functions like Network Slice Selection Function (NSSF) and Network
 Repository Function (NRF). NSSF helps in mapping the device/flow to a specific slice and
-steering the device/flow traffic to the right set of core network elements. SD-Core’s 5G
+steering the device/flow traffic to the right set of core network elements. SD-Core's 5G
 implementation natively includes both NSSF and NRF for slice selection.
-As described earlier, SD-Core’s P4-based dual-core UPF allows for the monitoring of all
-4G/5G traffic with fine-grained granularity using INT. This effectively means that with the P4-
-based dual-core UPF, it is possible to conduct per packet network monitoring to track
-whether slice-specific SLAs are being met and automatically adapt network behavior by
-changing per slice resource allocations, QoS priorities etc., to automatically sustain the
-required network performance using closed-loop control.
+SD-Core's BESS-UPF provides comprehensive monitoring capabilities with per-flow latency and
+throughput metrics. This allows operators to track whether slice-specific SLAs are being met
+and make informed decisions about network behavior by adjusting per-slice resource allocations,
+QoS priorities, and other parameters to maintain the required network performance.
 
 SD-Core Deployment Options
 --------------------------
@@ -122,7 +123,7 @@ oversee many UPFs, potentially instantiated at geographically diverse locations,
 It is possible to deploy all components of SD-Core collocated in an edge cloud or a central
 cloud for private consumption. It is also possible to distribute the components of SD-Core
 across multiple clouds, edge and central, to deliver a cloud-managed multi-tenant
-connectivity service. In this distributed deployment option, SD-Core’s control plane will run
+connectivity service. In this distributed deployment option, SD-Core's control plane will run
 on a central/hyperscaler cloud and control multiple user planes running on different onpremises
 edge clouds, potentially serving distinct customers as illustrated in Figure 8. In this
 deployment, the 4G and 5G control plane functions can scale as necessary. Each customer
@@ -137,7 +138,7 @@ at the customer edge or in the central cloud, as needed and best suited.
 .. image:: ../_static/images/hybrid-cloud.png
   :width: 700px
 
-SD-Core’s hybrid cloud deployment is an important enabler for a managed 4G/5G
+SD-Core's hybrid cloud deployment is an important enabler for a managed 4G/5G
 connectivity service where each customer site may be deployed to serve a different set of
 use cases and may have different types of underlying cloud environments. The 4G/5G core
 control planes running on the central cloud have been designed and optimized to support
