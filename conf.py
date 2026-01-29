@@ -28,7 +28,7 @@ def get_version():
 
 # -- Project information -----------------------------------------------------
 
-project = u'SD-Core Docs'
+project = u'SD-Core'
 copyright = u'2021-current, Open Networking Foundation'
 author = u'Open Networking Foundation'
 
@@ -36,7 +36,8 @@ author = u'Open Networking Foundation'
 version = get_version()
 
 # The full version, including alpha/beta/rc tags
-release = version
+# release = version # Temporarily set to 'Latest'
+release = u'Latest'
 
 # -- General configuration ---------------------------------------------------
 
