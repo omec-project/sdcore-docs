@@ -6,44 +6,51 @@ Configuration Overview
 ======================
 
 SD-Core has been developed with a cloud-based deployment and consumption model as
-its foundation. It has a rich and extensible set of APIs to allow for runtime configurability of
-subscriber management, access management, session management, and network slice
-management. This configuration may be conducted via ONF’s Runtime Operational Control
-(ROC) platform directly for consumption as a cloud-managed service, or the APIs can be
-used by third-party automation and management platforms.
+its foundation. It provides a rich and extensible set of APIs to enable runtime
+configurability of subscriber management, access management, session management, and
+network slice management. This configuration can be conducted via ONF's Runtime
+Operational Control (ROC) platform directly for consumption as a cloud-managed service,
+or the APIs can be used by third-party automation and management platforms.
 
-Reference helm chart
---------------------
+Reference Helm Charts
+---------------------
 
-    - `SD-Core Helm Chart Repository <https://github.com/omec-project/sdcore-helm-charts>`_
-    - Sub components in sdcore-helm-charts
+SD-Core Helm charts are available in the following repository:
 
-        - omec-control-plane: 4G Network functions helm charts
-        - 5g-control-plane: 5G Network functions helm charts
-        - omec-sub-provision: Simapp helm charts
-        - 5g-ran-sim : gNBSim helm charts
+- `SD-Core Helm Chart Repository <https://github.com/omec-project/sdcore-helm-charts>`_
+
+Sub-components in ``sdcore-helm-charts``:
+
+- ``omec-control-plane``: 4G network function Helm charts
+- ``5g-control-plane``: 5G network function Helm charts
+- ``omec-sub-provision``: Simapp Helm charts
+- ``5g-ran-sim``: gNBSim Helm charts
 
 Configuration Methods
 ---------------------
-SD-Core supports 2 ways to configure network functions and micro services.
 
-    - Helm Chart
+SD-Core supports two methods to configure network functions and microservices:
 
-        - Each individual network function and microservice has its own helm chart.
-        - User needs to provide override values and deploy the network functions as per their need.
-        - Use above helm charts appropriately and provide override values and install 4G/5G NFs.
+Helm Chart Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-    - REST Config Interface
+- Each network function and microservice has its own Helm chart
+- Users provide override values and deploy network functions according to their requirements
+- Use the appropriate Helm charts with override values to install 4G/5G network functions
 
-        - Basic static configuration is still passed through helm chart ( logging level, image,...)
-        - Dynamic *Network Slice* management  APIs are provided through REST interface.
-        - REST APIs are defined to create/modify/delete network slice.
-        - REST APIs are also provided to provision subscribers and grouping the subscribers under device Group.
+REST Configuration Interface
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Basic static configuration is provided through Helm charts (e.g., logging level, images)
+- Dynamic **Network Slice** management APIs are available through a REST interface
+- REST APIs enable creation, modification, and deletion of network slices
+- REST APIs also support subscriber provisioning and grouping subscribers into device groups
 
 .. note::
-        - Simapp is the example of REST interface based configuration to provision subscribers in SD-Core
-        - Simapp is also used to provision Network Slices in SD-Core in the absence of Portal
-        - Aether ROC Portal used REST interface to configure Network Slices in SD-Core
+   - Simapp is an example implementation of REST interface-based configuration for
+     provisioning subscribers in SD-Core
+   - Simapp is also used to provision network slices in SD-Core in the absence of a portal
+   - Aether ROC Portal uses the REST interface to configure network slices in SD-Core
 
 .. image:: ../_static/images/config_slice.png
   :width: 500px
@@ -53,59 +60,67 @@ SD-Core supports 2 ways to configure network functions and micro services.
 
 Configuration Steps
 -------------------
-This Configuration describes what to configure at high level from RoC/SIMAPP. ConfigPod stores this configuration
-and publish to respective clients over REST/grpc.
 
-    - Step1 : Provision subscriber in 4G/5G subsystem
+This section describes the high-level configuration steps from ROC/Simapp. The ConfigPod
+stores this configuration and publishes it to respective clients over REST/gRPC.
 
-        - *Can be done only through SIMAPP*
-        - This step is used to configure IMSI in the SD-Core
-        - This procedure is used to configure security keys for a subscriber
-        - Subscribers can be created during system startup or later
+**Step 1: Provision Subscribers in 4G/5G Subsystem**
 
-    - Step2 : Device Group Configuration
+- Can be done only through Simapp
+- Configure IMSI (International Mobile Subscriber Identity) in SD-Core
+- Configure security keys for each subscriber
+- Subscribers can be created during system startup or at runtime
 
-        - Group multiple devices under device group
-        - Configure QoS for the device group
-        - Configure IP domain configuration for the device group e.g. MTU, IP Pool, DNS server
+**Step 2: Device Group Configuration**
 
+- Group multiple devices under a device group
+- Configure QoS (Quality of Service) for the device group
+- Configure IP domain settings for the device group (e.g., MTU, IP pool, DNS server)
 
-    - Step3: Network Slice Configuration
+**Step 3: Network Slice Configuration**
 
-        - Configuration to create a Network Slice
-        - Add device Group into Network Slice
-        - Slice contains the Slice level QoS configuration
-        - Site configuration including UPF, eNBs/gNBs assigned to the slice
-        - Applications allowed to be accessed by this slice (see :ref:`application-filtering`)
+- Create a network slice
+- Add device groups to the network slice
+- Configure slice-level QoS settings
+- Configure site information including UPF, eNBs/gNBs assigned to the slice
+- Define applications allowed to be accessed by this slice (see :ref:`application-filtering`)
 
 .. note::
-        - Step1 can only be done through Simapp. Look for simapp override values.
-        - Step2 & Step3 can be done through Simapp or ROC. Simapp has option to create network slice. Look for configuration *provision-network-slice: false* in simapp configuration
+   - Step 1 can only be performed through Simapp. Refer to Simapp override values.
+   - Steps 2 and 3 can be performed through either Simapp or ROC. Simapp has an option
+     to create network slices. Look for the configuration parameter
+     ``provision-network-slice: false`` in the Simapp configuration.
 
 .. note::
    If UPF is used to allocate UE address allocation then even if you have specified UE
    address pool in the slice config, you still need to add the address pool
    configuration in the UPF deployment.
 
-4G, 5G Configuration Differences
---------------------------------
-One of the most important difference in 4G & 5G configuration is around network slice. 5G has
-network slice Ids sent on 3gpp defined protocol messages whereas 4G does not have any slice Id in
-3gpp defined protocol messages. We implement slicing in 4G using APNs. Let's go over these
-difference in detail below,
+4G and 5G Configuration Differences
+------------------------------------
 
-- **Slice Id** : Since 4G does not have slice Id in any protocol messages, configured slice Ids
-  are ignored in 4G components. So it also means that even if configured slice Ids are
-  duplicate it will not have any impact. But its still a good practice to have unique Slice
-  Id per slice.
+One of the most important differences between 4G and 5G configuration relates to network
+slicing. 5G includes network slice IDs in 3GPP-defined protocol messages, whereas 4G does
+not. In 4G, we implement slicing using APNs (Access Point Names). Key differences include:
 
-- **APN/DNN configuration**: In case of 4G each slice should have separate APN. This is required
-  because APN is used as slice identifier internally in the 4G modules. This is not true in
-  case of 5G because 5G has slice Id along with APN/DNN. So in general its good practice to
-  keep APN/DNN in the slice unique so same slice can work for 4G & 5G configuration.
+**Slice ID**
 
-- **DNN/APN in Initial Attach/Register Message** : In case of 4G, if UE has set any random APN then
-  MME overrides the APN based on the user profile in HSS. So its important to note that even if APN
-  is not matching with configured APN we are still good.  In case of 5G, apn name & Slice ID coming
-  from UE is used to select SMF, so its important to have UE configured with correct APN/DNN name.
-  Core network passed allowed slice IDs to UE in the registration accept message.
+Since 4G does not include slice IDs in protocol messages, configured slice IDs are ignored
+in 4G components. This means duplicate slice IDs will not cause issues in 4G. However, it's
+still best practice to use unique slice IDs per slice for consistency.
+
+**APN/DNN Configuration**
+
+In 4G, each slice should have a separate APN. This is required because the APN serves as
+the slice identifier internally in 4G modules. In 5G, this restriction doesn't apply because
+5G uses both slice ID and DNN (Data Network Name). As a best practice, keep APNs/DNNs unique
+per slice so the same configuration works for both 4G and 5G.
+
+**DNN/APN in Initial Attach/Register Message**
+
+In 4G, if a UE sends a random APN, the MME overrides it based on the user profile in HSS.
+This means the connection succeeds even if the APN doesn't match the configured value.
+
+In 5G, the APN name and Slice ID from the UE are used to select the SMF, so the UE must
+be configured with the correct APN/DNN name. The core network sends allowed slice IDs to
+the UE in the registration accept message.
