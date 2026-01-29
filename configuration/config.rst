@@ -42,7 +42,7 @@ REST Configuration Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Basic static configuration is provided through Helm charts (e.g., logging level, images)
-- Dynamic **Network Slice** management APIs are available through a REST interface
+- Dynamic Network Slice management APIs are available through a REST interface
 - REST APIs enable creation, modification, and deletion of network slices
 - REST APIs also support subscriber provisioning and grouping subscribers into device groups
 
