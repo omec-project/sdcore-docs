@@ -241,6 +241,7 @@ smftest
 spgw
 spgwc
 sriov
+srsRAN
 sst
 stabilisation
 tac

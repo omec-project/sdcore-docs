@@ -37,7 +37,7 @@ version = get_version()
 
 # The full version, including alpha/beta/rc tags
 # release = version # Temporarily set to 'Latest'
-release = u'Latest'
+release = u'latest'
 
 # -- General configuration ---------------------------------------------------
 
