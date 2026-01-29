@@ -15,7 +15,7 @@ path for users to learn about, customize, experiment with, and deploy Aether wit
 OnRamp supports multiple deployment scenarios through various **blueprints**, including:
 
 * Quick Start deployment (single VM or server)
-* Emulated RAN using gNBsim
+* Emulated RAN using gNBSim
 * Physical RAN with real gNBs
 * Multiple UPFs configuration
 * UERANSIM for throughput testing
