@@ -7,7 +7,7 @@ Introduction
 
 SD-Core™ is the Open Networking Foundation™ (ONF)'s open source, flexible, agile,
 scalable, and configurable dual-mode 4G/5G mobile core network solution that enables a
-cloud-based Connectivity-as-a-Service. SD-Core builds and enhances on ONF's 4G Open
+cloud-based Connectivity-as-a-Service. SD-Core builds on and enhances ONF's 4G Open
 Mobile Evolved Core (OMEC)™ as well as the free5GC© core network platform to create a
 dual-mode solution that supports LTE, 5G NSA and 5G SA services optimized for hybrid-cloud
 environments.
