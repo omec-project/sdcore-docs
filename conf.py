@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2026 Intel Corporation
 # SPDX-FileCopyrightText: 2021 Open Networking Foundation <info@opennetworking.org>
 # SPDX-License-Identifier: Apache-2.0
 
@@ -107,7 +108,7 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 
 html_logo = '_static/sdcore.svg'
 
@@ -118,7 +119,16 @@ html_favicon = '_static/sdcore-favicon-128.png'
 # documentation.
 #
 html_theme_options = {
-    'logo_only': True
+    "light_css_variables": {
+        "color-brand-primary": "#0082c9",  # Aether (ONF) blue
+        "color-brand-content": "#0082c9",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#4db8ff",  # Lighter blue for dark mode
+        "color-brand-content": "#4db8ff",
+    },
+    "sidebar_hide_name": False,
+    "navigation_with_keys": True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -254,7 +264,3 @@ intersphinx_mapping = {
     'sysapproachnet': ('https://book.systemsapproach.org/', None),
     'sysapproachsdn': ('https://sdn.systemsapproach.org/', None),
     }
-
-def setup(app):
-
-    app.add_css_file('css/rtd_theme_mods.css')
