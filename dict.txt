@@ -27,7 +27,7 @@ HSS
 Haswell
 Homebrew
 IDmap
-IPv4
+IPv
 Keepalive
 Kubernetes
 LTE
