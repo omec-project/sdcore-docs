@@ -15,6 +15,15 @@ permissions:
   contents: read
 
 jobs:
+  validate:
+    permissions:
+      contents: write
+      actions: read
+      id-token: write
+    uses: omec-project/.github/.github/workflows/validate.yml@64e827412bb394b5458ef48b4e178fc1c702678a # v0.0.10
+    with:
+      branch_name: ${{ github.ref }}
+
   doc8:
     permissions:
       contents: read
