@@ -36,38 +36,38 @@ Sample output from API Service
 ------------------------------
 * GetSubscriberAll (/nmetric-func/v1/subscriber/all)
 
-    .. code-block::
+    .. code-block:: text
 
-        http://<metricfunc-pod-ip>:9301/nmetric-func/v1/subscriber/all
+       http://<metricfunc-pod-ip>:9301/nmetric-func/v1/subscriber/all
 
-        ["imsi-208930100007487","imsi-208930100007488","imsi-208930100007489","imsi-208930100007490","imsi-208930100007491"]
+       ["imsi-208930100007487","imsi-208930100007488","imsi-208930100007489","imsi-208930100007490","imsi-208930100007491"]
 
 
 * GetSubscriberSummary (/nmetric-func/v1/subscriber/<imsi>)
 
-    .. code-block::
+    .. code-block:: json
 
-        http://<metricfunc-pod-ip>:9301/nmetric-func/v1/subscriber/imsi-208930100007487
-        {
-            "imsi":"imsi-208930100007487",
-            "smfId":"urn:uuid:c573621f-e198-4f67-988b-f7373e67601c","smfIp":"192.168.84.172",
-            "smfSubState":"Connected","ipaddress":"172.250.237.121","dnn":"internet","slice":"sd:010203 sst:1",
-            "upfid":"upf","upfAddr":"192.168.85.188",
-            "amfId":"b17f4726-4809-43e6-b5b6-afa0fc72807b","guti":"20893cafe00002647e6","tmsi":2508774,"amfngapId":2508775,
-            "ranngapId":3405774848,"amfSubState":"Registered","gnbid":"208:93:000102","tacid":"000001","amfIp":"192.168.84.159"
-        }
+       http://<metricfunc-pod-ip>:9301/nmetric-func/v1/subscriber/imsi-208930100007487
+       {
+           "imsi":"imsi-208930100007487",
+           "smfId":"urn:uuid:c573621f-e198-4f67-988b-f7373e67601c","smfIp":"192.168.84.172",
+           "smfSubState":"Connected","ipaddress":"172.250.237.121","dnn":"internet","slice":"sd:010203 sst:1",
+           "upfid":"upf","upfAddr":"192.168.85.188",
+           "amfId":"b17f4726-4809-43e6-b5b6-afa0fc72807b","guti":"20893cafe00002647e6","tmsi":2508774,"amfngapId":2508775,
+           "ranngapId":3405774848,"amfSubState":"Registered","gnbid":"208:93:000102","tacid":"000001","amfIp":"192.168.84.159"
+       }
 
 * GetNfStatus (/nmetric-func/v1/nfstatus/<GNB/UPF>)
 
-    .. code-block::
+    .. code-block:: json
 
-        http://<metricfunc-pod-ip>:9301/nmetric-func/v1/nfstatus/UPF
-        [
-            {"nfType":"UPF","nfStatus":"Connected","nfName":"upf-1"},
-            {"nfType":"UPF","nfStatus":"Connected","nfName":"upf-2"}
-        ]
+       http://<metricfunc-pod-ip>:9301/nmetric-func/v1/nfstatus/UPF
+       [
+           {"nfType":"UPF","nfStatus":"Connected","nfName":"upf-1"},
+           {"nfType":"UPF","nfStatus":"Connected","nfName":"upf-2"}
+       ]
 
-        http://<metricfunc-pod-ip>:9301/nmetric-func/v1/nfstatus/GNB
+       http://<metricfunc-pod-ip>:9301/nmetric-func/v1/nfstatus/GNB
         [
             {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000112"},
             {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000102"}
