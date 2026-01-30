@@ -45,7 +45,7 @@ Sample output from API Service
 
 * GetSubscriberSummary (/nmetric-func/v1/subscriber/<imsi>)
 
-    .. code-block:: json
+    .. code-block:: text
 
        http://<metricfunc-pod-ip>:9301/nmetric-func/v1/subscriber/imsi-208930100007487
        {
@@ -59,7 +59,7 @@ Sample output from API Service
 
 * GetNfStatus (/nmetric-func/v1/nfstatus/<GNB/UPF>)
 
-    .. code-block:: json
+    .. code-block:: text
 
        http://<metricfunc-pod-ip>:9301/nmetric-func/v1/nfstatus/UPF
        [
@@ -68,8 +68,8 @@ Sample output from API Service
        ]
 
        http://<metricfunc-pod-ip>:9301/nmetric-func/v1/nfstatus/GNB
-        [
-            {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000112"},
-            {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000102"}
-        ]
+       [
+           {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000112"},
+           {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000102"}
+       ]
 
