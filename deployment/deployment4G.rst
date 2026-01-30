@@ -9,12 +9,13 @@
 
 Deployment Overview
 -------------------
-SD-Core is released with Helm chart and container images.
-We recommend using **Kubernetes** and **Helm** to deploy SD-Core.
-SD-Core images are hosted on docker hub.
 
-Hardware resource requirement
------------------------------
+SD-Core is released with Helm charts and container images. We recommend using
+**Kubernetes** and **Helm** to deploy SD-Core. All SD-Core container images are
+hosted on Docker Hub.
+
+Hardware Resource Requirements
+------------------------------
 
 .. list-table:: CPU & Memory Requirements for 4G components
   :widths: 5 5 5
@@ -54,47 +55,63 @@ Deployment Options
 
 Development Environments
 """"""""""""""""""""""""
-Please refer (see :ref:`aiab-guide`) to setup 4G development environment.
+
+For setting up a 4G development environment, please refer to the
+:ref:`aiab-guide` (Aether-in-a-Box guide).
 
 Production Environments - 4G
 """"""""""""""""""""""""""""
 
-To install SD-Core into your Kubernetes cluster, follow instructions
+To install SD-Core into your Kubernetes cluster, follow these steps:
 
-Step1 - Clone SD-Core 4G Helm chart
-'''''''''''''''''''''''''''''''''''
-.. code-block::
+Step 1: Clone SD-Core 4G Helm Chart
+''''''''''''''''''''''''''''''''''''
 
-  git clone https://github.com/omec-project/sdcore-helm-charts.git
-  cd sdcore-helm-charts/sdcore-helm-charts/
-  helm dep update #Update Helm dependencies
+Clone the repository and update dependencies:
 
-Step2 - Prepare your Helm values for 4G
-'''''''''''''''''''''''''''''''''''''''
+.. code-block:: bash
 
-You can modify existing values.yaml directly, but we recommend composing another value
-file myvalues.yaml using values.yaml as an example. We are highlighting a few things we
-need to modify here. More explanation of the supported Helm values can be found in the
-Configuration section below.
+   git clone https://github.com/omec-project/sdcore-helm-charts.git
+   cd sdcore-helm-charts/sdcore-helm-charts/
+   helm dep update  # Update Helm dependencies
 
-Step3 - Install 4G using SD-Core umbrella helm chart
-''''''''''''''''''''''''''''''''''''''''''''''''''''
+Step 2: Prepare Your Helm Values for 4G
+''''''''''''''''''''''''''''''''''''''''
 
-The following command will deploy the SD-Core helm chart with release name sdcore-4g in the sdcore-4g namespace.
+While you can modify the existing ``values.yaml`` directly, we recommend creating a
+separate values file (e.g., ``myvalues.yaml``) using ``values.yaml`` as a template.
+This approach makes it easier to track your customizations and upgrade in the future.
 
-.. code-block::
+For detailed explanations of the supported Helm values, refer to the Configuration
+section below.
 
-    helm install -n sdcore-4g --create-namespace -f myvalues.yaml sdcore-4g ~/cord/sdcore-helm-charts/sdcore-helm-charts
+Step 3: Install 4G Using SD-Core Umbrella Helm Chart
+'''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-To verify the installation:
+The following command deploys the SD-Core Helm chart with release name ``sdcore-4g``
+in the ``sdcore-4g`` namespace:
 
-.. code-block::
+.. code-block:: bash
 
-    helm -n sdcore-4g ls
+   helm install -n sdcore-4g --create-namespace -f myvalues.yaml sdcore-4g \
+     ./sdcore-helm-charts
 
-To uninstall:
+.. note::
+   Adjust the chart path (``./sdcore-helm-charts``) to match your local directory structure where you cloned the sdcore-helm-charts repository.
 
-.. code-block::
+**Verify the Installation**
 
-    helm -n sdcore-4g uninstall sdcore-4g
-    kubectl delete namespace sdcore-4g # also remove the sdcore-4g if needed
+Check the Helm release status:
+
+.. code-block:: bash
+
+   helm -n sdcore-4g ls
+
+**Uninstall SD-Core**
+
+To uninstall the SD-Core deployment:
+
+.. code-block:: bash
+
+   helm -n sdcore-4g uninstall sdcore-4g
+   kubectl delete namespace sdcore-4g  # Optional: remove the namespace
