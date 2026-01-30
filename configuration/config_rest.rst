@@ -227,36 +227,36 @@ at address ``10.91.1.3``.
                 "mnc": "010"
             },
             "gNodeBs":
-            [
-                {
-                "name": "menlo-gnb1",
-                "tac": 1
-                }
-            ],
-            "upf":
-            {
-            "upf-name": "upf.menlo.aetherproject.org",
-            "upf-port": 8805
-            }
+           [
+               {
+                   "name": "menlo-gnb1",
+                   "tac": 1
+               }
+           ],
+           "upf":
+           {
+               "upf-name": "upf.menlo.aetherproject.org",
+               "upf-port": 8805
+           }
         },
         "application-filtering-rules":
-          [
-             {
-                "rule-name": "rule-1",
-                "priority": 5,
-                "action": "permit",
-                "endpoint": "10.91.1.3",
-                "traffic-class":
-                {
-                  "name": “platinum”,
-                  "qci": 9,
-                  "arp": 125,
-                  "pdb": 300,
-                  "pelr": 6
-                }
-            }
-          ]
-    }
+       [
+           {
+               "rule-name": "rule-1",
+               "priority": 5,
+               "action": "permit",
+               "endpoint": "10.91.1.3",
+               "traffic-class":
+               {
+                   "name": "platinum",
+                   "qci": 9,
+                   "arp": 125,
+                   "pdb": 300,
+                   "pelr": 6
+               }
+           }
+       ]
+   }
 
 **DELETE Request** - Remove a network slice:
 
