@@ -51,7 +51,7 @@ add/update/remove user subscription from the Core Network. Simapp uses this inte
 manage subscribers in SD-Core. When used with Aether, the latter uses an Operations portal
 to manage multiple Aether components including SD-Core. In this release, support for a
 subscriber proxy is added in Simapp, which is then used by the operations portal to learn
-about subscribers provisioned in Core Network by Simapp. This change helps SD-Core’s seamless
+about subscribers provisioned in Core Network by Simapp. This change helps SD-Core's seamless
 integration in Aether.
 
 **5G gNB simulator**: The gNB simulator simulates 5G UEs & gNodeBs. It is capable of supporting

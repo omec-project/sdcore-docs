@@ -11,7 +11,7 @@ Dynamic Subscription revoking provision
 This feature enables 5G network to revoke subscription of specific UE.
 It is required that user identifies the IP-Address of specific UE to be disabled.
 The custom user application can make available the IP-Address of specific UE to 5G
-core network via Metric-Function API. The 5G network shall revoke the specific UE’s
+core network via Metric-Function API. The 5G network shall revoke the specific UE's
 subscription based on UE IP-Addresses received.
 
 Following diagram show one such use case of identifying malicious UE and then revoking its subscription from 5G core.
@@ -32,7 +32,7 @@ Following diagram show one such use case of identifying malicious UE and then re
 
 The Metric-Function configuration to poll the user application
 
-.. code-block::
+.. code-block:: yaml
 
    userAppApiServer:
      addr: "userapp.omec.svc"
