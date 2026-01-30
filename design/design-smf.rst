@@ -8,19 +8,20 @@ SMF Design Overview
 ===================
 
 .. image:: ../_static/images/CN-SMF.png
-  :width: 500px
+   :width: 500px
+   :alt: SMF Architecture Diagram
 
 UPF-Adapter
 -----------
 
-As UPF may not support connections from multiple SMF instances with same Node-Id,
-UPF-Adapter layer has been introduced.
+The UPF-Adapter layer (optional) has been introduced to address a limitation where UPF
+may not support connections from multiple SMF instances using the same Node-ID.
 
-* UPF-Adapter acts like Mux-Demux for PFCP messages between multiple SMF instances and UPF.
+**Key Functions:**
 
-* SMF sends custom PFCP msg to UPF-Adapter if UPF-Adapter is deployed.
-
-* The UPF-Adapter intercepts and modifies certain fields before sending PFCP msg to actual UPF.
-
-* Similar handling is done for the response from UPF towards SMF.
+- Acts as a multiplexer/demultiplexer for PFCP messages between multiple SMF instances
+  and the UPF
+- Receives custom PFCP messages from SMF instances when deployed
+- Intercepts and modifies specific fields before forwarding PFCP messages to the actual UPF
+- Performs similar processing for responses from UPF back to SMF instances
 
