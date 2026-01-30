@@ -33,7 +33,7 @@ The Metric Function acts as both metrics aggregator and processor towards metric
 API Server or Prometheus Server.
 
 The 5G Metric dashboard shows whether the gNodeB and UPF are connected to the core, how many active UEs are connected,
-including UE’s IMSI and Slice information, and the uplink (Tx Bitrate) and downlink (Rx Bitrate) throughput at the UPF.
+including UE's IMSI and Slice information, and the uplink (Tx Bitrate) and downlink (Rx Bitrate) throughput at the UPF.
 Metrics work can be extended to show various metrics from 5G core network.
 
 **NRF Cache and Notification**: As part of NF Discovery Service, Each NF discovers Target NF for its profiles from NRF
@@ -52,7 +52,7 @@ available via configuration of SUPI to IP-address mapping under SMF specific sec
 **Dynamic Subscription revoking provision**: This feature enables 5G network to revoke subscription of specific UE.
 It is required that user identifies the IP-Address of specific UE to be disabled. The custom user application can
 make available the IP-Address of specific UE to 5G core network via Metric-Function API. The 5G network shall revoke
-the specific UE’s subscription based on UE IP-Addresses received.
+the specific UE's subscription based on UE IP-Addresses received.
 
 **Multiple gNBs Support in gNBSim**: This enhancement allows deploying multiple gNBSim instances. This would extend
 gNBSim capabilities towards XN and N2 handover procedures.
