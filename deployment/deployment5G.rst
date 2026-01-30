@@ -10,12 +10,13 @@
 
 Deployment Overview
 -------------------
-SD-Core is released with Helm chart and container images.
-We recommend using **Kubernetes** and **Helm** to deploy SD-Core.
-SD-Core images are hosted on docker hub.
 
-Hardware resource requirement
------------------------------
+SD-Core is released with Helm charts and container images. We recommend using
+**Kubernetes** and **Helm** to deploy SD-Core. All SD-Core container images are
+hosted on Docker Hub and GitHub Registry.
+
+Hardware Resource Requirements
+------------------------------
 
 .. list-table:: CPU & Memory Requirements for 5G components
   :widths: 5 5 5
@@ -74,41 +75,51 @@ Deployment Options
 Development Environments
 """"""""""""""""""""""""
 
-Please refer (see :ref:`aiab-guide`) to setup 5G development environment.
+For setting up a 5G development environment, please refer to the
+:ref:`aiab-guide` (Aether-in-a-Box guide).
 
 Production Environments - 5G
 """"""""""""""""""""""""""""
 
-To install SD-Core into your Kubernetes cluster, follow instructions
+To install SD-Core into your Kubernetes cluster, follow these steps:
 
-Step1 - Clone SD-Core 5G Helm chart
-'''''''''''''''''''''''''''''''''''
-.. code-block::
+Step 1: Clone SD-Core 5G Helm Chart
+''''''''''''''''''''''''''''''''''''
 
-  git clone https://github.com/omec-project/sdcore-helm-charts.git
-  cd sdcore-helm-charts/sdcore-helm-charts/
-  helm dep update #Update Helm dependencies
+Clone the repository and update dependencies:
 
-Step2 - Prepare your Helm value for 5G
-''''''''''''''''''''''''''''''''''''''
+.. code-block:: bash
 
-You can modify existing values.yaml directly, but we recommend composing another value
-file myvalues.yaml using values.yaml as an example. We are highlighting a few things we
-need to modify here. More explanation of the supported Helm values can be found in the
-Configuration section below.
+   git clone https://github.com/omec-project/sdcore-helm-charts.git
+   cd sdcore-helm-charts/sdcore-helm-charts/
+   helm dep update  # Update Helm dependencies
 
-Step3 - Install 5G using SD-Core umbrella helm chart
-''''''''''''''''''''''''''''''''''''''''''''''''''''
+Step 2: Prepare Your Helm Values for 5G
+''''''''''''''''''''''''''''''''''''''''
 
-The following command will deploy the SD-Core helm chart with release name sdcore-5g in the sdcore-5g namespace.
+While you can modify the existing ``values.yaml`` directly, we recommend creating a
+separate values file (e.g., ``myvalues.yaml``) using ``values.yaml`` as a template.
+This approach makes it easier to track your customizations and upgrade in the future.
 
-.. code-block::
+For detailed explanations of the supported Helm values, refer to the Configuration
+section below.
 
-    helm install -n sdcore-5g --create-namespace -f myvalues.yaml sdcore-5g  ~/cord/sdcore-helm-charts/sdcore-helm-charts
+Step 3: Install 5G Using SD-Core Umbrella Helm Chart
+'''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-To verify the installation:
+The following command deploys the SD-Core Helm chart with release name ``sdcore-5g``
+in the ``sdcore-5g`` namespace:
 
-.. code-block::
+.. code-block:: bash
+
+   helm install -n sdcore-5g --create-namespace -f myvalues.yaml sdcore-5g \
+     ~/cord/sdcore-helm-charts/sdcore-helm-charts
+
+**Verify the Installation**
+
+Check the Helm release status:
+
+.. code-block:: bash
 
     helm -n sdcore-5g ls
     xxxx@node:~$ helm -n sdcore-5g ls
@@ -137,12 +148,14 @@ To verify the installation:
     webui-8cfb9659c-hqfp9         1/1     Running   0          8d
     xxxx@node:~$
 
-To uninstall:
+**Uninstall SD-Core**
 
-.. code-block::
+To uninstall the SD-Core deployment:
 
-    helm -n sdcore-5g uninstall sdcore-5g
-    kubectl delete namespace sdcore-5g # also remove the sdcore-5g if needed
+.. code-block:: bash
+
+   helm -n sdcore-5g uninstall sdcore-5g
+   kubectl delete namespace sdcore-5g  # Optional: remove the namespace
 
 Cloud Native Configuration - 5G
 """"""""""""""""""""""""""""""""
@@ -181,70 +194,70 @@ Enable AMF Sctp Load Balancer
 '''''''''''''''''''''''''''''
 Edit sd-core-5g-values.yaml as following
 
-.. code-block::
+.. code-block:: yaml
 
-    sctplb:
-      deploy: true
+   sctplb:
+     deploy: true
 
 Enable AMF DB Store
 '''''''''''''''''''
 Edit sd-core-5g-values.yaml as following
 
-.. code-block::
+.. code-block:: yaml
 
-    amf:
-      cfgFiles:
-        amfcfg.conf:
-          configuration:
-            enableDBStore: true
+   amf:
+     cfgFiles:
+       amfcfg.conf:
+         configuration:
+           enableDBStore: true
 
 Enable SMF DB Store
 '''''''''''''''''''
 Edit sd-core-5g-values.yaml as following
 
-.. code-block::
+.. code-block:: yaml
 
-    smf:
-      cfgFiles:
-        smfcfg.conf:
-          configuration:
-            enableDBStore: true
+   smf:
+     cfgFiles:
+       smfcfg.conf:
+         configuration:
+           enableDBStore: true
 
 Enable UPF-Adapter
 ''''''''''''''''''
 Edit sd-core-5g-values.yaml as following
 
-.. code-block::
+.. code-block:: yaml
 
-    upfadapter:
-      deploy: true
+   upfadapter:
+     deploy: true
 
 Enable NRF Keep-Alive
 ''''''''''''''''''''''
 Edit sd-core-5g-values.yaml as following
 
-.. code-block::
+.. code-block:: yaml
 
-    nrf:
-      cfgFiles:
-        nrfcfg.conf:
-          configuration:
-            mongoDBStreamEnable: false
-            nfProfileExpiryEnable: true
-            nfKeepAliveTime: 60
+   nrf:
+     cfgFiles:
+       nrfcfg.conf:
+         configuration:
+           mongoDBStreamEnable: false
+           nfProfileExpiryEnable: true
+           nfKeepAliveTime: 60
 
 Enable UE IP-Address allocation by UPF
 ''''''''''''''''''''''''''''''''''''''
 This is optional feature to allocate UE IP-Address via UPF rather than locally via SMF.
 Edit sd-core-5g-values.yaml as following
 
-.. code-block::
+.. code-block:: yaml
 
- cpiface:
-   dnn: "internet"
-   hostname: "upf"
-   enable_ue_ip_alloc: true
-   ue_ip_pool: "172.250.0.0/16"
+   cpiface:
+     dnn: "internet"
+     hostname: "upf"
+     enable_ue_ip_alloc: true
+     ue_ip_pool: "172.250.0.0/16"
 
 
 Enable Static UE IP-Address allocation
@@ -252,17 +265,17 @@ Enable Static UE IP-Address allocation
 This config shall help in reserving Static UE IP-Address for any given UE.
 The config should mention details about DNN, UE's IMSI and preferred IP-Address from that DNN pool.
 
-.. code-block::
+.. code-block:: yaml
 
- smf:
-   cfgFiles:
-     smfcfg.conf:
-       configuration:
-         staticIpInfo:
-         - dnn: internet
-           imsiIpInfo:
-             supi-123456789012341: "172.250.237.10"
-             supi-123456789012342: "172.250.237.11"
+   smf:
+     cfgFiles:
+       smfcfg.conf:
+         configuration:
+           staticIpInfo:
+           - dnn: internet
+             imsiIpInfo:
+               supi-123456789012341: "172.250.237.10"
+               supi-123456789012342: "172.250.237.11"
 
 Enable Custom IMSI with real UE 5G deployment
 '''''''''''''''''''''''''''''''''''''''''''''
@@ -278,45 +291,45 @@ Patch following files
 
 Patch aether-in-a-box/sd-core-5g-values.yaml as following
 
-.. code-block::
+.. code-block:: diff
 
-         # below block configures the subscribers and their security details.
-          # you can have any number of subscriber ranges
-          subscribers:
-  -       - ueId-start: "208930100007487"
-  -        ueId-end: "208930100007500"
-  -        plmnId: "20893"
-  +       - ueId-start: "001220100007487"
-  +        ueId-end: "001220100007500"
-  +        plmnId: "00122"
-           opc: "981d464c7c52eb6e5036234984ad0bcf"
-           op: ""
-           key: "5122250214c33e723a5dd523fc145fc0"
-           sequenceNumber: "16f3b3f70fc2"
-  -       - ueId-start: "208930100007501"
-  -        ueId-end: "208930100007599"
-  -        plmnId: "20893"
-  +       - ueId-start: "001220100007501"
-  +        ueId-end: "001220100007599"
-  +        plmnId: "00122"
-           opc: "981d464c7c52eb6e5036234984ad0bcf"
-           op: ""
-           key: "5122250214c33e723a5dd523fc145fc0"
+   # below block configures the subscribers and their security details.
+    # you can have any number of subscriber ranges
+    subscribers:
+   -       - ueId-start: "208930100007487"
+   -        ueId-end: "208930100007500"
+   -        plmnId: "20893"
+   +       - ueId-start: "001220100007487"
+   +        ueId-end: "001220100007500"
+   +        plmnId: "00122"
+     opc: "981d464c7c52eb6e5036234984ad0bcf"
+     op: ""
+     key: "5122250214c33e723a5dd523fc145fc0"
+     sequenceNumber: "16f3b3f70fc2"
+   -       - ueId-start: "208930100007501"
+   -        ueId-end: "208930100007599"
+   -        plmnId: "20893"
+   +       - ueId-start: "001220100007501"
+   +        ueId-end: "001220100007599"
+   +        plmnId: "00122"
+            opc: "981d464c7c52eb6e5036234984ad0bcf"
+            op: ""
+            key: "5122250214c33e723a5dd523fc145fc0"
 
 * only if ROC is employed
 
 Patch aether-in-a-box/roc-5g-models.json as following
 
-.. code-block::
+.. code-block:: diff
 
-            "imsi-definition": {
-  -           "mcc": "208",
-  -           "mnc": "93",
-  +           "mcc": "001",
-  +           "mnc": "22",
+   "imsi-definition": {
+   -           "mcc": "208",
+   -           "mnc": "93",
+   +           "mcc": "001",
+   +           "mnc": "22",
    {
-                "sim-id": "aiab-sim-1",
-                "display-name": "UE 1 Sim",
-  -             "imsi": "208930100007487"
-  +             "imsi": "001220100007487"
-              },
+     "sim-id": "aiab-sim-1",
+     "display-name": "UE 1 Sim",
+   -             "imsi": "208930100007487"
+   +             "imsi": "001220100007487"
+   },
