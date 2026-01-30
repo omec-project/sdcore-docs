@@ -94,7 +94,10 @@ in the ``sdcore-4g`` namespace:
 .. code-block:: bash
 
    helm install -n sdcore-4g --create-namespace -f myvalues.yaml sdcore-4g \
-     ~/cord/sdcore-helm-charts/sdcore-helm-charts
+     ./sdcore-helm-charts
+
+.. note::
+   Adjust the chart path (``./sdcore-helm-charts``) to match your local directory structure where you cloned the sdcore-helm-charts repository.
 
 **Verify the Installation**
 
