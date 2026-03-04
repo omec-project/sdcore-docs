@@ -46,17 +46,15 @@ All docker images are tagged based on their git tags.
   * This allows a container to be rebuilt given an arbitrary git commit with
     fair confidence that it will result in the same code in the container.
 
-* There are two sets of Docker images that are created
+* There are two sets of container images that are created when there is a new
+  code release (that is, when **VERSION** file changed by dropping the ``-dev``
+  suffix) and has a tag named ``rel-semver`` (e.g., rel-1.4.0):
 
-  * The first set of Docker images is created based on every Pull Request that
-    is merged in the source code and the image has the following two tags:
-    ``latest`` and ``master-hashId``, where the ``hashId`` is the short commit ID.
-    These 2 images are pushed into the ``sdcore`` project in ``registry.aetherproject.org``
-    (https://registry.aetherproject.org/harbor/projects/9/repositories)
-  * The second set is the official release image which is created only when
-    there is a new code release (when **VERSION** file changed). This image is
-    pushed to ``DockerHub`` (https://hub.docker.com/u/omecproject) and has a tag
-    named ``rel-semver`` (e.g., rel-1.4.0).
+  * The first set of container images is pushed into the ``omec-project``
+    organization ``github.com/orgs/omec-project/packages``
+    (https://github.com/orgs/omec-project/packages)
+  * The second set of container images is pushed to ``DockerHub``
+    (https://hub.docker.com/u/omecproject).
 
 * Official images are only pushed to registries by the CI system
 

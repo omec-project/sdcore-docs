@@ -12,4 +12,4 @@ in the gNBSim GitHub repository
 
 * Code Repository: `gNBSim repository <https://github.com/omec-project/gnbsim>`_
 * Helm Chart Code: `github repository <https://github.com/omec-project/sdcore-helm-charts/tree/main/5g-ran-sim>`_
-* Helm Chart registry: `5g-ran-sim repository <https://charts.aetherproject.org>`_
+* Helm Chart registry: `5g-ran-sim repository <https://github.com/omec-project/gnbsim/pkgs/container/5gc-gnbsim>`_
