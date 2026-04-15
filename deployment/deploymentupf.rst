@@ -29,20 +29,30 @@ Option1: AF_PACKET Mode UPF
 
 Option2: SRIOV and DPDK enabled UPF
 ------------------------------------
-Please follow the below procedure to bring up UPF in DPDK mode with SRIOV.
+Use this option when the UPF should run in DPDK mode with SRIOV-backed interfaces.
+The current ``bess-upf`` chart already includes the SRIOV device-plugin manifests and
+the ``sriovdp-config`` ConfigMap when ``omec-user-plane.config.upf.sriov.enabled`` is
+set to ``true``. The workflow is therefore:
+
+- prepare the node for hugepages, IOMMU, and SRIOV
+- create and bind the required VFs to ``vfio-pci``
+- set the ``omec-user-plane`` values so the chart can generate the correct SRIOV resources
+- deploy SD-Core with those values
 
 Pre-requisite:
 ''''''''''''''
 - As a pre-requisite please make sure virtualization and VT-d parameters are enabled in BIOS.
 
-- make sure enough hugepage memory allocated, iommu enabled. These changes can be made by updating
-  below parameter in /etc/default/grub as follows,
+- Make sure IOMMU is enabled and enough hugepage memory is allocated. The UPF chart requests
+  ``2Gi`` of ``hugepages-1Gi`` per UPF pod when hugepages are enabled, so size the node for the
+  number of UPF instances that will run on it. These changes can be made by updating
+  ``/etc/default/grub`` as follows,
 
   .. code-block:: bash
 
      GRUB_CMDLINE_LINUX="intel_iommu=on iommu=pt default_hugepagesz=1G hugepagesz=1G hugepages=32 transparent_hugepage=never"
 
-  Note: Number of hugepages = 2 X No of UPF Instances
+  Note: A single UPF instance requires two 1Gi hugepages.
 
   Once it is updated apply the changes by running below command,
 
@@ -65,25 +75,30 @@ Pre-requisite:
 
      Hugepages mounted on /dev/hugepages
 
-step 1: Create VF devices and bind them to the vfio-pci driver
+Step 1: Create VF devices and bind them to the vfio-pci driver
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-- Create required VF devices as follows (In this example the PF interface used is "ens801f0")
+- Create the required VF devices on the PFs that will carry the N3 and N6 networks.
+  In the example below the PFs are ``ens801f0`` for N3 and ``ens801f1`` for N6.
+  If both N3 and N6 will use VFs from the same PF, create at least two VFs on that PF.
 
   .. code-block:: bash
 
      echo 2 > /sys/class/net/ens801f0/device/sriov_numvfs
+     echo 2 > /sys/class/net/ens801f1/device/sriov_numvfs
 
   Now retrieve the PCI address for the newly created VF devices using below command,
 
   .. code-block:: bash
 
      ls -l /sys/class/net/ens801f0/device/virtfn*
+     ls -l /sys/class/net/ens801f1/device/virtfn*
 
 - Make sure all VF devices contain a valid MAC address (not all zero's),
 
   .. code-block:: bash
 
      ip link show ens801f0
+     ip link show ens801f1
 
   If the MAC shown for the VF's are all zero's, then retrieve the MAC using the PCI obtained above, as follows,
 
@@ -95,14 +110,18 @@ step 1: Create VF devices and bind them to the vfio-pci driver
      cat /sys/bus/pci/devices/0000\:b1\:01.1/net/ens801f0v1/address
      00:11:22:33:44:51
 
+     cat /sys/bus/pci/devices/0000\:b2\:01.0/net/ens801f1v0/address
+     00:11:22:33:44:60
+
   Then, set the VF's MAC address using the value obtained above
 
   .. code-block:: bash
 
      ip link set ens801f0 vf 0 mac 00:11:22:33:44:50
      ip link set ens801f0 vf 1 mac 00:11:22:33:44:51
+     ip link set ens801f1 vf 0 mac 00:11:22:33:44:60
 
-- Bind the VF devices to the vfio-pci driver as follows,
+- Bind the VFs that will be consumed by the UPF pod to the ``vfio-pci`` driver.
 
   .. code-block:: bash
 
@@ -111,141 +130,124 @@ step 1: Create VF devices and bind them to the vfio-pci driver
 
      ./dpdk-devbind.py -b vfio-pci 0000:b1:01.0
      ./dpdk-devbind.py -b vfio-pci 0000:b1:01.1
+     ./dpdk-devbind.py -b vfio-pci 0000:b2:01.0
 
-
-step 2 - Install SRIOV device plugin
-''''''''''''''''''''''''''''''''''''
-- Install the required packages for kubernetes,
+  Verify the result using:
 
   .. code-block:: bash
 
-     cd aether-in-a-box
-     make node-prep
+     ./dpdk-devbind.py --status
 
-- Download sriov-device-plugin.yaml and install,
+Step 2: Configure ``omec-user-plane`` values for SRIOV and DPDK
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Set the ``omec-user-plane`` values so the chart can generate the SRIOV device-plugin
+configuration and request the correct PCI resources. The important fields are:
 
-  .. code-block:: bash
+- ``config.upf.privileged: true`` when running with SRIOV-backed DPDK interfaces
+- ``config.upf.hugepage.enabled: true`` to mount and request hugepages
+- ``config.upf.sriov.enabled: true`` to install the SRIOV device plugin and generated config
+- ``config.upf.access.iface`` and ``config.upf.core.iface`` set to the PF names used to create VFs
+- ``config.upf.access.resourceName`` and ``config.upf.core.resourceName`` set to the Kubernetes
+  device-plugin resource names exposed to the pod
+- ``config.upf.access.cniPlugin`` and ``config.upf.core.cniPlugin`` set to ``vfioveth``
+- ``config.upf.cfgFiles.upf.jsonc.mode: dpdk``
 
-     $wget https://github.com/opennetworkinglab/aether-configs/blob/main/sys/sriov-device-plugin/sriov-device-plugin.yaml
-     $kubectl apply -f sriov-device-plugin.yaml
-
-- Create the sriov-device-plugin-config.yaml file with below details and install,
+Example:
 
   .. code-block:: yaml
 
-     apiVersion: v1
-     kind: ConfigMap
-     metadata:
-       name: sriovdp-config
-     data:
-       config.json: |
-         {
-           "resourceList": [
-             {
-               "resourcePrefix": "intel.com",
-               "resourceName": "intel_sriov_vfio_access",
-               "selectors": {
-                 "pfNames": ["ens801f0#0-1"],
-                 "vendors": ["8086"],
-                 "drivers": ["vfio-pci"]
-               }
-             },
-             {
-               "resourcePrefix": "intel.com",
-               "resourceName": "intel_sriov_vfio_core",
-               "selectors": {
-                 "pfNames": ["ens801f0#2-3"],
-                 "vendors": ["8086"],
-                 "drivers": ["vfio-pci"]
-               }
-             }
-           ]
-         }
-
-     $kubectl apply -f sriov-device-plugin-config.yaml
-
-- Make sure that there are minimum 1 intel_sriov_vfio_access/intel_sriov_vfio_core resources available,
-
-  .. code-block:: bash
-
-     $kubectl get nodes -o json | jq '.items[].status.allocatable'
-       {
-       "cpu": "144",
-       "ephemeral-storage": "222337451653",
-       "hugepages-1Gi": "32Gi",
-       "intel.com/intel_sriov_vfio_access": "1",
-       "intel.com/intel_sriov_vfio_core": "1",
-       "memory": "494544488Ki",
-       "pods": "110"
-     }
-
-step 3 - Deploy 5G core using AiaB or OnRamp
-''''''''''''''''''''''''''''''''''''''''''''
-
-Update sd-core-5g-values.yaml file parameters as follows (along with any other changes
-required with respect to the environment),
-
-  .. code-block:: diff
-
-     diff --git a/sd-core-5g-values.yaml b/sd-core-5g-values.yaml
-     index 58232ad..1c8893d 100644
-     --- a/sd-core-5g-values.yaml
-     +++ b/sd-core-5g-values.yaml
-     @@ -224,7 +224,7 @@ omec-sub-provision:
      omec-user-plane:
        enable: true
        resources:
-     -    enabled: false
-     +    enabled: true
-       images:
-         repository: "registry.opennetworking.org/docker.io/"
-         # uncomment below section to add update bess image tag
-     @@ -234,12 +234,13 @@ omec-user-plane:
+         enabled: true
        config:
          upf:
-           name: "oaisim"
-     +      privileged: true
-           sriov:
-     -        enabled: false #default sriov is disabled in AIAB setup
-     +        enabled: true #default sriov is disabled in AIAB setup
+           privileged: true
            hugepage:
-     -        enabled: false #should be enabled if dpdk is enabled
-     +        enabled: true #should be enabled if dpdk is enabled
-           #can be any other plugin as well, remember this plugin dictates how IP address are assigned.
-     -      cniPlugin: macvlan
-     +      cniPlugin: vfioveth
-           ipam: static
+             enabled: true
+           sriov:
+             enabled: true
            routes:
-             - to: ${NODE_IP}
-     @@ -247,12 +248,16 @@ omec-user-plane:
+             - to: ${NODE_IP}/32
+               via: 169.254.1.1
            enb:
-             subnet: ${RAN_SUBNET} #this is your gNB network
+             subnet: ${RAN_SUBNET}
            access:
-     -        iface: ${DATA_IFACE}
-     +        resourceName: "intel.com/intel_sriov_vfio_access"
-     +        ip: "192.168.252.3/24"
-     +        gateway: "192.168.252.1"
+             ipam: static
+             cniPlugin: vfioveth
+             iface: ens801f0
+             resourceName: intel.com/intel_sriov_vfio_access
+             gateway: 192.168.252.1
+             ip: 192.168.252.3/24
            core:
-     -        iface: ${DATA_IFACE}
-     +        resourceName: "intel.com/intel_sriov_vfio_core"
-     +        ip: "192.168.250.3/24"
-     +        gateway: "192.168.250.1"
+             ipam: static
+             cniPlugin: vfioveth
+             iface: ens801f1
+             resourceName: intel.com/intel_sriov_vfio_core
+             gateway: 192.168.250.1
+             ip: 192.168.250.3/24
            cfgFiles:
              upf.jsonc:
-     -          mode: af_packet  #this mode means no dpdk
-     +          mode: dpdk  #this mode means no dpdk
+               mode: dpdk
 
-- Deploy the 5g-core (in the below case GNBSIM is disabled) as required,
+- When ``access.resourceName`` and ``core.resourceName`` are the same, the chart requests two VFs
+  from that shared resource pool. Ensure the node advertises at least ``2`` allocatable devices for
+  that resource.
+- When the resource names are different, the chart generates SRIOV device-plugin selectors from the
+  configured PF names and expects one VF from the access pool and one VF from the core pool.
+- ``iface`` is still required with ``vfioveth`` because the chart uses the PF names to build the
+  SRIOV device-plugin configuration.
 
   .. code-block:: bash
 
-     ENABLE_GNBSIM=false DATA_IFACE=ens801f0 CHARTS=latest make 5g-core
+     kubectl get configmap sriovdp-config -n <namespace> -o yaml
+     kubectl get nodes -o json | jq '.items[].status.allocatable'
 
-  UPF will be deployed with DPDK now and you can verify the traffic using UERANSIM (or any preferred method). If you want to deploy the Aether with RoC then use below command,
+  Make sure the advertised allocatable resources match the ``resourceName`` values from the Helm
+  configuration. For example:
+
+  .. code-block:: json
+
+     {
+       "hugepages-1Gi": "32Gi",
+       "intel.com/intel_sriov_vfio_access": "1",
+       "intel.com/intel_sriov_vfio_core": "1"
+     }
+
+  Or, when a single shared pool is used for both interfaces:
+
+  .. code-block:: json
+
+     {
+       "hugepages-1Gi": "32Gi",
+       "intel.com/intel_sriov_vfio": "2"
+     }
+
+Step 3: Deploy SD-Core with the updated values
+'''''''''''''''''''''''''''''''''''''''''''''
+
+Deploy SD-Core using the values file updated above.
 
   .. code-block:: bash
 
-     ENABLE_GNBSIM=false DATA_IFACE=ens801f0 CHARTS=latest make roc-5g-models 5g-core
+     helm upgrade --install sdcore sdcore-helm-charts/sdcore-helm-charts \
+       -n <namespace> \
+       -f sd-core-5g-values.yaml
+
+- If you are using the legacy automation targets, make sure they pass the same ``omec-user-plane``
+  values shown above. The key change is that the UPF-specific SRIOV configuration now lives entirely
+  in Helm values; separate manual installation of the SRIOV device plugin is no longer required.
+
+- After deployment, verify that the UPF pod is running with two SRIOV-backed interfaces and that
+  the BESS container resolved the requested PCI devices:
+
+  .. code-block:: bash
+
+     kubectl get pods -n <namespace>
+     kubectl describe pod upf-0 -n <namespace>
+     kubectl logs upf-0 -n <namespace> -c bessd | grep allow-list
+
+  UPF will be deployed in DPDK mode and can then be validated using UERANSIM or the preferred RAN simulator.
 
 .. note::
 
