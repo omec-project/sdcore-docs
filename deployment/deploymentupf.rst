@@ -78,13 +78,14 @@ Pre-requisite:
 Step 1: Create VF devices and bind them to the vfio-pci driver
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 - Create the required VF devices on the PFs that will carry the N3 and N6 networks.
-  In the example below the PFs are ``ens801f0`` for N3 and ``ens801f1`` for N6.
-  If both N3 and N6 will use VFs from the same PF, create at least two VFs on that PF.
+  In the example below the PFs are ``ens801f0`` for N3 and ``ens801f1`` for N6, so create
+  one VF on each PF. If both N3 and N6 will use VFs from the same PF, create at least two VFs
+  on that PF.
 
   .. code-block:: bash
 
-     echo 2 > /sys/class/net/ens801f0/device/sriov_numvfs
-     echo 2 > /sys/class/net/ens801f1/device/sriov_numvfs
+     echo 1 > /sys/class/net/ens801f0/device/sriov_numvfs
+     echo 1 > /sys/class/net/ens801f1/device/sriov_numvfs
 
   Now retrieve the PCI address for the newly created VF devices using below command,
 
@@ -150,6 +151,7 @@ configuration and request the correct PCI resources. The important fields are:
 - ``config.upf.access.resourceName`` and ``config.upf.core.resourceName`` set to the Kubernetes
   device-plugin resource names exposed to the pod
 - ``config.upf.access.cniPlugin`` and ``config.upf.core.cniPlugin`` set to ``vfioveth``
+  because the current ``bess-upf`` chart defines the CNI plugin per network attachment
 - ``config.upf.cfgFiles.upf.jsonc.mode: dpdk``
 
 Example:
