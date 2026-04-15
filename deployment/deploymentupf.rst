@@ -139,7 +139,7 @@ Step 1: Create VF devices and bind them to the vfio-pci driver
      ./dpdk-devbind.py --status
 
 Step 2: Configure ``omec-user-plane`` values for SRIOV and DPDK
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Set the ``omec-user-plane`` values so the chart can generate the SRIOV device-plugin
 configuration and request the correct PCI resources. The important fields are:
 
@@ -224,7 +224,7 @@ Example:
      }
 
 Step 3: Deploy SD-Core with the updated values
-'''''''''''''''''''''''''''''''''''''''''''''
+'''''''''''''''''''''''''''''''''''''''''''''''
 
 Deploy SD-Core using the values file updated above.
 
