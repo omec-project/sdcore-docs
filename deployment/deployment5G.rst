@@ -75,8 +75,9 @@ Deployment Options
 Development Environments
 """"""""""""""""""""""""
 
-For setting up a 5G development environment, please refer to the
-:ref:`aiab-guide` (Aether-in-a-Box guide).
+For setting up a 5G development environment, please refer to
+`Aether OnRamp <https://docs.aetherproject.org/onramp/overview.html>`_.
+The legacy :ref:`aiab-guide` is preserved for historical reference.
 
 Production Environments - 5G
 """"""""""""""""""""""""""""

@@ -111,6 +111,9 @@ Slice rate Configuration
 UPF Enable dpdk & sriov
 ------------------------
 
+The current ``bess-upf`` chart configures the access and core network attachments
+independently, so ``cniPlugin`` and PF interface selection are set per interface.
+
 .. code-block:: yaml
 
    config:
@@ -121,11 +124,14 @@ UPF Enable dpdk & sriov
          enabled: true
        sriov:
          enabled: true
-       cniPlugin: vfioveth
        access:
+         cniPlugin: vfioveth
+         iface: ens801f0
          # Provide sriov resource name when sriov is enabled
          resourceName: "intel.com/intel_sriov_vfio"
        core:
+         cniPlugin: vfioveth
+         iface: ens801f1
          # Provide sriov resource name when sriov is enabled
          resourceName: "intel.com/intel_sriov_vfio"
        cfgFiles:
