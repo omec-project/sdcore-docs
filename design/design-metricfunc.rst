@@ -72,4 +72,3 @@ Sample output from API Service
            {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000112"},
            {"nfType":"GNB","nfStatus":"Disconnected","nfName":"208:93:000102"}
        ]
-

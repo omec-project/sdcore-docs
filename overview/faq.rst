@@ -48,4 +48,3 @@ Frequently Asked Questions
    Limited scale testing has been performed to evaluate control plane subscriber capacity
    and transaction rates. Formal performance results will be published in the release notes
    and testing sections as they become available.
-
