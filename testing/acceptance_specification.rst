@@ -329,4 +329,3 @@ Application Services
 
 Aether uses Rancher to onboard applications to ACE.
 Each ACE host will be provided with access to rancher to onboard applications on their ACE cluster.
-

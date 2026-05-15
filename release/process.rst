@@ -134,4 +134,3 @@ If a fix is needed to the components/containers that are included by the helm ch
    sdcore-system-tests and helm charts.
 
 4. Update helm charts and go through the helm chart update process above
-

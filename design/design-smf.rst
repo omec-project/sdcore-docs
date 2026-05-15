@@ -24,4 +24,3 @@ may not support connections from multiple SMF instances using the same Node-ID.
 - Receives custom PFCP messages from SMF instances when deployed
 - Intercepts and modifies specific fields before forwarding PFCP messages to the actual UPF
 - Performs similar processing for responses from UPF back to SMF instances
-

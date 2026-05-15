@@ -172,4 +172,3 @@ Add an empty autoscale.yaml in aiab folder. This file can be used to add overrid
 .. code-block:: bash
 
    touch autoscale.yaml
-
