@@ -88,6 +88,7 @@ jobs:
       contents: read
       deployments: read
       discussions: read
+      drives: read
       id-token: write
       issues: read
       models: read
