@@ -1,19 +1,22 @@
 # SPDX-FileCopyrightText: 2025 Intel Corporation
 # SPDX-License-Identifier: Apache-2.0
-
 repos:
-- repo: https://github.com/gitleaks/gitleaks
-  rev: v8.30.1
-  hooks:
-  - id: gitleaks
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v6.0.0
-  hooks:
-  - id: end-of-file-fixer
-  - id: trailing-whitespace
-    args:
-    - --markdown-linebreak-ext=md
-- repo: https://codeberg.org/fsfe/reuse-tool
-  rev: v6.2.0
-  hooks:
-  - id: reuse
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args:
+          - --markdown-linebreak-ext=md
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.21.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://codeberg.org/fsfe/reuse-tool
+    rev: v6.2.0
+    hooks:
+      - id: reuse
