@@ -251,6 +251,7 @@ linkcheck_ignore = [
     r'https://gerrit.opencord.org/.*',
     r'https://wiki.opennetworking.org/.*',
     r'https?://opennetworking\.org/.*',
+    r'https://aether5g-project\.slack\.com.*',
 ]
 
 linkcheck_timeout = 3
