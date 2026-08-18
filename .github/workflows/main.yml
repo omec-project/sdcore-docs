@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2024 Intel Corporation
-
 name: Main workflow
-
 on:
   pull_request:
     branches:
@@ -10,10 +8,8 @@ on:
   push:
     branches:
       - main
-
 permissions:
   contents: read
-
 jobs:
   validate:
     permissions:
@@ -23,7 +19,6 @@ jobs:
     uses: omec-project/.github/.github/workflows/validate.yml@c6f69e74f8ee9034dcc237ccbd719de59526aee5 # v0.0.30
     with:
       branch_name: ${{ github.ref }}
-
   doc8:
     permissions:
       contents: read
@@ -35,7 +30,6 @@ jobs:
     with:
       branch_name: ${{ github.ref }}
       target: doc8
-
   spell-check:
     permissions:
       contents: read
@@ -46,7 +40,6 @@ jobs:
     with:
       branch_name: ${{ github.ref }}
       target: spelling
-
   link-check:
     permissions:
       contents: read
@@ -57,7 +50,6 @@ jobs:
     with:
       branch_name: ${{ github.ref }}
       target: linkcheck
-
   license-check:
     permissions:
       contents: read
@@ -66,7 +58,6 @@ jobs:
     uses: omec-project/.github/.github/workflows/license-check.yml@c6f69e74f8ee9034dcc237ccbd719de59526aee5 # v0.0.30
     with:
       branch_name: ${{ github.ref }}
-
   fossa-scan:
     permissions:
       contents: read
@@ -76,7 +67,6 @@ jobs:
     uses: omec-project/.github/.github/workflows/fossa-scan.yml@c6f69e74f8ee9034dcc237ccbd719de59526aee5 # v0.0.30
     with:
       branch_name: ${{ github.ref }}
-
   analysis:
     if: github.repository_owner == 'omec-project'
     permissions:

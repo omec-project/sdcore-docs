@@ -1,17 +1,13 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2024 Intel Corporation
-
 name: Publish Docs Workflow
-
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   tag-github:
     permissions:
@@ -20,7 +16,6 @@ jobs:
       id-token: write
     uses: omec-project/.github/.github/workflows/tag-github.yml@c6f69e74f8ee9034dcc237ccbd719de59526aee5 # v0.0.30
     secrets: inherit
-
   update-version:
     needs: tag-github
     permissions:
@@ -33,7 +28,6 @@ jobs:
       changed: ${{ needs.tag-github.outputs.changed }}
       version: ${{ needs.tag-github.outputs.version }}
     secrets: inherit
-
   publish:
     if: github.repository_owner == 'omec-project'
     permissions:
@@ -45,7 +39,6 @@ jobs:
     secrets: inherit
     with:
       branch_name: ${{ github.ref }}
-
   sbom-source:
     needs: tag-github
     permissions:
@@ -58,7 +51,6 @@ jobs:
       artifact_name: ${{ github.event.repository.name }}-${{ needs.tag-github.outputs.version }}.spdx.json
       sbom_format: spdx-json
       path: .
-
   grype-scan:
     needs: [tag-github, sbom-source]
     permissions:
