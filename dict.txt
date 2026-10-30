@@ -1,5 +1,6 @@
 152a5eb
 3gpp
+AF
 AMF
 APIs
 AUSF
