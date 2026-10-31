@@ -28,10 +28,10 @@ High Level Summary
     * N8, N10, N13, N21, N35, N36, N37
 
 * NF supported
-    * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF, N3IWF
+    * AMF, NRF, SMF, PCF, UDM, UDR, NSSF, AUSF, N3IWF, AF
 
 * NF not supported
-    * NEF, NWDAF, CHF, UDSF, AF
+    * NEF, NWDAF, CHF, UDSF
 
 * High Level Features supported
     * UE Registration
@@ -396,8 +396,7 @@ PCF Compliance
 
 * Interfaces
     * SBI : Yes
-    * N7(SMF), N15(AMF), N60(UDM), N36(UDR) : Yes
-    * N5(AF) : No
+    * N7(SMF), N15(AMF), N60(UDM), N36(UDR), N5(AF) : Yes
 
 * Services
     * AM Policy Control : Yes
@@ -414,3 +413,32 @@ PCF Compliance
         *  AM Policy Control Update : No
         *  AM Policy Control Update Notify : No
         *  AM Policy Control Delete : Yes
+
+
+AF Compliance
+-------------
+
+The Application Function is the N5 consumer of the IMS: the P-CSCF asks it for QoS on a call and it
+creates, updates and deletes the application session at the PCF.
+
+* Specifications
+   * 29.514
+   * 29.510
+
+* Interfaces
+    * SBI : Yes
+    * N5(PCF) : Yes
+    * Northbound (P-CSCF) : HTTP, port 7782
+
+* Services
+    * Npcf_PolicyAuthorization consumer : Yes
+    * Naf_EventExposure producer : No
+    * Nnrf_NFManagement (register, heartbeat, deregister) : Yes
+    * Nnrf_NFDiscovery (PCF discovery) : Yes
+
+* Service Operations
+    * App Session Create : Yes
+    * App Session Update : Yes
+    * App Session Delete : Yes
+    * Notify : Yes (logged only)
+    * Terminate : Yes

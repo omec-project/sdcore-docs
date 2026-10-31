@@ -211,6 +211,7 @@ SD-Core pre-merge verification covers the following 4G/5G Core Github repos:
 
 and 5G Core GitHub repos:
 
+* ``af``
 * ``amf``
 * ``smf``
 * ``ausf``

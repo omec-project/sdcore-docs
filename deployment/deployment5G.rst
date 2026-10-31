@@ -43,6 +43,9 @@ Hardware Resource Requirements
   * - PCF
     - 1 CPU Cores
     - 1Gi
+  * - AF
+    - 1 CPU Cores
+    - 1Gi
   * - UDR
     - 2 CPU Cores
     - 1Gi
@@ -131,26 +134,37 @@ Check the Helm release status:
     sdcore-5g	sdcore-5g	1       	2022-03-05 16:25:32.338495035 -0700 MST	deployed	sd-core-0.10.9
     xxxx@node:~$
 
-    xxxx@node:~$ kubectl get pods -n sdcore-5g
-    NAME                          READY   STATUS    RESTARTS   AGE
-    amf-6cddb6ff5-g5kwp           1/1     Running   0          8d
-    ausf-64fb5c5df5-g9xps         1/1     Running   0          8d
-    gnbsim-0                      1/1     Running   0          8d
-    mongodb-0                     1/1     Running   0          8d
-    mongodb-1                     1/1     Running   0          8d
-    mongodb-arbiter-0             1/1     Running   0          8d
-    nrf-69794885b-pgl8f           1/1     Running   0          8d
-    nssf-fc9c48c89-dxqn7          1/1     Running   0          8d
-    pcf-5c7d7767c9-wv6dl          1/1     Running   0          8d
-    simapp-669b99db9d-lbbm4       1/1     Running   0          8d
-    smf-b87fc6f8f-4jdqr           1/1     Running   0          8d
-    smf-b87fc6f8f-xt2n2           1/1     Running   0          8d
-    udm-f948b57dc-n5b4h           1/1     Running   0          8d
-    udr-698445bd87-8ptpm          1/1     Running   0          8d
-    upf-0                         5/5     Running   0          8d
-    upf-adapter-c4844b7fb-wqbvw   1/1     Running   0          8d
-    webui-8cfb9659c-hqfp9         1/1     Running   0          8d
+    xxxx@node:~$ kubectl get pods -n aether-5gc
+    NAME                                           READY   STATUS    RESTARTS   AGE
+    af-794f6bc999-8z9td                            1/1     Running   0          84m
+    amf-5d84ccb587-x8b2r                           1/1     Running   0          84m
+    ausf-57c665bd98-r9t9x                          1/1     Running   0          84m
+    kafka-dual-0                                   1/1     Running   0          84m
+    kafka-entity-operator-76764c7dfc-mptj8         2/2     Running   0          83m
+    metricfunc-6bdb886f6d-jmn8s                    1/1     Running   0          84m
+    mongodb-0                                      2/2     Running   0          84m
+    mongodb-1                                      2/2     Running   0          83m
+    mongodb-arb-0                                  2/2     Running   0          84m
+    mongodb-kubernetes-operator-7989c65684-bvlxw   1/1     Running   0          84m
+    nrf-5b76f8cbdc-fb8ws                           1/1     Running   0          84m
+    nssf-749598c758-lwkzm                          1/1     Running   0          84m
+    pcf-6c77f966d5-j86p9                           1/1     Running   0          84m
+    simapp-6549f79d79-rh6dq                        1/1     Running   0          84m
+    smf-5f7bcc456b-95567                           1/1     Running   0          84m
+    strimzi-cluster-operator-7c667c9ccb-7xtcn      1/1     Running   0          84m
+    udm-5bc879dc6c-4dqhf                           1/1     Running   0          84m
+    udr-59f87695b4-sbs4s                           1/1     Running   0          84m
+    upf-0                                          5/5     Running   0          84m
+    webui-76c549747b-6xv2r                         1/1     Running   0          84m
     xxxx@node:~$
+
+**Application Function (AF)**
+
+The ``5g-control-plane`` chart deploys the AF by default (``config.af.deploy: true``). The AF registers at
+the NRF, discovers the PCF through it (set ``pcfUri`` in ``config.af.cfgFiles`` to skip discovery) and
+exposes a northbound HTTP API on port ``7782`` (Service ``af``) for the IMS P-CSCF. Set
+``config.af.deploy: false`` if no IMS is used. The northbound API is unauthenticated unless
+``northbound.authTokenFile`` is set in ``afcfg.yaml``, so restrict access to it to the IMS network.
 
 **Uninstall SD-Core**
 
